@@ -16,17 +16,19 @@ struct AtlasResInfo
 
 static const std::vector<ImageResInfo> image_info_list =
 {
-	{"background",               _T(R"(resource\background.png)")},
+	{"button_startgame_1",                _T(R"(resources\ui\button_startgame_1.png)")},
+	{"button_startgame_2",                _T(R"(resources\ui\button_startgame_2.png)")},
+	{"button_startgame_3",                _T(R"(resources\ui\button_startgame_3.png)")},
+	{"button_setting_1",                  _T(R"(resources\ui\button_setting_1.png)")},
+	{"button_setting_2",                  _T(R"(resources\ui\button_setting_2.png)")},
+	{"button_setting_3",                  _T(R"(resources\ui\button_setting_3.png)")},
+	{"button_exit_1",                     _T(R"(resources\ui\button_exit_1.png)")},
+	{"button_exit_2",                     _T(R"(resources\ui\button_exit_2.png)")},
+	{"button_exit_3",                     _T(R"(resources\ui\button_exit_3.png)")},
 };
 
 static const std::vector<AtlasResInfo> atlas_info_list =
 {
-
-
-	{"wsd_idle_right",            _T(R"(resource\wsd\idle\%d.png)"),              3},
-	{"wsd_run_right",             _T(R"(resource\wsd\run\%d.png)"),               6},
-	{"wsd_jump_right",            _T(R"(resource\wsd\jump\%d.png)"),              3},
-	{"wsd_fall_right",            _T(R"(resource\wsd\fall\%d.png)"),              4}
 	
 
 };
@@ -59,34 +61,6 @@ void ResourcesManager::load()
 		}
 		atlas_pool[info.id] = atlas;
 	}
-	flip_atlas("wsd_idle_right", "wsd_idle_left");
-	flip_atlas("wsd_run_right", "wsd_run_left");
-	flip_atlas("wsd_jump_right", "wsd_jump_left");
-	flip_atlas("wsd_fall_right", "wsd_fall_left");
-
-
-	load_audio(_T(R"(resources\audio\bgm.mp3)"), _T("bgm"));
-	load_audio(_T(R"(resources\audio\barb_break.mp3)"), _T("barb_break"));
-	load_audio(_T(R"(resources\audio\bullet_time.mp3)"), _T("bullet_time"));
-
-	load_audio(_T(R"(resources\audio\enemy_dash.mp3)"), _T("enemy_dash"));
-	load_audio(_T(R"(resources\audio\enemy_run.mp3)"), _T("enemy_run"));
-	load_audio(_T(R"(resources\audio\enemy_hurt_1.mp3)"), _T("enemy_hurt_1"));
-	load_audio(_T(R"(resources\audio\enemy_hurt_2.mp3)"), _T("enemy_hurt_2"));
-	load_audio(_T(R"(resources\audio\enemy_hurt_3.mp3)"), _T("enemy_hurt_3"));
-	load_audio(_T(R"(resources\audio\enemy_throw_barbs.mp3)"), _T("enemy_throw_barbs"));
-	load_audio(_T(R"(resources\audio\enemy_throw_silk.mp3)"), _T("enemy_throw_silk"));
-	load_audio(_T(R"(resources\audio\enemy_throw_sword.mp3)"), _T("enemy_throw_sword"));
-
-	load_audio(_T(R"(resources\audio\player_attack_1.mp3)"), _T("player_attack_1"));
-	load_audio(_T(R"(resources\audio\player_attack_2.mp3)"), _T("player_attack_2"));
-	load_audio(_T(R"(resources\audio\player_attack_3.mp3)"), _T("player_attack_3"));
-	load_audio(_T(R"(resources\audio\player_dead.mp3)"), _T("player_dead"));
-	load_audio(_T(R"(resources\audio\player_hurt.mp3)"), _T("player_hurt"));
-	load_audio(_T(R"(resources\audio\player_jump.mp3)"), _T("player_jump"));
-	load_audio(_T(R"(resources\audio\player_jump.mp3)"), _T("player_jump"));
-	load_audio(_T(R"(resources\audio\player_roll.mp3)"), _T("player_roll"));
-	load_audio(_T(R"(resources\audio\player_run.mp3)"), _T("player_run"));
 }
 
 ResourcesManager* ResourcesManager::manager = nullptr;
@@ -103,6 +77,7 @@ ResourcesManager::ResourcesManager()
 {
 	main_camera = new Camera();
 }
+
 ResourcesManager::~ResourcesManager()
 {
 	delete main_camera;
