@@ -24,7 +24,7 @@ public:
 	};
 
 public:
-	~ChessPiece();
+	ChessPiece(const Vector2& pos, Camp c);
 	~ChessPiece() = default;
 
 	virtual void on_render(const Camera& camera);
@@ -38,6 +38,8 @@ public:
 	void set_pos(const Vector2& p) { pos = p; }
 
 	Vector2 get_pos() const { return pos; }
+	Vector2 get_image_pos() const { return image_pos; }
+	Vector2 get_size() const { return size; }
 
 	void set_selected(bool s) { is_selected = s; }
 	bool get_selected() const { return is_selected; }
@@ -54,6 +56,7 @@ protected:
 	Vector2 pos;             // 棋子在棋盘的位置
 
 	IMAGE img;
+	Vector2 size;
 
 	Camp camp;
 	PieceType type;
