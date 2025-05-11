@@ -33,7 +33,6 @@ public:
 	void on_render(const Camera& camera)
 	{
 		startgame.on_render(camera);
-		outtextxy(150, 150, _T("xxxxxxxx1"));
 	}
 
 	void on_input(const ExMessage& msg)

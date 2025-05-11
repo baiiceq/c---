@@ -25,6 +25,7 @@ static const std::vector<ImageResInfo> image_info_list =
 	{"button_exit_1",                     _T(R"(resources\ui\button_exit_1.png)")},
 	{"button_exit_2",                     _T(R"(resources\ui\button_exit_2.png)")},
 	{"button_exit_3",                     _T(R"(resources\ui\button_exit_3.png)")},
+	{"board",                             _T(R"(resources\board.png)")},
 };
 
 static const std::vector<AtlasResInfo> atlas_info_list =

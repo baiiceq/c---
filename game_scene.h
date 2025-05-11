@@ -1,6 +1,7 @@
 #pragma once
 #include "util.h"
 #include "scene.h"
+#include "board.h"
 #include "scene_manager.h"
 
 #include <iostream>
@@ -9,7 +10,11 @@
 class GameScene :public Scene
 {
 public:
-	GameScene() = default;
+	GameScene()
+	{
+		Vector2 size = board.get_size();
+		board.set_pos((getwidth() - size.x) / 2, (getheight() - size.y) / 2);
+	}
 	~GameScene() = default;
 
 	void on_enter()
@@ -19,12 +24,12 @@ public:
 
 	void on_update(int delta)
 	{
+
 	}
 
 	void on_render(const Camera& camera)
 	{
-		settextcolor(RGB(255, 0, 0));
-		outtextxy(15, 15, _T("xxxxxxxx"));
+		board.on_render(camera);
 	}
 
 	void on_input(const ExMessage& msg)
@@ -35,4 +40,7 @@ public:
 	{
 		std::cout << "ÓÎÏ·ÍË³ö" << std::endl;
 	}
+
+private:
+	Board board;
 };
