@@ -10,6 +10,16 @@
 
 class GameScene :public Scene
 {
+
+public:
+	void switch_to()
+	{
+		if (current_turn == ChessPiece::ChessPiece::Camp::Black)
+			current_turn = ChessPiece::Camp::Red;
+		else
+			current_turn = ChessPiece::Camp::Black;
+	}
+
 public:
 	GameScene()
 	{
@@ -22,12 +32,17 @@ public:
 	void on_enter()
 	{
 		std::cout << "ÓÎÏ·¿ªÊ¼" << std::endl;
+
+		chess_manager.set_callback([&]()
+			{
+				this->switch_to();
+			});
 		
 	}
 
 	void on_update(int delta)
 	{
-
+		chess_manager.on_update(delta);
 	}
 
 	void on_render(const Camera& camera)
@@ -38,7 +53,7 @@ public:
 
 	void on_input(const ExMessage& msg)
 	{
-		chess_manager.on_input(msg);
+		chess_manager.on_input(msg, current_turn);
 	}
 
 	void on_exit()
@@ -50,4 +65,6 @@ private:
 	Board board;
 
 	ChessManager chess_manager;
+
+	ChessPiece::Camp current_turn = ChessPiece::Camp::Black;
 };

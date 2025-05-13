@@ -14,40 +14,62 @@ ChessManager::ChessManager()
     // ºì·½
     {
         pieces.push_back(new Chariot({ 0, 0 }, ChessPiece::Camp::Red));
+        map[0][0] = (int)ChessPiece::PieceType::Chariot;
         pieces.push_back(new Horse({ 1, 0 }, ChessPiece::Camp::Red));
+        map[1][0] = (int)ChessPiece::PieceType::Horse;
         pieces.push_back(new Elephant({ 2, 0 }, ChessPiece::Camp::Red));
+        map[2][0] = (int)ChessPiece::PieceType::Elephant;
         pieces.push_back(new Advisor({ 3, 0 }, ChessPiece::Camp::Red));
+        map[3][0] = (int)ChessPiece::PieceType::Advisor;
         pieces.push_back(new General({ 4, 0 }, ChessPiece::Camp::Red));
+        map[4][0] = (int)ChessPiece::PieceType::General;
         pieces.push_back(new Advisor({ 5, 0 }, ChessPiece::Camp::Red));
+        map[5][0] = (int)ChessPiece::PieceType::Advisor;
         pieces.push_back(new Elephant({ 6, 0 }, ChessPiece::Camp::Red));
+        map[6][0] = (int)ChessPiece::PieceType::Elephant;
         pieces.push_back(new Horse({ 7, 0 }, ChessPiece::Camp::Red));
+        map[7][0] = (int)ChessPiece::PieceType::Horse;
         pieces.push_back(new Chariot({ 8, 0 }, ChessPiece::Camp::Red));
-
+        map[8][0] = (int)ChessPiece::PieceType::Chariot;
         pieces.push_back(new Cannon({ 1, 2 }, ChessPiece::Camp::Red));
+        map[1][2] = (int)ChessPiece::PieceType::Cannon;
         pieces.push_back(new Cannon({ 7, 2 }, ChessPiece::Camp::Red));
+        map[7][2] = (int)ChessPiece::PieceType::Cannon;
         for (int i = 0; i < 5; ++i)
         {
             pieces.push_back(new Soldier({ (float)i * 2, 3 }, ChessPiece::Camp::Red));
+            map[i * 2][3] = (int)ChessPiece::PieceType::Soldier;
         }
     }
 
     // ºÚ·½
     {
         pieces.push_back(new Chariot({ 0, 9 }, ChessPiece::Camp::Black));
+        map[0][9] = (int)ChessPiece::PieceType::Chariot + 100;
         pieces.push_back(new Horse({ 1, 9 }, ChessPiece::Camp::Black));
+        map[1][9] = (int)ChessPiece::PieceType::Horse + 100;
         pieces.push_back(new Elephant({ 2, 9 }, ChessPiece::Camp::Black));
+        map[2][9] = (int)ChessPiece::PieceType::Elephant + 100;
         pieces.push_back(new Advisor({ 3, 9 }, ChessPiece::Camp::Black));
+        map[3][9] = (int)ChessPiece::PieceType::Advisor + 100;
         pieces.push_back(new General({ 4, 9 }, ChessPiece::Camp::Black));
+        map[4][9] = (int)ChessPiece::PieceType::General + 100;
         pieces.push_back(new Advisor({ 5, 9 }, ChessPiece::Camp::Black));
+        map[5][9] = (int)ChessPiece::PieceType::Advisor + 100;
         pieces.push_back(new Elephant({ 6, 9 }, ChessPiece::Camp::Black));
+        map[6][9] = (int)ChessPiece::PieceType::Elephant + 100;
         pieces.push_back(new Horse({ 7, 9 }, ChessPiece::Camp::Black));
+        map[7][9] = (int)ChessPiece::PieceType::Horse + 100;
         pieces.push_back(new Chariot({ 8, 9 }, ChessPiece::Camp::Black));
-
+        map[8][9] = (int)ChessPiece::PieceType::Chariot + 100;
         pieces.push_back(new Cannon({ 1, 7 }, ChessPiece::Camp::Black));
+        map[1][7] = (int)ChessPiece::PieceType::Cannon + 100;
         pieces.push_back(new Cannon({ 7, 7 }, ChessPiece::Camp::Black));
+        map[7][7] = (int)ChessPiece::PieceType::Cannon + 100;
         for (int i = 0; i < 5; ++i)
         {
             pieces.push_back(new Soldier({ (float)i * 2, 6 }, ChessPiece::Camp::Black));
+            map[i * 2][6] = (int)ChessPiece::PieceType::Soldier + 100;
         }
     }
 
@@ -66,7 +88,8 @@ void ChessManager::on_render(const Camera& camera)
 {
     for (auto piece : pieces)
     {
-        piece->on_render(camera);
+        if(piece->get_alive())
+            piece->on_render(camera);
     }
 
     if (hovered_piece)
@@ -84,25 +107,43 @@ void ChessManager::on_render(const Camera& camera)
         Rect rect_dst = { pos.x,pos.y,size.x,size.y };
         putimage_alpha(&camera, &selected_box, &rect_dst);
     }
+
+    for (auto move_pos : can_moves)
+    {
+        Rect rect_dst = { 130 + move_pos.x * 60, 20 + move_pos.y * 60, 60, 60 };
+        putimage_alpha(&camera, &move_box, &rect_dst);
+    }
+
+    for (auto move_pos : can_eats)
+    {
+        Rect rect_dst = { 130 + move_pos.x * 60, 20 + move_pos.y * 60, 60, 60 };
+        putimage_alpha(&camera, &eat_box, &rect_dst);
+    }
 }
 
 void ChessManager::on_update(int delta)
 {
+    for (auto piece : pieces)
+    {
+        if(piece->get_alive())
+            piece->on_update(delta);
+    }
 }
 
-void ChessManager::on_input(const ExMessage& msg)
+void ChessManager::on_input(const ExMessage& msg, ChessPiece::Camp current_turn)
 {
     Vector2 mousePos(msg.x, msg.y);
     switch (msg.message)
     {
     case WM_MOUSEMOVE:
-        handle_hover(mousePos);
+        handle_hover(mousePos, current_turn);
         break;
-    case WM_LBUTTONDOWN:
-        handle_click(mousePos);
-        break;
-
     case WM_LBUTTONUP:
+        if (try_move_selected_piece_to(mousePos))
+        {
+            break;
+        }
+        handle_click(mousePos, current_turn);
         break;
 
     }
@@ -157,8 +198,9 @@ void ChessManager::reset()
     }
 }
 
-void ChessManager::handle_click(const Vector2& mousePos)
+void ChessManager::handle_click(const Vector2& mousePos, ChessPiece::Camp current_turn)
 {
+    bool flag = false;
     for (auto& piece : pieces)
     {
         if (!piece->get_alive()) continue;
@@ -169,32 +211,44 @@ void ChessManager::handle_click(const Vector2& mousePos)
         if (mousePos.x >= img_pos.x &&
             mousePos.y >= img_pos.y &&
             mousePos.x <= img_pos.x + size.x &&
-            mousePos.y <= img_pos.y + size.y)
+            mousePos.y <= img_pos.y + size.y &&
+            piece->get_camp() == current_turn)
         {
+            flag = true;
+            if(selected_piece)
+                std::cout << piece->get_pos().x << ' ' << selected_piece->get_pos().x << std::endl;
             if (selected_piece == nullptr)
             {
                 selected_piece = piece;
+                can_moves = selected_piece->get_can_move_to(map);
+                can_eats = selected_piece->get_can_eat(map);
             }
-            else if (piece == selected_piece)
+            else if (piece->get_pos() == selected_piece->get_pos())
             {
                 selected_piece = nullptr;
+                can_moves.clear();
+                can_eats.clear();
             }
             else
             {
                 selected_piece = piece;
-            }
+                can_moves = selected_piece->get_can_move_to(map);
+                can_eats = selected_piece->get_can_eat(map);
 
+            }
             return;
         }
-        else
-        {
-            selected_piece = nullptr;
-        }
     }
-    
+
+    if (!flag)
+    {
+        selected_piece = nullptr;
+        can_moves.clear();
+        can_eats.clear();
+    }
 }
 
-void ChessManager::handle_hover(const Vector2& mousePos)
+void ChessManager::handle_hover(const Vector2& mousePos, ChessPiece::Camp current_turn)
 {
     int has_hovered = false;
     for (auto& piece : pieces)
@@ -207,7 +261,8 @@ void ChessManager::handle_hover(const Vector2& mousePos)
         if (mousePos.x >= img_pos.x &&
             mousePos.y >= img_pos.y &&
             mousePos.x <= img_pos.x + size.x &&
-            mousePos.y <= img_pos.y + size.y)
+            mousePos.y <= img_pos.y + size.y &&
+            piece->get_camp() == current_turn)
         {
             hovered_piece = piece;
             has_hovered = true;
@@ -218,4 +273,66 @@ void ChessManager::handle_hover(const Vector2& mousePos)
     {
         hovered_piece = nullptr;
     }
+}
+
+bool ChessManager::try_move_selected_piece_to(const Vector2& mouse_pos)
+{
+    if (!selected_piece || !selected_piece->get_alive())
+        return false;
+
+    Vector2 board_pos = mouse_to_chess_pos(mouse_pos);
+    Vector2 now_pos = selected_piece->get_pos();
+    for (auto move_pos : can_moves)
+    {
+        if (move_pos == board_pos)
+        {
+            map[(int)board_pos.x][(int)board_pos.y] = map[(int)now_pos.x][(int)now_pos.y];
+            map[(int)now_pos.x][(int)now_pos.y] = 0;
+            selected_piece->set_pos(board_pos);
+
+            selected_piece->set_selected(false);
+            selected_piece = nullptr;
+
+            can_moves.clear();
+            can_eats.clear();
+
+            if(callback_change)
+                callback_change();
+
+            return true;
+        }
+    }
+
+    for (auto eat_pos : can_eats)
+    {
+        if (eat_pos == board_pos)
+        {
+            for (auto& piece : pieces)
+            {
+                if (piece->get_pos() == eat_pos && piece->get_alive())
+                {
+                    piece->set_alive(false);
+                    break;
+                }
+            }
+
+            map[(int)board_pos.x][(int)board_pos.y] = map[(int)now_pos.x][(int)now_pos.y];
+            map[(int)now_pos.x][(int)now_pos.y] = 0;
+
+            selected_piece->set_pos(board_pos);
+
+            selected_piece->set_selected(false);
+            selected_piece = nullptr;
+
+            can_moves.clear();
+            can_eats.clear();
+
+            if (callback_change)
+                callback_change();
+
+            return true;
+        }
+    }
+
+    return false;
 }

@@ -1,6 +1,8 @@
 #pragma once
 
 #include "camera.h"
+
+#include <vector>
 #include <graphics.h>
 
 class ChessPiece
@@ -9,18 +11,19 @@ public:
 	enum class Camp
 	{
 		Black,
-		Red
+		Red,
+		None = -1
 	};
 
 	enum class PieceType 
 	{
-		General,  // 将 / 帅
-		Advisor,  // 士
-		Elephant, // 象 / 相
-		Horse,    // 马
-		Chariot,  // 车
-		Cannon,   // 炮
-		Soldier   // 卒 / 兵
+		General = 1,  // 将 / 帅
+		Advisor,      // 士
+		Elephant,     // 象 / 相
+		Horse,        // 马
+		Chariot,      // 车
+		Cannon,       // 炮
+		Soldier       // 卒 / 兵
 	};
 
 public:
@@ -33,7 +36,8 @@ public:
 
 	virtual void on_update(int delta);
 
-	virtual void can_move_to() = 0;
+	virtual std::vector<Vector2> get_can_move_to(const int(&board)[9][10]) = 0;
+	virtual std::vector<Vector2> get_can_eat(const int(&board)[9][10]) = 0;
 
 	void set_pos(const Vector2& p) { pos = p; }
 
@@ -64,4 +68,5 @@ protected:
 	bool is_selected = false;
 	bool is_alive = false;
 
+	const int SPEED = 300;
 };

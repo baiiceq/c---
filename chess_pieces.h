@@ -9,7 +9,8 @@ public:
     void on_render(const Camera& camera) override;
     void on_input(const ExMessage& msg) override;
     void on_update(int delta) override;
-    void can_move_to() override;
+    std::vector<Vector2> get_can_move_to(const int(&board)[9][10]) override;
+    std::vector<Vector2> get_can_eat(const int(&board)[9][10]) override;
 };
 
 class Advisor : public ChessPiece 
@@ -19,7 +20,8 @@ public:
     void on_render(const Camera& camera) override;
     void on_input(const ExMessage& msg) override;
     void on_update(int delta) override;
-    void can_move_to() override;
+    std::vector<Vector2> get_can_move_to(const int(&board)[9][10]) override;
+    std::vector<Vector2> get_can_eat(const int(&board)[9][10]) override;
 };
 
 class Elephant : public ChessPiece
@@ -29,7 +31,8 @@ public:
     void on_render(const Camera& camera) override;
     void on_input(const ExMessage& msg) override;
     void on_update(int delta) override;
-    void can_move_to() override;
+    std::vector<Vector2> get_can_move_to(const int(&board)[9][10])override;
+    std::vector<Vector2> get_can_eat(const int(&board)[9][10]) override;
 };
 
 class Horse : public ChessPiece
@@ -39,7 +42,8 @@ public:
     void on_render(const Camera& camera) override;
     void on_input(const ExMessage& msg) override;
     void on_update(int delta) override;
-    void can_move_to() override;
+    std::vector<Vector2> get_can_move_to(const int(&board)[9][10]) override;
+    std::vector<Vector2> get_can_eat(const int(&board)[9][10]) override;
 };
 
 class Chariot : public ChessPiece {
@@ -48,7 +52,8 @@ public:
     void on_render(const Camera& camera) override;
     void on_input(const ExMessage& msg) override;
     void on_update(int delta) override;
-    void can_move_to() override;
+    std::vector<Vector2> get_can_move_to(const int(&board)[9][10]) override;
+    std::vector<Vector2> get_can_eat(const int(&board)[9][10]) override;
 };
 
 class Cannon : public ChessPiece
@@ -58,7 +63,8 @@ public:
     void on_render(const Camera& camera) override;
     void on_input(const ExMessage& msg) override;
     void on_update(int delta) override;
-    void can_move_to() override;
+    std::vector<Vector2> get_can_move_to(const int(&board)[9][10]) override;
+    std::vector<Vector2> get_can_eat(const int(&board)[9][10]) override;
 };
 
 class Soldier : public ChessPiece 
@@ -68,6 +74,7 @@ public:
     void on_render(const Camera& camera) override;
     void on_input(const ExMessage& msg) override;
     void on_update(int delta) override;
-    void can_move_to() override;
+    std::vector<Vector2> get_can_move_to(const int(&board)[9][10]) override;
+    std::vector<Vector2> get_can_eat(const int(&board)[9][10]) override;
 };
 

@@ -40,6 +40,11 @@ public:
 		x += vec.x, y += vec.y;
 	}
 
+	bool operator==(const Vector2& vec)
+	{
+		return (x == vec.x) && (y == vec.y);
+	}
+
 	void operator-=(const Vector2& vec)
 	{
 		x -= vec.x, y -= vec.y;
