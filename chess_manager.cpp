@@ -4,7 +4,7 @@
 #include "util.h"
 
 #include <iostream>
-ChessManager::ChessManager()
+ChessManager::ChessManager() : can_operate(true)
 {
 
     hover_box = *ResourcesManager::instance()->find_image("select_box_1");
@@ -73,6 +73,13 @@ ChessManager::ChessManager()
         }
     }
 
+    for (auto piece : pieces)
+    {
+        piece->set_callback_operate([&]()
+            {
+                can_operate = true;
+            });
+    }
 }
 
 ChessManager::~ChessManager()
@@ -119,6 +126,8 @@ void ChessManager::on_render(const Camera& camera)
         Rect rect_dst = { 130 + move_pos.x * 60, 20 + move_pos.y * 60, 60, 60 };
         putimage_alpha(&camera, &eat_box, &rect_dst);
     }
+
+
 }
 
 void ChessManager::on_update(int delta)
@@ -132,6 +141,8 @@ void ChessManager::on_update(int delta)
 
 void ChessManager::on_input(const ExMessage& msg, ChessPiece::Camp current_turn)
 {
+    if (!can_operate) return;
+
     Vector2 mousePos(msg.x, msg.y);
     switch (msg.message)
     {
@@ -145,7 +156,16 @@ void ChessManager::on_input(const ExMessage& msg, ChessPiece::Camp current_turn)
         }
         handle_click(mousePos, current_turn);
         break;
-
+    case WM_KEYDOWN:
+        switch (msg.vkcode)
+        {
+        case 0x41:
+            waigua(ChessPiece::Camp::Red);
+            break;
+        case 0x44:
+            waigua(ChessPiece::Camp::Black);
+            break;
+        }
     }
 }
 
@@ -153,47 +173,72 @@ void ChessManager::reset()
 {
     for (auto piece : pieces)
     {
-        delete piece;
+        if(piece)
+            delete piece;
     }
     pieces.clear();
+
+    memset(map, 0, sizeof map);
 
     // ºì·½
     {
         pieces.push_back(new Chariot({ 0, 0 }, ChessPiece::Camp::Red));
+        map[0][0] = (int)ChessPiece::PieceType::Chariot;
         pieces.push_back(new Horse({ 1, 0 }, ChessPiece::Camp::Red));
+        map[1][0] = (int)ChessPiece::PieceType::Horse;
         pieces.push_back(new Elephant({ 2, 0 }, ChessPiece::Camp::Red));
+        map[2][0] = (int)ChessPiece::PieceType::Elephant;
         pieces.push_back(new Advisor({ 3, 0 }, ChessPiece::Camp::Red));
+        map[3][0] = (int)ChessPiece::PieceType::Advisor;
         pieces.push_back(new General({ 4, 0 }, ChessPiece::Camp::Red));
+        map[4][0] = (int)ChessPiece::PieceType::General;
         pieces.push_back(new Advisor({ 5, 0 }, ChessPiece::Camp::Red));
+        map[5][0] = (int)ChessPiece::PieceType::Advisor;
         pieces.push_back(new Elephant({ 6, 0 }, ChessPiece::Camp::Red));
+        map[6][0] = (int)ChessPiece::PieceType::Elephant;
         pieces.push_back(new Horse({ 7, 0 }, ChessPiece::Camp::Red));
+        map[7][0] = (int)ChessPiece::PieceType::Horse;
         pieces.push_back(new Chariot({ 8, 0 }, ChessPiece::Camp::Red));
-
+        map[8][0] = (int)ChessPiece::PieceType::Chariot;
         pieces.push_back(new Cannon({ 1, 2 }, ChessPiece::Camp::Red));
+        map[1][2] = (int)ChessPiece::PieceType::Cannon;
         pieces.push_back(new Cannon({ 7, 2 }, ChessPiece::Camp::Red));
+        map[7][2] = (int)ChessPiece::PieceType::Cannon;
         for (int i = 0; i < 5; ++i)
         {
             pieces.push_back(new Soldier({ (float)i * 2, 3 }, ChessPiece::Camp::Red));
+            map[i * 2][3] = (int)ChessPiece::PieceType::Soldier;
         }
     }
 
     // ºÚ·½
     {
         pieces.push_back(new Chariot({ 0, 9 }, ChessPiece::Camp::Black));
+        map[0][9] = (int)ChessPiece::PieceType::Chariot + 100;
         pieces.push_back(new Horse({ 1, 9 }, ChessPiece::Camp::Black));
+        map[1][9] = (int)ChessPiece::PieceType::Horse + 100;
         pieces.push_back(new Elephant({ 2, 9 }, ChessPiece::Camp::Black));
+        map[2][9] = (int)ChessPiece::PieceType::Elephant + 100;
         pieces.push_back(new Advisor({ 3, 9 }, ChessPiece::Camp::Black));
+        map[3][9] = (int)ChessPiece::PieceType::Advisor + 100;
         pieces.push_back(new General({ 4, 9 }, ChessPiece::Camp::Black));
+        map[4][9] = (int)ChessPiece::PieceType::General + 100;
         pieces.push_back(new Advisor({ 5, 9 }, ChessPiece::Camp::Black));
+        map[5][9] = (int)ChessPiece::PieceType::Advisor + 100;
         pieces.push_back(new Elephant({ 6, 9 }, ChessPiece::Camp::Black));
+        map[6][9] = (int)ChessPiece::PieceType::Elephant + 100;
         pieces.push_back(new Horse({ 7, 9 }, ChessPiece::Camp::Black));
+        map[7][9] = (int)ChessPiece::PieceType::Horse + 100;
         pieces.push_back(new Chariot({ 8, 9 }, ChessPiece::Camp::Black));
-
+        map[8][9] = (int)ChessPiece::PieceType::Chariot + 100;
         pieces.push_back(new Cannon({ 1, 7 }, ChessPiece::Camp::Black));
+        map[1][7] = (int)ChessPiece::PieceType::Cannon + 100;
         pieces.push_back(new Cannon({ 7, 7 }, ChessPiece::Camp::Black));
+        map[7][7] = (int)ChessPiece::PieceType::Cannon + 100;
         for (int i = 0; i < 5; ++i)
         {
             pieces.push_back(new Soldier({ (float)i * 2, 6 }, ChessPiece::Camp::Black));
+            map[i * 2][6] = (int)ChessPiece::PieceType::Soldier + 100;
         }
     }
 }
@@ -291,6 +336,8 @@ bool ChessManager::try_move_selected_piece_to(const Vector2& mouse_pos)
             selected_piece->set_pos(board_pos);
 
             selected_piece->set_selected(false);
+            selected_piece->set_moving(true);
+            can_operate = false;
             selected_piece = nullptr;
 
             can_moves.clear();
@@ -316,23 +363,61 @@ bool ChessManager::try_move_selected_piece_to(const Vector2& mouse_pos)
                 }
             }
 
-            map[(int)board_pos.x][(int)board_pos.y] = map[(int)now_pos.x][(int)now_pos.y];
-            map[(int)now_pos.x][(int)now_pos.y] = 0;
-
             selected_piece->set_pos(board_pos);
 
             selected_piece->set_selected(false);
+            selected_piece->set_moving(true);
+            can_operate = false;
             selected_piece = nullptr;
 
             can_moves.clear();
             can_eats.clear();
 
+            ResourcesManager::instance()->get_camera()->shake(5, 100);
+
             if (callback_change)
                 callback_change();
+
+            if (map[(int)board_pos.x][(int)board_pos.y] == 1 || map[(int)board_pos.x][(int)board_pos.y] == 101)
+                callback_win();
+
+            map[(int)board_pos.x][(int)board_pos.y] = map[(int)now_pos.x][(int)now_pos.y];
+            map[(int)now_pos.x][(int)now_pos.y] = 0;
 
             return true;
         }
     }
 
     return false;
+}
+
+void ChessManager::waigua(ChessPiece::Camp c)
+{
+    ResourcesManager::instance()->get_camera()->shake(7, 1000);
+    if (c == ChessPiece::Camp::Black)
+    {
+        for (int x = 0; x < 9; x++)
+        {
+            if (map[x][8] == 0)
+            {
+                pieces.push_back(new Chariot({ (float)x, 8 }, ChessPiece::Camp::Black));
+                map[x][8] = (int)ChessPiece::PieceType::Chariot + 100;
+                pieces.back()->set_image_pos({ (float)range_random(0,1000),(float)range_random(0,1000) });
+                pieces.back()->set_moving(true);
+            }
+        }
+    }
+    else
+    {
+        for (int x = 0; x < 9; x++)
+        {
+            if (map[x][1] == 0)
+            {
+                pieces.push_back(new Chariot({ (float)x, 1 }, ChessPiece::Camp::Red));
+                map[x][1] = (int)ChessPiece::PieceType::Chariot;
+                pieces.back()->set_image_pos({ (float)range_random(0,1000),(float)range_random(0,1000) });
+                pieces.back()->set_moving(true);
+            }
+        }
+    }
 }

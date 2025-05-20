@@ -58,7 +58,7 @@ std::vector<Vector2> General::get_can_eat(const int(&board)[9][10])
         {
             if (x < 3 || x>5 || y > 2 || y < 0)continue;
         }
-        if (board[x][y] == 0 && abs(board[x][y] - board[(int)pos.x][(int)pos.y]) >= 80)
+        if (board[x][y] != 0 && abs(board[x][y] - board[(int)pos.x][(int)pos.y]) >= 80)
         {
             // 吃对面的将(以后写)
 

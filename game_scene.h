@@ -33,9 +33,23 @@ public:
 	{
 		std::cout << "游戏开始" << std::endl;
 
-		chess_manager.set_callback([&]()
+		current_turn = ChessPiece::Camp::Black;
+
+		chess_manager.set_callback_change([&]()
 			{
 				this->switch_to();
+			});
+
+		chess_manager.set_callback_win([&]()
+			{
+				if (current_turn == ChessPiece::Camp::Black)
+				{
+					MessageBox(GetHWnd(), _T("红方胜利！"), _T("游戏结束！"), MB_OK);
+				}
+				else {
+					MessageBox(GetHWnd(), _T("黑方胜利！"), _T("游戏结束！"), MB_OK);
+				}
+				SceneManager::instance()->switch_to(SceneManager::SceneType::Menu);
 			});
 		
 	}
@@ -43,6 +57,7 @@ public:
 	void on_update(int delta)
 	{
 		chess_manager.on_update(delta);
+		ResourcesManager::instance()->get_camera()->on_update(delta);
 	}
 
 	void on_render(const Camera& camera)
@@ -59,6 +74,7 @@ public:
 	void on_exit()
 	{
 		std::cout << "游戏退出" << std::endl;
+		chess_manager.reset();
 	}
 
 private:

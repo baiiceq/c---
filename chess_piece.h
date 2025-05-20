@@ -40,6 +40,7 @@ public:
 	virtual std::vector<Vector2> get_can_eat(const int(&board)[9][10]) = 0;
 
 	void set_pos(const Vector2& p) { pos = p; }
+	void set_image_pos(const Vector2& p) { image_pos = p; }
 
 	Vector2 get_pos() const { return pos; }
 	Vector2 get_image_pos() const { return image_pos; }
@@ -55,6 +56,21 @@ public:
 	PieceType get_type() const { return type; }
 
 
+	void set_moving(bool s)
+	{
+		is_moving = s;
+		if (s == true)
+		{
+			timer_move.restart();
+		}
+	}
+
+	void set_callback_operate(std::function<void()> callback)
+	{
+		callback_operate = callback;
+	}
+
+
 protected:
 	Vector2 image_pos;       // 图像在界面的位置
 	Vector2 pos;             // 棋子在棋盘的位置
@@ -68,5 +84,10 @@ protected:
 	bool is_selected = false;
 	bool is_alive = false;
 
-	const int SPEED = 300;
+	const int MOVE_TIME = 500;
+
+	bool is_moving = false;
+	Timer timer_move;
+
+	std::function<void()> callback_operate;    // 当棋子完成移动时，通知上层棋子管理器
 };

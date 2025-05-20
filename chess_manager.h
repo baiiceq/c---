@@ -15,9 +15,14 @@ public:
 
     void reset();
 
-    void set_callback(std::function<void()> callback)
+    void set_callback_change(std::function<void()> callback)
     {
         callback_change = callback;
+    }
+
+    void set_callback_win(std::function<void()> callback)
+    {
+        callback_win = callback;
     }
 
 private:
@@ -33,7 +38,10 @@ private:
         return Vector2(x, y);
     }
 
+    void waigua(ChessPiece::Camp c);
+
 private:
+    bool can_operate = true;
     std::vector<ChessPiece*> pieces;
     IMAGE hover_box, selected_box, move_box, eat_box;
     ChessPiece* hovered_piece = nullptr;
@@ -45,5 +53,6 @@ private:
     int map[9][10] {0};
 
     std::function<void()> callback_change;
+    std::function<void()> callback_win;
 };
 

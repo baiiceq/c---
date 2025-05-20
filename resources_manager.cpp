@@ -44,6 +44,8 @@ static const std::vector<ImageResInfo> image_info_list =
 	{"select_box_2",                      _T(R"(resources\select_box_2.png)")},
 	{"select_box_3",                      _T(R"(resources\select_box_3.png)")},
 	{"select_box_4",                      _T(R"(resources\select_box_4.png)")},
+	{"background",                        _T(R"(resources\background.png)")},
+	{"title",                             _T(R"(resources\title.png)")},
 };
 
 static const std::vector<AtlasResInfo> atlas_info_list =

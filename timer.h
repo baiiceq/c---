@@ -1,6 +1,8 @@
 #pragma once
 
 #include <functional>
+#include <algorithm>
+#include <cmath>  
 
 class Timer
 {
@@ -57,6 +59,11 @@ public:
 			shotted = true;
 			pass_time = 0;
 		}
+	}
+
+	float get_ratio() const 
+	{
+		return wait_time == 0 ? 1.0f : (((1.0f) < (pass_time / (float)wait_time)) ? (1.0f) : (pass_time / (float)wait_time));
 	}
 private:
 	int pass_time = 0;

@@ -9,6 +9,14 @@
 
 #pragma comment(lib, "Winmm.lib")
 
+void put_background()
+{
+	IMAGE* img = ResourcesManager::instance()->find_image("background");
+	Camera* camera = ResourcesManager::instance()->get_camera();
+	Rect rect_dst = { 0,0,800,640 };
+	putimage_alpha(camera, img, &rect_dst);
+}
+
 int main()
 {
 	HWND hwnd = initgraph(800, 640, EW_SHOWCONSOLE);
@@ -53,6 +61,7 @@ int main()
 		last_tick_time = current_tick_time;
 
 		cleardevice();
+		put_background();
 		scene_manager->on_render(*ResourcesManager::instance()->get_camera());
 
 		FlushBatchDraw();

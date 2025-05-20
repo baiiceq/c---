@@ -11,6 +11,17 @@ ChessPiece::ChessPiece(const Vector2& pos, Camp c)
 	Vector2 board_pos = { 130, 20 };
 	image_pos.x = board_pos.x + 30 + pos.x * 60 - size.x / 2;
 	image_pos.y = board_pos.y + 30 + pos.y * 60 - size.y / 2;
+
+	timer_move.set_one_shot(true);
+	timer_move.set_wait_time(MOVE_TIME);
+	timer_move.set_on_timeout([&]()
+		{
+			is_moving = false;
+			image_pos.x = 130 + this->pos.x * 60;
+			image_pos.y = 20 + this->pos.y * 60;
+			if(callback_operate)
+				callback_operate();
+		});
 }
 
 void ChessPiece::on_render(const Camera& camera)
@@ -25,27 +36,19 @@ void ChessPiece::on_input(const ExMessage& msg)
 
 void ChessPiece::on_update(int delta)
 {
-	Vector2 board_pos = { 130, 20 };
-	Vector2 target_image_pos;
-	target_image_pos.x = board_pos.x + 30 + pos.x * 60 - size.x / 2;
-	target_image_pos.y = board_pos.y + 30 + pos.y * 60 - size.y / 2;
-
-	if (!(target_image_pos == image_pos))
+	if (is_moving)
 	{
-		Vector2 delta_vec = target_image_pos - image_pos;
+		timer_move.on_update(delta);
 
-		// 计算本帧最大能移动的距离
-		float distance = delta * SPEED / 1000.0f;
+		Vector2 board_pos = { 130, 20 };
+		Vector2 target_image_pos;
+		target_image_pos.x = board_pos.x + 30 + pos.x * 60 - size.x / 2;
+		target_image_pos.y = board_pos.y + 30 + pos.y * 60 - size.y / 2;
 
-		// 若距离足够小
-		if (delta_vec.length() <= distance)
+		if (!(target_image_pos == image_pos))
 		{
-			image_pos = target_image_pos;
-		}
-		else
-		{
-			Vector2 direction = delta_vec.normalize();
-			image_pos = image_pos + direction * distance;
+			float t = timer_move.get_ratio();
+			image_pos = image_pos + (target_image_pos - image_pos) * t;
 		}
 	}
 }
