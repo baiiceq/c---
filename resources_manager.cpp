@@ -25,6 +25,9 @@ static const std::vector<ImageResInfo> image_info_list =
 	{"button_exit_1",                     _T(R"(resources\ui\button_exit_1.png)")},
 	{"button_exit_2",                     _T(R"(resources\ui\button_exit_2.png)")},
 	{"button_exit_3",                     _T(R"(resources\ui\button_exit_3.png)")},
+	{"button_repentance_1",               _T(R"(resources\ui\button_repentance_1.png)")},
+	{"button_repentance_2",               _T(R"(resources\ui\button_repentance_2.png)")},
+	{"button_repentance_3",               _T(R"(resources\ui\button_repentance_3.png)")},
 	{"board",                             _T(R"(resources\board.png)")},
 	{"advisor_black",                     _T(R"(resources\advisor_black.png)")},
 	{"advisor_red",                       _T(R"(resources\advisor_red.png)")},
@@ -46,6 +49,8 @@ static const std::vector<ImageResInfo> image_info_list =
 	{"select_box_4",                      _T(R"(resources\select_box_4.png)")},
 	{"background",                        _T(R"(resources\background.png)")},
 	{"title",                             _T(R"(resources\title.png)")},
+	{"red_tip",                           _T(R"(resources\red_tip.png)")},
+	{"black_tip",                         _T(R"(resources\black_tip.png)")},
 };
 
 static const std::vector<AtlasResInfo> atlas_info_list =
@@ -61,6 +66,8 @@ static inline bool check_image_valid(IMAGE* image)
 
 void ResourcesManager::load()
 {
+	AddFontResourceEx(_T("resources/font.ttf"), FR_PRIVATE, NULL);
+
 	for (const auto& info : image_info_list)
 	{
 		IMAGE* image = new IMAGE();

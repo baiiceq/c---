@@ -8,7 +8,7 @@ ChessPiece::ChessPiece(const Vector2& pos, Camp c)
 	this->pos = pos;
 	camp = c;
 
-	Vector2 board_pos = { 130, 20 };
+	Vector2 board_pos = { 260, 20 };
 	image_pos.x = board_pos.x + 30 + pos.x * 60 - size.x / 2;
 	image_pos.y = board_pos.y + 30 + pos.y * 60 - size.y / 2;
 
@@ -17,7 +17,7 @@ ChessPiece::ChessPiece(const Vector2& pos, Camp c)
 	timer_move.set_on_timeout([&]()
 		{
 			is_moving = false;
-			image_pos.x = 130 + this->pos.x * 60;
+			image_pos.x = 260 + this->pos.x * 60;
 			image_pos.y = 20 + this->pos.y * 60;
 			if(callback_operate)
 				callback_operate();
@@ -40,7 +40,7 @@ void ChessPiece::on_update(int delta)
 	{
 		timer_move.on_update(delta);
 
-		Vector2 board_pos = { 130, 20 };
+		Vector2 board_pos = { 260, 20 };
 		Vector2 target_image_pos;
 		target_image_pos.x = board_pos.x + 30 + pos.x * 60 - size.x / 2;
 		target_image_pos.y = board_pos.y + 30 + pos.y * 60 - size.y / 2;

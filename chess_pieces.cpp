@@ -22,7 +22,7 @@ std::vector<Vector2> General::get_can_move_to(const int(&board)[9][10])
     {
         int x = pos.x, y = pos.y;
         x += dx[i], y += dy[i];
-        if (camp == Camp::Black)
+        if (camp == Camp::Red)
         {
             if (x < 3 || x>5 || y > 9 || y < 7)continue;
         }
@@ -50,7 +50,7 @@ std::vector<Vector2> General::get_can_eat(const int(&board)[9][10])
     {
         int x = pos.x, y = pos.y;
         x += dx[i], y += dy[i];
-        if (camp == Camp::Black)
+        if (camp == Camp::Red)
         {
             if (x < 3 || x>5 || y > 9 || y < 7)continue;
         }
@@ -91,7 +91,7 @@ std::vector<Vector2> Advisor::get_can_move_to(const int(&board)[9][10])
     {
         int x = pos.x, y = pos.y;
         x += dx[i], y += dy[i];
-        if (camp == Camp::Black)
+        if (camp == Camp::Red)
         {
             if (x < 3 || x>5 || y > 9 || y < 7)continue;
         }
@@ -117,7 +117,7 @@ std::vector<Vector2> Advisor::get_can_eat(const int(&board)[9][10])
     {
         int x = pos.x, y = pos.y;
         x += dx[i], y += dy[i];
-        if (camp == Camp::Black)
+        if (camp == Camp::Red)
         {
             if (x < 3 || x>5 || y > 9 || y < 7)continue;
         }
@@ -156,7 +156,7 @@ std::vector<Vector2> Elephant::get_can_move_to(const int(&board)[9][10])
     {
         int x = pos.x, y = pos.y;
         x += dx[i], y += dy[i];
-        if (camp == Camp::Black)
+        if (camp == Camp::Red)
         {
             if (x < 0 || x > 8 || y > 9 || y < 5)continue;
         }
@@ -182,7 +182,7 @@ std::vector<Vector2> Elephant::get_can_eat(const int(&board)[9][10])
     {
         int x = pos.x, y = pos.y;
         x += dx[i], y += dy[i];
-        if (camp == Camp::Black)
+        if (camp == Camp::Red)
         {
             if (x < 0 || x > 8 || y > 9 || y < 5)continue;
         }
@@ -575,7 +575,7 @@ std::vector<Vector2> Soldier::get_can_move_to(const int(&board)[9][10])
     int x = pos.x;
     int y = pos.y;
 
-    if (camp == Camp::Black)
+    if (camp == Camp::Red)
     {
         // 向上
         if (y - 1 >= 0 && board[x][y - 1] == 0)
@@ -619,7 +619,7 @@ std::vector<Vector2> Soldier::get_can_eat(const int(&board)[9][10])
     int x = pos.x;
     int y = pos.y;
 
-    if (camp == Camp::Black)
+    if (camp == Camp::Red)
     {
         // 向上
         if (y - 1 >= 0 && board[x][y - 1] != 0 && abs(board[x][y - 1] - board[x][y]) >= 80)

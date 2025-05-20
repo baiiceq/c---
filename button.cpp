@@ -58,7 +58,8 @@ void Button::on_input(const ExMessage& msg)
 		if (state == State::PRESS && isInside(msg.x, msg.y))
 		{
 			state = State::HOVER;
-			on_click();
+			if(on_click)
+				on_click();
 		}
 		else
 		{

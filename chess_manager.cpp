@@ -13,62 +13,62 @@ ChessManager::ChessManager() : can_operate(true)
     eat_box = *ResourcesManager::instance()->find_image("select_box_4");
     // ºì·½
     {
-        pieces.push_back(new Chariot({ 0, 0 }, ChessPiece::Camp::Red));
+        pieces.push_back(new Chariot({ 0, 0 }, ChessPiece::Camp::Black));
         map[0][0] = (int)ChessPiece::PieceType::Chariot;
-        pieces.push_back(new Horse({ 1, 0 }, ChessPiece::Camp::Red));
+        pieces.push_back(new Horse({ 1, 0 }, ChessPiece::Camp::Black));
         map[1][0] = (int)ChessPiece::PieceType::Horse;
-        pieces.push_back(new Elephant({ 2, 0 }, ChessPiece::Camp::Red));
+        pieces.push_back(new Elephant({ 2, 0 }, ChessPiece::Camp::Black));
         map[2][0] = (int)ChessPiece::PieceType::Elephant;
-        pieces.push_back(new Advisor({ 3, 0 }, ChessPiece::Camp::Red));
+        pieces.push_back(new Advisor({ 3, 0 }, ChessPiece::Camp::Black));
         map[3][0] = (int)ChessPiece::PieceType::Advisor;
-        pieces.push_back(new General({ 4, 0 }, ChessPiece::Camp::Red));
+        pieces.push_back(new General({ 4, 0 }, ChessPiece::Camp::Black));
         map[4][0] = (int)ChessPiece::PieceType::General;
-        pieces.push_back(new Advisor({ 5, 0 }, ChessPiece::Camp::Red));
+        pieces.push_back(new Advisor({ 5, 0 }, ChessPiece::Camp::Black));
         map[5][0] = (int)ChessPiece::PieceType::Advisor;
-        pieces.push_back(new Elephant({ 6, 0 }, ChessPiece::Camp::Red));
+        pieces.push_back(new Elephant({ 6, 0 }, ChessPiece::Camp::Black));
         map[6][0] = (int)ChessPiece::PieceType::Elephant;
-        pieces.push_back(new Horse({ 7, 0 }, ChessPiece::Camp::Red));
+        pieces.push_back(new Horse({ 7, 0 }, ChessPiece::Camp::Black));
         map[7][0] = (int)ChessPiece::PieceType::Horse;
-        pieces.push_back(new Chariot({ 8, 0 }, ChessPiece::Camp::Red));
+        pieces.push_back(new Chariot({ 8, 0 }, ChessPiece::Camp::Black));
         map[8][0] = (int)ChessPiece::PieceType::Chariot;
-        pieces.push_back(new Cannon({ 1, 2 }, ChessPiece::Camp::Red));
+        pieces.push_back(new Cannon({ 1, 2 }, ChessPiece::Camp::Black));
         map[1][2] = (int)ChessPiece::PieceType::Cannon;
-        pieces.push_back(new Cannon({ 7, 2 }, ChessPiece::Camp::Red));
+        pieces.push_back(new Cannon({ 7, 2 }, ChessPiece::Camp::Black));
         map[7][2] = (int)ChessPiece::PieceType::Cannon;
         for (int i = 0; i < 5; ++i)
         {
-            pieces.push_back(new Soldier({ (float)i * 2, 3 }, ChessPiece::Camp::Red));
+            pieces.push_back(new Soldier({ (float)i * 2, 3 }, ChessPiece::Camp::Black));
             map[i * 2][3] = (int)ChessPiece::PieceType::Soldier;
         }
     }
 
     // ºÚ·½
     {
-        pieces.push_back(new Chariot({ 0, 9 }, ChessPiece::Camp::Black));
+        pieces.push_back(new Chariot({ 0, 9 }, ChessPiece::Camp::Red));
         map[0][9] = (int)ChessPiece::PieceType::Chariot + 100;
-        pieces.push_back(new Horse({ 1, 9 }, ChessPiece::Camp::Black));
+        pieces.push_back(new Horse({ 1, 9 }, ChessPiece::Camp::Red));
         map[1][9] = (int)ChessPiece::PieceType::Horse + 100;
-        pieces.push_back(new Elephant({ 2, 9 }, ChessPiece::Camp::Black));
+        pieces.push_back(new Elephant({ 2, 9 }, ChessPiece::Camp::Red));
         map[2][9] = (int)ChessPiece::PieceType::Elephant + 100;
-        pieces.push_back(new Advisor({ 3, 9 }, ChessPiece::Camp::Black));
+        pieces.push_back(new Advisor({ 3, 9 }, ChessPiece::Camp::Red));
         map[3][9] = (int)ChessPiece::PieceType::Advisor + 100;
-        pieces.push_back(new General({ 4, 9 }, ChessPiece::Camp::Black));
+        pieces.push_back(new General({ 4, 9 }, ChessPiece::Camp::Red));
         map[4][9] = (int)ChessPiece::PieceType::General + 100;
-        pieces.push_back(new Advisor({ 5, 9 }, ChessPiece::Camp::Black));
+        pieces.push_back(new Advisor({ 5, 9 }, ChessPiece::Camp::Red));
         map[5][9] = (int)ChessPiece::PieceType::Advisor + 100;
-        pieces.push_back(new Elephant({ 6, 9 }, ChessPiece::Camp::Black));
+        pieces.push_back(new Elephant({ 6, 9 }, ChessPiece::Camp::Red));
         map[6][9] = (int)ChessPiece::PieceType::Elephant + 100;
-        pieces.push_back(new Horse({ 7, 9 }, ChessPiece::Camp::Black));
+        pieces.push_back(new Horse({ 7, 9 }, ChessPiece::Camp::Red));
         map[7][9] = (int)ChessPiece::PieceType::Horse + 100;
-        pieces.push_back(new Chariot({ 8, 9 }, ChessPiece::Camp::Black));
+        pieces.push_back(new Chariot({ 8, 9 }, ChessPiece::Camp::Red));
         map[8][9] = (int)ChessPiece::PieceType::Chariot + 100;
-        pieces.push_back(new Cannon({ 1, 7 }, ChessPiece::Camp::Black));
+        pieces.push_back(new Cannon({ 1, 7 }, ChessPiece::Camp::Red));
         map[1][7] = (int)ChessPiece::PieceType::Cannon + 100;
-        pieces.push_back(new Cannon({ 7, 7 }, ChessPiece::Camp::Black));
+        pieces.push_back(new Cannon({ 7, 7 }, ChessPiece::Camp::Red));
         map[7][7] = (int)ChessPiece::PieceType::Cannon + 100;
         for (int i = 0; i < 5; ++i)
         {
-            pieces.push_back(new Soldier({ (float)i * 2, 6 }, ChessPiece::Camp::Black));
+            pieces.push_back(new Soldier({ (float)i * 2, 6 }, ChessPiece::Camp::Red));
             map[i * 2][6] = (int)ChessPiece::PieceType::Soldier + 100;
         }
     }
@@ -117,13 +117,13 @@ void ChessManager::on_render(const Camera& camera)
 
     for (auto move_pos : can_moves)
     {
-        Rect rect_dst = { 130 + move_pos.x * 60, 20 + move_pos.y * 60, 60, 60 };
+        Rect rect_dst = { 260 + move_pos.x * 60, 20 + move_pos.y * 60, 60, 60 };
         putimage_alpha(&camera, &move_box, &rect_dst);
     }
 
     for (auto move_pos : can_eats)
     {
-        Rect rect_dst = { 130 + move_pos.x * 60, 20 + move_pos.y * 60, 60, 60 };
+        Rect rect_dst = { 260 + move_pos.x * 60, 20 + move_pos.y * 60, 60, 60 };
         putimage_alpha(&camera, &eat_box, &rect_dst);
     }
 

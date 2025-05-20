@@ -33,7 +33,7 @@ private:
 
     Vector2 mouse_to_chess_pos(const Vector2& mouse_pos)
     {
-        int x = (mouse_pos.x - 130) / 60;
+        int x = (mouse_pos.x - 260) / 60;
         int y = (mouse_pos.y - 20) / 60;
         return Vector2(x, y);
     }
@@ -54,5 +54,6 @@ private:
 
     std::function<void()> callback_change;
     std::function<void()> callback_win;
+
 };
 
