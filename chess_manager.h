@@ -4,6 +4,8 @@
 #include <vector>
 #include <memory>
 
+// 棋子管理器
+
 class ChessManager
 {
 public:
@@ -14,6 +16,9 @@ public:
     void on_input(const ExMessage& msg, ChessPiece::Camp current_turn);
 
     void reset();
+
+    void undo_move(); // 悔棋
+
 
     void set_callback_change(std::function<void()> callback)
     {
@@ -26,6 +31,21 @@ public:
     }
 
 private:
+    struct MoveRecord
+    {
+        Vector2 from_pos;                       // 起始位置
+        Vector2 to_pos;                         // 目标位置
+
+        ChessPiece::PieceType piece_type;       // 移动的棋子类型
+        ChessPiece::Camp camp;                  // 移动的阵营
+
+        ChessPiece* moved_piece = nullptr;      // 移动的棋子
+        ChessPiece* captured_piece = nullptr;   // 被吃的棋子
+
+        bool captured_alive_before = false;     // 被吃棋子之前是否是活的
+    };
+
+
     void handle_click(const Vector2& mousePos, ChessPiece::Camp current_turn);
     void handle_hover(const Vector2& mousePos, ChessPiece::Camp current_turn);
 
@@ -54,6 +74,8 @@ private:
 
     std::function<void()> callback_change;
     std::function<void()> callback_win;
+
+    std::vector<MoveRecord> move_history;
 
 };
 

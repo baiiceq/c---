@@ -2,6 +2,8 @@
 #pragma once
 #include "chess_piece.h"
 
+// 实现了不同棋子，主要实现了移动方式
+
 class General : public ChessPiece 
 {
 public:

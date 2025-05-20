@@ -9,11 +9,14 @@
 #include "button.h"
 #include "static_image.h"
 
+// 主菜单界面
+
 class MenuScene : public Scene
 {
 public:
 	MenuScene()
 	{
+		// 初始化各种按钮
 		startgame.set_pos(280, 240);
 		startgame.set_size(240, 60);
 		startgame.set_image("startgame");
@@ -77,6 +80,7 @@ public:
 	}
 
 private:
+
 	Button startgame;
 	Button setting;
 	Button exit;

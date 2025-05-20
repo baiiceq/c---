@@ -10,10 +10,13 @@
 #include <graphics.h>
 
 
+// 游戏界面
+
 class GameScene :public Scene
 {
 
 public:
+	// 跳转阵营(红->黑\黑->红)
 	void switch_to()
 	{
 		if (current_turn == ChessPiece::ChessPiece::Camp::Black)
@@ -25,14 +28,17 @@ public:
 public:
 	GameScene()
 	{
+		// 棋盘大小，设置棋盘位置
 		Vector2 size = board.get_size();
 		board.set_pos(260, (getheight() - size.y) / 2);
 
+		// 设置棋子管理器的回调函数，当棋子管理器中移动了棋子，执行回调函数，更换阵营
 		chess_manager.set_callback_change([&]()
 			{
 				this->switch_to();
 			});
 
+		// 当有一方的将被吃后，调用该回调函数
 		chess_manager.set_callback_win([&]()
 			{
 				if (current_turn == ChessPiece::Camp::Black)
@@ -45,6 +51,7 @@ public:
 				SceneManager::instance()->switch_to(SceneManager::SceneType::Menu);
 			});
 
+		// 黑方移动和红方移动的提示(静态图片)
 		black_tip.set_image("black_tip");
 		black_tip.set_position({5,15});
 		black_tip.set_size({ 250,55 });
@@ -53,9 +60,14 @@ public:
 		red_tip.set_position({ 5,15 });
 		red_tip.set_size({ 250,55 });
 
+		// 悔棋按钮
 		repentance.set_pos(50, 90);
 		repentance.set_size(160, 60);
 		repentance.set_image("repentance");
+		repentance.set_on_click([&]()
+			{
+				chess_manager.undo_move();
+			});
 	}
 	~GameScene() = default;
 
@@ -63,6 +75,7 @@ public:
 	{
 		std::cout << "游戏开始" << std::endl;
 
+		// 进入该界面时，把当前阵营改成红色方
 		current_turn = ChessPiece::Camp::Red;
 		
 	}
@@ -80,6 +93,7 @@ public:
 		board.on_render(camera);
 		chess_manager.on_render(camera);
 
+		// 不同方打印不同的提示
 		if (current_turn == ChessPiece::ChessPiece::Camp::Black)
 		{
 			black_tip.on_render(camera);
@@ -103,15 +117,16 @@ public:
 	void on_exit()
 	{
 		std::cout << "游戏退出" << std::endl;
+		// 退出游戏界面时，棋子管理器重新设置
 		chess_manager.reset();
 	}
 
 private:
-	Board board;
+	Board board;  // 游戏棋盘
 
-	ChessManager chess_manager;
+	ChessManager chess_manager;   // 棋子管理器
 
-	ChessPiece::Camp current_turn = ChessPiece::Camp::Black;
+	ChessPiece::Camp current_turn = ChessPiece::Camp::Black;     // 当前需要移动的阵营
 
 	// 静态图片
 	StaticImage red_tip;

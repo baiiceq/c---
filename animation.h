@@ -11,7 +11,7 @@
 #include <iostream>
 #include <functional>
 
-
+// ∂Øª≠¿‡
 class Animation
 {
 public:

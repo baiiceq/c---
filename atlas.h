@@ -3,6 +3,8 @@
 #include <vector>
 #include <graphics.h>
 
+// ÕººØ¿‡
+
 class Atlas
 {
 public:

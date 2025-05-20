@@ -3,6 +3,7 @@
 #include "camera.h"
 #include <graphics.h>
 
+// ¿É¸ü»»ÎªStaticImage
 class Board
 {
 public:

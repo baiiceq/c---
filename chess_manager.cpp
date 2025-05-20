@@ -243,6 +243,39 @@ void ChessManager::reset()
     }
 }
 
+void ChessManager::undo_move()
+{
+
+    if (move_history.empty())
+        return;
+
+    MoveRecord last = move_history.back();
+    move_history.pop_back();
+
+    Vector2 now_pos = last.to_pos;
+    Vector2 last_pos = last.from_pos;
+
+    map[(int)last_pos.x][(int)last_pos.y] = map[(int)now_pos.x][(int)now_pos.y];
+    map[(int)now_pos.x][(int)now_pos.y] = 0;
+
+    can_operate = false;
+    last.moved_piece->set_pos(last.from_pos);
+    last.moved_piece->set_moving(true);
+    
+    if (last.captured_piece && last.captured_alive_before)
+    {
+        last.captured_piece->set_alive(true);
+        last.captured_piece->set_pos(last.to_pos);
+        last.captured_piece->set_moving(true);
+
+        map[(int)now_pos.x][(int)now_pos.y] = (int)last.captured_piece->get_type() +
+            (last.captured_piece->get_camp() == ChessPiece::Camp::Red ? 100 : 0);
+    }
+
+    if (callback_change)
+        callback_change();
+}
+
 void ChessManager::handle_click(const Vector2& mousePos, ChessPiece::Camp current_turn)
 {
     bool flag = false;
@@ -325,8 +358,17 @@ bool ChessManager::try_move_selected_piece_to(const Vector2& mouse_pos)
     if (!selected_piece || !selected_piece->get_alive())
         return false;
 
+    MoveRecord record;
+    record.piece_type = selected_piece->get_type();
+    record.camp = selected_piece->get_camp();
+    record.moved_piece = selected_piece;
+    record.captured_piece = nullptr;
+
     Vector2 board_pos = mouse_to_chess_pos(mouse_pos);
+    record.to_pos = board_pos;
     Vector2 now_pos = selected_piece->get_pos();
+    record.from_pos = now_pos;
+
     for (auto move_pos : can_moves)
     {
         if (move_pos == board_pos)
@@ -346,6 +388,9 @@ bool ChessManager::try_move_selected_piece_to(const Vector2& mouse_pos)
             if(callback_change)
                 callback_change();
 
+            record.captured_alive_before = record.captured_piece ? record.captured_piece->get_alive() : false;
+            move_history.push_back(record);
+
             return true;
         }
     }
@@ -358,6 +403,8 @@ bool ChessManager::try_move_selected_piece_to(const Vector2& mouse_pos)
             {
                 if (piece->get_pos() == eat_pos && piece->get_alive())
                 {
+                    record.captured_piece = piece;
+                    record.captured_alive_before = record.captured_piece ? record.captured_piece->get_alive() : false;
                     piece->set_alive(false);
                     break;
                 }
@@ -383,6 +430,8 @@ bool ChessManager::try_move_selected_piece_to(const Vector2& mouse_pos)
 
             map[(int)board_pos.x][(int)board_pos.y] = map[(int)now_pos.x][(int)now_pos.y];
             map[(int)now_pos.x][(int)now_pos.y] = 0;
+
+            move_history.push_back(record);
 
             return true;
         }
