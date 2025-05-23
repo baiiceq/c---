@@ -112,7 +112,7 @@ public:
 		timer.on_update(delta);
 	}
 
-	void on_render(Camera* camera)
+	void on_render(Camera camera)
 	{
 		const Frame& frame = frame_list[idx_frame];
 
@@ -122,7 +122,7 @@ public:
 			? (int)position.y - frame.rect_src.h / 2 : (int)position.y - frame.rect_src.h;
 		rect_dst.w = frame.rect_src.w, rect_dst.h = frame.rect_src.h;
 
-		putimage_alpha(camera, frame.image, &rect_dst, &frame.rect_src);
+		putimage_alpha(&camera, frame.image, &rect_dst, &frame.rect_src);
 	}
 
 

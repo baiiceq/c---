@@ -1,6 +1,7 @@
 #pragma once
 
 #include "chess_piece.h"
+#include "animation.h"
 #include <vector>
 #include <memory>
 
@@ -51,6 +52,14 @@ private:
 
     bool try_move_selected_piece_to(const Vector2& mouse_pos);
 
+    Vector2 find_general(ChessPiece::Camp camp);
+
+    // 判断走完一步后是否将军对方
+    bool is_in_check(ChessPiece::Camp current_camp);
+
+    // 判断走完这一步后自己是否会被将军
+    bool is_legal_move();
+
     Vector2 mouse_to_chess_pos(const Vector2& mouse_pos)
     {
         int x = (mouse_pos.x - 260) / 60;
@@ -76,6 +85,9 @@ private:
     std::function<void()> callback_win;
 
     std::vector<MoveRecord> move_history;
+
+    Animation anim_check;
+    bool is_check = false;
 
 };
 

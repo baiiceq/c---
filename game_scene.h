@@ -5,6 +5,7 @@
 #include "scene_manager.h"
 #include "chess_manager.h"
 #include "static_image.h"
+#include "pause_scene.h"
 
 #include <iostream>
 #include <graphics.h>
@@ -14,6 +15,13 @@
 
 class GameScene :public Scene
 {
+private:
+	// 当前游戏状态
+	enum class GameState 
+	{
+		GameRunning,         // 运行
+		GamePaused           // 暂停
+	};
 
 public:
 	// 跳转阵营(红->黑\黑->红)
@@ -68,12 +76,19 @@ public:
 			{
 				chess_manager.undo_move();
 			});
+
+		pause_scene.set_callback_continue([&]()
+			{
+				state = GameState::GameRunning;
+			});
 	}
 	~GameScene() = default;
 
 	void on_enter()
 	{
 		std::cout << "游戏开始" << std::endl;
+
+		chess_manager.reset();
 
 		// 进入该界面时，把当前阵营改成红色方
 		current_turn = ChessPiece::Camp::Red;
@@ -82,10 +97,17 @@ public:
 
 	void on_update(int delta)
 	{
-		chess_manager.on_update(delta);
-		ResourcesManager::instance()->get_camera()->on_update(delta);
+		if (state == GameState::GameRunning)
+		{
+			chess_manager.on_update(delta);
+			ResourcesManager::instance()->get_camera()->on_update(delta);
 
-		repentance.on_update(delta);
+			repentance.on_update(delta);
+		}
+		else
+		{
+			pause_scene.on_update(delta);
+		}
 	}
 
 	void on_render(const Camera& camera)
@@ -105,20 +127,34 @@ public:
 
 		repentance.on_render(camera);
 
+		if (state == GameState::GamePaused)
+		{
+			pause_scene.on_render(camera);
+		}
 	}
 	void on_input(const ExMessage& msg)
 	{
-		chess_manager.on_input(msg, current_turn);
+		if (state == GameState::GameRunning)
+		{
+			if (msg.message == WM_KEYDOWN && msg.vkcode == VK_ESCAPE)
+			{
+				state = GameState::GamePaused;
+			}
 
-		repentance.on_input(msg);
+			chess_manager.on_input(msg, current_turn);
 
+			repentance.on_input(msg);
+		}
+		else
+		{
+			pause_scene.on_input(msg);
+		}
 	}
 
 	void on_exit()
 	{
 		std::cout << "游戏退出" << std::endl;
 		// 退出游戏界面时，棋子管理器重新设置
-		chess_manager.reset();
 	}
 
 private:
@@ -133,4 +169,9 @@ private:
 	StaticImage black_tip;
 
 	Button repentance;   // 悔棋按钮
+
+	GameState state = GameState::GameRunning;     // 游戏状态
+
+	// 暂停页面
+	PauseScene pause_scene;
 };

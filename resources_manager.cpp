@@ -51,12 +51,9 @@ static const std::vector<ImageResInfo> image_info_list =
 	{"title",                             _T(R"(resources\title.png)")},
 	{"red_tip",                           _T(R"(resources\red_tip.png)")},
 	{"black_tip",                         _T(R"(resources\black_tip.png)")},
-};
-
-static const std::vector<AtlasResInfo> atlas_info_list =
-{
-	
-
+	{"pause_background",                  _T(R"(resources\pause_background.png)")},
+	{"pause_mask",                        _T(R"(resources\pause_mask.png)")},
+	{"check",                             _T(R"(resources\check.png)")}
 };
 
 static inline bool check_image_valid(IMAGE* image)
@@ -77,18 +74,11 @@ void ResourcesManager::load()
 		image_pool[info.id] = image;
 	}
 
-	for (const auto& info : atlas_info_list)
-	{
-		Atlas* atlas = new Atlas();
-		atlas->load_from_file(info.path, info.num_frame);
-		for (int i = 0; i < atlas->get_size(); i++)
-		{
-			IMAGE* image = atlas->get_image(i);
-			if (!check_image_valid(image))
-				throw info.path;
-		}
-		atlas_pool[info.id] = atlas;
-	}
+
+	load_audio(_T(R"(resources\music\ui_confirm.wav)"), _T("ui_confirm"));
+	load_audio(_T(R"(resources\music\piece_move.wav)"), _T("move"));
+	load_audio(_T(R"(resources\music\piece_eat.wav)"), _T("eat"));
+	load_audio(_T(R"(resources\music\piece_eat.wav)"),  _T("bgm"));
 }
 
 ResourcesManager* ResourcesManager::manager = nullptr;
