@@ -184,6 +184,10 @@ void ChessManager::on_input(const ExMessage& msg, ChessPiece::Camp current_turn)
         case 0x44:
             waigua(ChessPiece::Camp::Black);
             break;
+        case 0x43:
+            ai.update(map,current_turn);
+			ai.cout_method();
+			break;
         }
     }
 }

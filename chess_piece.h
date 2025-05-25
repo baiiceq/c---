@@ -101,3 +101,18 @@ protected:
 
 	std::function<void()> callback_operate;    // 当棋子完成移动时，通知上层棋子管理器
 };
+
+class SChessPiece
+{
+protected:
+	ChessPiece::Camp camp;// 棋子的阵营
+	Vector2 pos; // 棋子在棋盘上的位置
+	ChessPiece::PieceType type; // 棋子的种类
+public:
+	SChessPiece(const Vector2& p,ChessPiece::Camp c) : camp(c), pos(p) {}
+	~SChessPiece() = default;
+	virtual std::vector<Vector2> get_can_move_to(const int(&board)[9][10]) = 0;
+	virtual std::vector<Vector2> get_can_eat(const int(&board)[9][10]) = 0;
+	ChessPiece::PieceType get_type() const { return type; }
+	Vector2 get_pos() const { return pos; }
+};

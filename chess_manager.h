@@ -2,6 +2,7 @@
 
 #include "chess_piece.h"
 #include "animation.h"
+#include "ai.h"
 #include <vector>
 #include <memory>
 
@@ -88,6 +89,7 @@ private:
 
     Animation anim_check;
     bool is_check = false;
-
+private:
+    Ai ai;
 };
 
