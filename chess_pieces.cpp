@@ -25,16 +25,26 @@ std::vector<Vector2> General::get_can_move_to(const int(&board)[9][10])
         if (camp == Camp::Red)
         {
             if (x < 3 || x>5 || y > 9 || y < 7)continue;
+            if (board[x][y] != 0)continue;
+            for (int j = y -1;j >= 0;j--)
+            {
+                if (board[x][j] == 0)continue;
+                if (board[x][j] == 1)break;
+				moves.push_back({ (float)x, (float)y });
+                break;
+            }
         }
         else
         {
             if (x < 3 || x>5 || y > 2 || y < 0)continue;
-        }
-        if (board[x][y] == 0)
-        {
-            // 将不会对着对面的将(以后写)
-                
-            moves.push_back({ (float)x, (float)y });
+			if (board[x][y] != 0)continue;
+            for (int j = y + 1;j <= 9;j++)
+            {
+                if (board[x][j] == 0)continue;
+                if (board[x][j] == 101)break;
+                moves.push_back({ (float)x, (float)y });
+                break;
+            }
         }
     }
     
@@ -60,12 +70,41 @@ std::vector<Vector2> General::get_can_eat(const int(&board)[9][10])
         }
         if (board[x][y] != 0 && abs(board[x][y] - board[(int)pos.x][(int)pos.y]) >= 80)
         {
-            // 吃对面的将(以后写)
-
             eats.push_back({ (float)x, (float)y });
         }
     }
-
+    if (camp == Camp::Red)
+    {
+        for (int i = pos.y - 1; i >= 0; i--)
+        {
+            if (board[(int)pos.x][i] != 0)
+            {
+                if (board[(int)pos.x][i] == 1)
+                {
+                    eats.push_back({ pos.x, (float)i });
+                    break;
+                }
+                else
+                    break;
+            }
+        }
+    }
+    else
+    {
+        for (int i = pos.y + 1; i <=9; i++)
+        {
+            if (board[(int)pos.x][i] != 0)
+            {
+                if (board[(int)pos.x][i] == 101)
+                {
+                    eats.push_back({ pos.x, (float)i });
+                    break;
+                }
+                else
+                    break;
+            }
+        }
+    }
     return eats;
 }
 
@@ -897,17 +936,29 @@ std::vector<Vector2> SGeneral::get_can_move_to(const int(&board)[9][10])
     {
         int x = pos.x, y = pos.y;
         x += dx[i], y += dy[i];
-		if (camp == ChessPiece::Camp::Red)
-            {
+        if (camp == ChessPiece::Camp::Red)
+        {
             if (x < 3 || x>5 || y > 9 || y < 7)continue;
+            if (board[x][y] != 0)continue;
+            for (int j = y - 1;j >= 0;j--)
+            {
+                if (board[x][j] == 0)continue;
+                if (board[x][j] == 1)break;
+                moves.push_back({ (float)x, (float)y });
+                break;
+            }
         }
         else
         {
             if (x < 3 || x>5 || y > 2 || y < 0)continue;
-        }
-        if (board[x][y] == 0)
-        {
-            moves.push_back({ (float)x, (float)y });
+            if (board[x][y] != 0)continue;
+            for (int j = y + 1;j <= 9;j++)
+            {
+                if (board[x][j] == 0)continue;
+                if (board[x][j] == 101)break;
+                moves.push_back({ (float)x, (float)y });
+                break;
+            }
         }
 	}
 	return moves;
@@ -940,6 +991,38 @@ std::vector<Vector2> SGeneral::get_can_eat(const int(&board)[9][10])
             else
             {
                 eats.push_back({ (float)x, (float)y });
+            }
+        }
+    }
+    if (camp == ChessPiece::Camp::Red)
+    {
+        for (int i = pos.y - 1; i >= 0; i--)
+        {
+            if (board[(int)pos.x][i] != 0)
+            {
+                if (board[(int)pos.x][i] == 1)
+                {
+                    eats.push_back({ pos.x, (float)i });
+                    break;
+                }
+                else
+                    break;
+            }
+        }
+    }
+    else
+    {
+        for (int i = pos.y + 1; i <= 9; i++)
+        {
+            if (board[(int)pos.x][i] != 0)
+            {
+                if (board[(int)pos.x][i] == 101)
+                {
+                    eats.push_back({ pos.x, (float)i });
+                    break;
+                }
+                else
+                    break;
             }
         }
     }
