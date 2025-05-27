@@ -23,12 +23,8 @@ public:
 				this->map[i][j] = map[i][j];
 	};
 	~Ai() {};
-	Method get_method() { return method; };
-	void cout_method() {
-		DFS(my_party, map, MAX_DEPTH, -1000000000, 1000000000);
-		std::cout << "rsc_pos:" << method.rsc_pos.x << "," << method.rsc_pos.y << std::endl;
-		std::cout << "dst_pos:" << method.dst_pos.x << "," << method.dst_pos.y << std::endl;
-	}
+    Method get_method();
+    void cout_method();
 private:
 	int map[9][10]{0};
 	Method method;
@@ -43,6 +39,7 @@ private:
 
 	bool is_game_over(ChessPiece::Camp current_party, int current_map[9][10]);
 	SChessPiece* get_piece(int x, int y,int a, ChessPiece::Camp current_party);
+    void ai_think();
 private:
 // 棋子基本价值表
 const int piece_values[7] = { 10000000,200,200,500,1000,450,100 };

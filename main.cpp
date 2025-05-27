@@ -6,8 +6,11 @@
 #include "menu_scene.h"
 #include "game_scene.h"
 #include "scene_manager.h"
+#include <thread>
 
 #pragma comment(lib, "Winmm.lib")
+
+std::atomic<bool> ai_thinking(false);
 
 void put_background()
 {

@@ -1,7 +1,32 @@
 #include "ai.h"
+#include<thread>
 #include "vector2.h"
 #include "chess_pieces.h"
 #include "chess_piece.h"
+
+extern std::atomic<bool> ai_thinking; // AI思考状态
+
+void Ai::ai_think()
+{
+	DFS(my_party, map, MAX_DEPTH, -1000000000, 1000000000);
+	ai_thinking = false; // AI思考结束
+    std::cout << "rsc_pos:" << method.rsc_pos.x << "," << method.rsc_pos.y << std::endl;
+    std::cout << "dst_pos:" << method.dst_pos.x << "," << method.dst_pos.y << std::endl;
+    //将信息以点击的方式传递
+}
+
+Method Ai::get_method()
+{
+    return method;
+};
+
+void Ai::cout_method()
+{
+    ai_thinking.store(true);
+	std::thread ai_thread(&Ai::ai_think,this);
+	ai_thread.detach(); // 分离线程，允许其在后台运行
+}
+
 //局势评分
 int Ai::Judge(int current_map[9][10])
 {
