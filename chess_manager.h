@@ -34,6 +34,8 @@ public:
 
     void save_game_record(const std::string& filename);
 
+    void load_game_record(const std::string& filename);
+
 private:
     struct MoveRecord
     {

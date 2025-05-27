@@ -20,7 +20,8 @@ private:
 	enum class GameState 
 	{
 		GameRunning,         // 运行
-		GamePaused           // 暂停
+		GamePaused,          // 暂停
+		GamePlayBack         // 回放
 	};
 
 public:
@@ -155,7 +156,7 @@ public:
 
 			repentance.on_input(msg);
 		}
-		else
+		else if(state == GameState::GamePaused)
 		{
 			pause_scene.on_input(msg);
 		}
@@ -166,6 +167,14 @@ public:
 		std::cout << "游戏退出" << std::endl;
 		// 退出游戏界面时，棋子管理器重新设置
 	}
+
+	void set_state(GameState state)
+	{
+		this->state = state;
+	}
+
+private:
+	const int INTERVAL = 1000;
 
 private:
 	Board board;  // 游戏棋盘
@@ -184,4 +193,7 @@ private:
 
 	// 暂停页面
 	PauseScene pause_scene;
+
+	// 回放时计算每次操作间隔的时间的计时器
+	Timer timer_playback;
 };

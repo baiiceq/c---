@@ -33,7 +33,7 @@ public:
 
 
     // 设置回调函数
-    void setCallback(std::function<void(int)> callback)
+    void set_callback(std::function<void()> callback)
     {
         on_select_callback = callback;
     }
@@ -73,7 +73,7 @@ private:
     std::vector<std::wstring> options;
     int selected = 0;
 
-    std::function<void(int)> on_select_callback = nullptr;
+    std::function<void()> on_select_callback = nullptr;
 
     Button left;
     Button right;

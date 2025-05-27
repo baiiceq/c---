@@ -65,12 +65,26 @@ public:
 	PieceType get_type() const { return type; }
 
 	// 将棋子设置为运动状态
-	void set_moving(bool s)
+	// 0 - false 1 - true 2 - 直接移动到指定位置 
+	void set_moving(int mode)
 	{
-		is_moving = s;
-		if (s == true)
+		switch (mode)
 		{
+		case 0:
+			is_moving = false;
+			break;
+		case 1:
+			is_moving = true;
 			timer_move.restart();
+			break;
+		case 2:
+		{
+			is_moving = false;
+			Vector2 board_pos = { 260, 20 };
+			image_pos.x = board_pos.x + 30 + pos.x * 60 - size.x / 2;
+			image_pos.y = board_pos.y + 30 + pos.y * 60 - size.y / 2;
+		}
+			break;
 		}
 	}
 

@@ -296,13 +296,13 @@ void ChessManager::undo_move()
 
     can_operate = false;
     last.moved_piece->set_pos(last.from_pos);
-    last.moved_piece->set_moving(true);
+    last.moved_piece->set_moving(1);
     
     if (last.captured_piece && last.captured_alive_before)
     {
         last.captured_piece->set_alive(true);
         last.captured_piece->set_pos(last.to_pos);
-        last.captured_piece->set_moving(true);
+        last.captured_piece->set_moving(1);
 
         map[(int)now_pos.x][(int)now_pos.y] = (int)last.captured_piece->get_type() +
             (last.captured_piece->get_camp() == ChessPiece::Camp::Red ? 100 : 0);
@@ -327,6 +327,38 @@ void ChessManager::save_game_record(const std::string& filename)
             << (int)record.piece_type << " "
             << (int)record.camp << " "
             << record.captured_alive_before << "\n";
+    }
+
+    file.close();
+}
+
+void ChessManager::load_game_record(const std::string& filename)
+{
+    std::ifstream file(filename);
+    if (!file.is_open())
+    {
+        std::cerr << "无法打开文件: " << filename << std::endl;
+        return;
+    }
+
+    move_history.clear(); 
+
+    int from_x, from_y, to_x, to_y;
+    int piece_type_int, camp_int;
+    int captured_int;
+
+    while (file >> from_x >> from_y >> to_x >> to_y >> piece_type_int >> camp_int >> captured_int)
+    {
+        MoveRecord record;
+        record.from_pos.x = from_x;
+        record.from_pos.y = from_y;
+        record.to_pos.x = to_x;
+        record.to_pos.y = to_y;
+        record.piece_type = (ChessPiece::PieceType)piece_type_int;
+        record.camp = (ChessPiece::Camp)camp_int;
+        record.captured_alive_before = (captured_int != 0);
+
+        move_history.push_back(record);
     }
 
     file.close();
@@ -474,7 +506,7 @@ bool ChessManager::move_piece(const Vector2& src_pos, const Vector2& dst_pos)
     // 移动棋子
     piece->set_pos(dst_pos);
     piece->set_selected(false);
-    piece->set_moving(true);
+    piece->set_moving(1);
     selected_piece = nullptr;
     can_operate = false;
 
@@ -539,7 +571,7 @@ void ChessManager::waigua(ChessPiece::Camp c)
                 pieces.push_back(new Chariot({ (float)x, 8 }, ChessPiece::Camp::Black));
                 map[x][8] = (int)ChessPiece::PieceType::Chariot + 100;
                 pieces.back()->set_image_pos({ (float)range_random(0,1000),(float)range_random(0,1000) });
-                pieces.back()->set_moving(true);
+                pieces.back()->set_moving(1);
             }
         }
     }
@@ -552,7 +584,7 @@ void ChessManager::waigua(ChessPiece::Camp c)
                 pieces.push_back(new Chariot({ (float)x, 1 }, ChessPiece::Camp::Red));
                 map[x][1] = (int)ChessPiece::PieceType::Chariot;
                 pieces.back()->set_image_pos({ (float)range_random(0,1000),(float)range_random(0,1000) });
-                pieces.back()->set_moving(true);
+                pieces.back()->set_moving(1);
             }
         }
     }
