@@ -10,6 +10,7 @@
 #include <iostream>
 #include <graphics.h>
 
+extern std::atomic<bool> ai_thinking; // AI思考状态
 
 // 游戏界面
 
@@ -108,6 +109,8 @@ public:
 
 	void on_update(int delta)
 	{
+		if (ai_thinking == true)//可能出问题
+			return;
 		if (state == GameState::GameRunning)
 		{
 			chess_manager.on_update(delta);
@@ -137,6 +140,10 @@ public:
 		}
 
 		repentance.on_render(camera);
+		if(ai_thinking == true)
+		{
+			//ai动画
+		}
 
 		if (state == GameState::GamePaused)
 		{
@@ -145,6 +152,8 @@ public:
 	}
 	void on_input(const ExMessage& msg)
 	{
+		if(ai_thinking==true)
+			return;
 		if (state == GameState::GameRunning)
 		{
 			if (msg.message == WM_KEYDOWN && msg.vkcode == VK_ESCAPE)
@@ -188,6 +197,8 @@ private:
 	StaticImage black_tip;
 
 	Button repentance;   // 悔棋按钮
+
+	Animation ai; // AI动画
 
 	GameState state = GameState::GameRunning;     // 游戏状态
 
