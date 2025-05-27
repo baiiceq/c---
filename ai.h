@@ -4,8 +4,6 @@
 #include "chess_piece.h"
 //#include "chess_pieces.h"
 
-const int MAX_DEPTH = 6; // 最大搜索深度
-
 typedef struct _method
 {
 	Vector2 rsc_pos;
@@ -24,7 +22,17 @@ public:
 	};
 	~Ai() {};
     Method get_method();
-    void cout_method();
+    void cout_method(int depth);
+
+    void set_depth(int x)
+    {
+        MAX_DEPTH = x;
+    }
+
+    void set_think_finished(std::function<void()> callback)
+    {
+        think_finished = callback;
+    }
 private:
 	int map[9][10]{0};
 	Method method;
@@ -39,7 +47,13 @@ private:
 
 	bool is_game_over(ChessPiece::Camp current_party, int current_map[9][10]);
 	SChessPiece* get_piece(int x, int y,int a, ChessPiece::Camp current_party);
-    void ai_think();
+    void ai_think(int depth);
+
+    std::function<void()> think_finished;
+
+private:
+    int MAX_DEPTH = 6; // 最大搜索深度
+
 private:
 // 棋子基本价值表
 const int piece_values[7] = { 10000000,200,200,500,1000,450,100 };

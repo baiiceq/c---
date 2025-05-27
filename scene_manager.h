@@ -31,6 +31,12 @@ public:
 
 	void on_input(ExMessage& msg);
 
+	void set_gamescene_state_to_load(); 
+	void set_gamescene_state_to_running();
+	void set_gamescene_state_to_playback();
+	void set_gamescene_player(bool red, bool black);
+	void set_gamescene_difficult(int red, int black);
+
 private:
 	Scene* current_scene = nullptr;
 

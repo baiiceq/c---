@@ -39,6 +39,8 @@ public:
 		startgame.set_image("startgame");
 		startgame.set_on_click([&]()
 			{
+				SceneManager::instance()->set_gamescene_player(is_red_AI, is_black_AI);
+				SceneManager::instance()->set_gamescene_difficult((red_difficulty_selector.GetSelected() + 1) * 2, (black_difficulty_selector.GetSelected() + 1) * 2);
 				SceneManager::instance()->switch_to(SceneManager::SceneType::Game);
 			});
 
@@ -48,6 +50,24 @@ public:
 		back.set_on_click([&]()
 			{
 				SceneManager::instance()->switch_to(SceneManager::SceneType::Menu);
+			});
+
+		load.set_pos(120, 400);
+		load.set_size(240, 60);
+		load.set_image("load");
+		load.set_on_click([&]()
+			{
+				SceneManager::instance()->set_gamescene_state_to_load();
+				SceneManager::instance()->switch_to(SceneManager::SceneType::Game);
+			});
+
+		playback.set_pos(440, 400);
+		playback.set_size(240, 60);
+		playback.set_image("playback");
+		playback.set_on_click([&]()
+			{
+				SceneManager::instance()->set_gamescene_state_to_playback();
+				SceneManager::instance()->switch_to(SceneManager::SceneType::Game);
 			});
 
 		/*difficulty_selector.set_size({ 100, 60 });
@@ -99,6 +119,7 @@ public:
 
 	void on_enter()
 	{
+
 	}
 
 	void on_update(int delta)
@@ -119,6 +140,8 @@ public:
 		}
 		else
 		{
+			load.on_render(camera);
+			playback.on_render(camera);
 			red_tip.on_render(camera);
 			black_tip.on_render(camera);
 			//difficulty_selector.on_render(camera);
@@ -148,6 +171,8 @@ public:
 		}
 		else
 		{
+			load.on_input(msg);
+			playback.on_input(msg);
 			red_player_selector.on_input(msg);
 			black_player_selector.on_input(msg);
 			if (is_red_AI)
@@ -173,6 +198,8 @@ private:
 	Button lianji;
 	Button startgame;
 	Button back;
+	Button playback;
+	Button load;
 	bool isLianji = false;
 
 	StaticImage red_tip;
