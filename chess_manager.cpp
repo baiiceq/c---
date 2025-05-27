@@ -2,6 +2,7 @@
 #include "chess_pieces.h"
 #include "resources_manager.h"
 #include "util.h"
+#include <fstream>
 
 #include <iostream>
 ChessManager::ChessManager() : can_operate(true)
@@ -311,6 +312,26 @@ void ChessManager::undo_move()
         callback_change();
 }
 
+void ChessManager::save_game_record(const std::string& filename)
+{
+    std::ofstream file(filename);
+    if (!file.is_open()) 
+    {
+        std::cerr << "无法打开文件: " << filename << std::endl;
+        return;
+    }
+
+    for (const auto& record : move_history) {
+        file << record.from_pos.x << " " << record.from_pos.y << " "
+            << record.to_pos.x << " " << record.to_pos.y << " "
+            << (int)record.piece_type << " "
+            << (int)record.camp << " "
+            << record.captured_alive_before << "\n";
+    }
+
+    file.close();
+}
+
 void ChessManager::handle_click(const Vector2& mousePos, ChessPiece::Camp current_turn)
 {
     bool flag = false;
@@ -393,93 +414,79 @@ bool ChessManager::try_move_selected_piece_to(const Vector2& mouse_pos)
     if (!selected_piece || !selected_piece->get_alive())
         return false;
 
-    MoveRecord record;
-    record.piece_type = selected_piece->get_type();
-    record.camp = selected_piece->get_camp();
-    record.moved_piece = selected_piece;
-    record.captured_piece = nullptr;
-
     Vector2 board_pos = mouse_to_chess_pos(mouse_pos);
-    record.to_pos = board_pos;
-    Vector2 now_pos = selected_piece->get_pos();
-    record.from_pos = now_pos;
 
-    for (auto move_pos : can_moves)
+    for (auto& pos : can_moves)
     {
-        if (move_pos == board_pos)
-        {
-            map[(int)board_pos.x][(int)board_pos.y] = map[(int)now_pos.x][(int)now_pos.y];
-            map[(int)now_pos.x][(int)now_pos.y] = 0;
-            selected_piece->set_pos(board_pos);
-
-            selected_piece->set_selected(false);
-            selected_piece->set_moving(true);
-            can_operate = false;
-            selected_piece = nullptr;
-
-            can_moves.clear();
-            can_eats.clear();
-
-            if(callback_change)
-                callback_change();
-
-            record.captured_alive_before = record.captured_piece ? record.captured_piece->get_alive() : false;
-            move_history.push_back(record);
-
-            play_audio(_T("move"));
-            return true;
+        if (pos == board_pos) {
+            return move_piece(selected_piece->get_pos(), board_pos);
         }
     }
 
-    for (auto eat_pos : can_eats)
+    for (auto& pos : can_eats) 
     {
-        if (eat_pos == board_pos)
+        if (pos == board_pos) 
         {
-            for (auto& piece : pieces)
-            {
-                if (piece->get_pos() == eat_pos && piece->get_alive())
-                {
-                    record.captured_piece = piece;
-                    record.captured_alive_before = record.captured_piece ? record.captured_piece->get_alive() : false;
-                    piece->set_alive(false);
-                    break;
-                }
-            }
-
-            selected_piece->set_pos(board_pos);
-
-            selected_piece->set_selected(false);
-            selected_piece->set_moving(true);
-            can_operate = false;
-            selected_piece = nullptr;
-
-            can_moves.clear();
-            can_eats.clear();
-
-            ResourcesManager::instance()->get_camera()->shake(5, 100);
-
-            if (callback_change)
-                callback_change();
-
-            if (map[(int)board_pos.x][(int)board_pos.y] == 1 || map[(int)board_pos.x][(int)board_pos.y] == 101)
-            {
-                can_operate = true;
-                if(callback_win)
-                    callback_win();
-            }
-                
-
-            map[(int)board_pos.x][(int)board_pos.y] = map[(int)now_pos.x][(int)now_pos.y];
-            map[(int)now_pos.x][(int)now_pos.y] = 0;
-
-            move_history.push_back(record);
-
-            play_audio(_T("eat"));
-            return true;
+            return move_piece(selected_piece->get_pos(), board_pos);
         }
     }
 
     return false;
+}
+
+bool ChessManager::move_piece(const Vector2& src_pos, const Vector2& dst_pos)
+{
+    ChessPiece* piece = get_piece_at(src_pos);
+    if (!piece || !piece->get_alive())
+        return false;
+
+    MoveRecord record;
+    record.moved_piece = piece;
+    record.from_pos = src_pos;
+    record.to_pos = dst_pos;
+    record.piece_type = piece->get_type();
+    record.camp = piece->get_camp();
+    record.captured_piece = get_piece_at(dst_pos);
+    record.captured_alive_before = record.captured_piece ? record.captured_piece->get_alive() : false;
+
+    // 吃子
+    if (record.captured_piece)
+    {
+        record.captured_piece->set_alive(false);
+        ResourcesManager::instance()->get_camera()->shake(5, 100);
+        play_audio(_T("eat"));
+        if (record.captured_piece->get_type() == ChessPiece::PieceType::General)
+        {
+            can_operate = true;
+            if (callback_win)
+                callback_win();
+        }
+    }
+    else 
+    {
+        play_audio(_T("move"));
+    }
+
+    // 修改棋盘地图
+    map[(int)dst_pos.x][(int)dst_pos.y] = map[(int)src_pos.x][(int)src_pos.y];
+    map[(int)src_pos.x][(int)src_pos.y] = 0;
+
+    // 移动棋子
+    piece->set_pos(dst_pos);
+    piece->set_selected(false);
+    piece->set_moving(true);
+    selected_piece = nullptr;
+    can_operate = false;
+
+    can_moves.clear();
+    can_eats.clear();
+
+    move_history.push_back(record);
+
+    if (callback_change)
+        callback_change();
+
+    return true;
 }
 
 Vector2 ChessManager::find_general(ChessPiece::Camp camp)

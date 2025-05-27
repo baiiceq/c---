@@ -1,6 +1,7 @@
 #pragma once
 
 #include "scene.h"
+#include "chess_manager.h"
 #include <iostream>
 
 class SceneManager
@@ -10,7 +11,8 @@ public:
 	{
 		Menu,
 		Game,
-		Setting
+		Setting,
+		Select
 	};
 
 	static SceneManager* instance();
@@ -37,4 +39,5 @@ private:
 	Scene* menu_scene = nullptr;
 	Scene* game_scene = nullptr;
 	Scene* setting_scene = nullptr;
+	Scene* select_scene = nullptr;
 };

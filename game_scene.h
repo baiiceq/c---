@@ -82,6 +82,16 @@ public:
 			{
 				state = GameState::GameRunning;
 			});
+
+		pause_scene.set_callback_exit([&]()
+			{
+				HWND hwnd = GetHWnd();  
+				int ret = MessageBox(hwnd, L"是否保存游戏？", L"保存确认", MB_YESNO | MB_ICONQUESTION | MB_TOPMOST);
+				if (ret == IDYES)
+				{
+					chess_manager.save_game_record("data/save.txt");
+				}
+			});
 	}
 	~GameScene() = default;
 
