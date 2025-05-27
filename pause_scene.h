@@ -8,6 +8,9 @@
 #include "scene_manager.h"
 #include "button.h"
 #include "static_image.h"
+#include <fstream>
+#include <filesystem>
+#include <filesystem>
 
 // 暂停界面
 
@@ -30,7 +33,8 @@ public:
 		exit.set_image("exit");
 		exit.set_on_click([&]()
 			{
-				callback_continue();
+				if (callback_exit)
+					callback_exit();
 				SceneManager::instance()->switch_to(SceneManager::SceneType::Menu);
 			});
 
@@ -81,6 +85,11 @@ public:
 		callback_continue = callback;
 	}
 
+	void set_callback_exit(std::function<void()> callback)
+	{
+		callback_exit = callback;
+	}
+
 private:
 
 	Button continue_game;
@@ -90,4 +99,6 @@ private:
 
 	// 点击继续游戏的回调函数，回到游戏界面
 	std::function<void()> callback_continue;
+
+	std::function<void()> callback_exit;
 };

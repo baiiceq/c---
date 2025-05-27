@@ -30,7 +30,7 @@ public:
 		setting.set_image("setting");
 		setting.set_on_click([&]()
 			{
-				SceneManager::instance()->switch_to(SceneManager::SceneType::Game);
+				SceneManager::instance()->switch_to(SceneManager::SceneType::Select);
 			});
 
 		exit.set_pos(280, 480);

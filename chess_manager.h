@@ -32,6 +32,8 @@ public:
         callback_win = callback;
     }
 
+    void save_game_record(const std::string& filename);
+
 private:
     struct MoveRecord
     {
@@ -50,8 +52,9 @@ private:
 
     void handle_click(const Vector2& mousePos, ChessPiece::Camp current_turn);
     void handle_hover(const Vector2& mousePos, ChessPiece::Camp current_turn);
-
     bool try_move_selected_piece_to(const Vector2& mouse_pos);
+
+    bool move_piece(const Vector2& src_pos, const Vector2& dst_pos);
 
     Vector2 find_general(ChessPiece::Camp camp);
 
@@ -66,6 +69,18 @@ private:
         int x = (mouse_pos.x - 260) / 60;
         int y = (mouse_pos.y - 20) / 60;
         return Vector2(x, y);
+    }
+
+    ChessPiece* get_piece_at(const Vector2& pos)
+    {
+        for (auto& piece : pieces) 
+        {
+            if (piece->get_pos() == pos && piece->get_alive()) 
+            {
+                return piece;
+            }
+        }
+        return nullptr;
     }
 
     void waigua(ChessPiece::Camp c);

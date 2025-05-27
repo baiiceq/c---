@@ -43,7 +43,7 @@ int main()
 
 	BeginBatchDraw();
 	
-	SceneManager* scene_manager = SceneManager::instance();
+ 	SceneManager* scene_manager = SceneManager::instance();
 
 	play_audio(_T("bgm"), true);
 

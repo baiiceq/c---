@@ -1,6 +1,7 @@
 #include "scene_manager.h"
 #include "menu_scene.h"
 #include "game_scene.h"
+#include "select_scene.h"
 
 SceneManager* SceneManager::manager = nullptr;
 
@@ -16,6 +17,7 @@ SceneManager::SceneManager()
 {
 	menu_scene = new MenuScene();
 	game_scene = new GameScene();
+	select_scene = new SelectScene();
 
 	current_scene = menu_scene;
 	current_scene->on_enter();
@@ -46,6 +48,9 @@ void SceneManager::switch_to(SceneType type)
 		break;
 	case SceneType::Setting:
 		current_scene = setting_scene;
+		break;
+	case SceneType::Select:
+		current_scene = select_scene;
 		break;
 	default:
 		break;
