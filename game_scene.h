@@ -138,14 +138,14 @@ public:
 
 		if (state == GameState::GameRunning)
 		{
-			chess_manager.on_update(delta);
+			chess_manager.on_update(delta, current_turn);
 			ResourcesManager::instance()->get_camera()->on_update(delta);
 
 			repentance.on_update(delta);
 		}
 		else if (state == GameState::GamePlayBack)
 		{
-			chess_manager.on_update(delta);
+			chess_manager.on_update(delta, current_turn);
 			timer_interval.on_update(delta);
 		}
 		else if(state == GameState::GamePaused)
