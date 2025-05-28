@@ -39,6 +39,8 @@ public:
 		startgame.set_image("startgame");
 		startgame.set_on_click([&]()
 			{
+				SceneManager::instance()->set_gamescene_player(is_red_AI, is_black_AI);
+				SceneManager::instance()->set_gamescene_difficult((red_difficulty_selector.GetSelected() + 1) * 2, (black_difficulty_selector.GetSelected() + 1) * 2);
 				SceneManager::instance()->switch_to(SceneManager::SceneType::Game);
 			});
 
@@ -50,15 +52,74 @@ public:
 				SceneManager::instance()->switch_to(SceneManager::SceneType::Menu);
 			});
 
-		difficulty_selector.set_size({ 120, 80 });
+		load.set_pos(120, 400);
+		load.set_size(240, 60);
+		load.set_image("load");
+		load.set_on_click([&]()
+			{
+				SceneManager::instance()->set_gamescene_state_to_load();
+				SceneManager::instance()->switch_to(SceneManager::SceneType::Game);
+			});
+
+		playback.set_pos(440, 400);
+		playback.set_size(240, 60);
+		playback.set_image("playback");
+		playback.set_on_click([&]()
+			{
+				SceneManager::instance()->set_gamescene_state_to_playback();
+				SceneManager::instance()->switch_to(SceneManager::SceneType::Game);
+			});
+
+		/*difficulty_selector.set_size({ 100, 60 });
 		difficulty_selector.set_position({ 300, 300 });
-		difficulty_selector.set_options({ L"简单", L"中等", L"困难" });
+		difficulty_selector.set_options({ L"简单", L"中等", L"困难" });*/
+
+		black_tip.set_image("black_tip1");
+		black_tip.set_position({ 188,120 });
+		black_tip.set_size({ 101,45 });
+
+		red_tip.set_image("red_tip1");
+		red_tip.set_position({ 510,120 });
+		red_tip.set_size({ 101,45 });
+
+		red_player_selector.set_position({ 510, 200 });
+		red_player_selector.set_size({ 100, 60 });
+		red_player_selector.set_options({ L"真人",L"AI" });
+		red_player_selector.set_callback([&]()
+			{
+				is_red_AI = red_player_selector.GetSelected() == 1;
+			});
+
+		red_difficulty_selector.set_position({ 510, 300 });
+		red_difficulty_selector.set_size({ 100, 60 });
+		red_difficulty_selector.set_options({ L"简单",L"普通", L"困难"});
+		red_difficulty_selector.set_callback([&]()
+			{
+				red_AI_difficulty = red_difficulty_selector.GetSelected();
+			});
+
+		black_player_selector.set_position({ 188, 200 });
+		black_player_selector.set_size({ 100, 60 });
+		black_player_selector.set_options({ L"真人",L"AI" });
+		black_player_selector.set_callback([&]()
+			{
+				is_black_AI = black_player_selector.GetSelected() == 1;
+			});
+
+		black_difficulty_selector.set_position({ 188, 300 });
+		black_difficulty_selector.set_size({ 100, 60 });
+		black_difficulty_selector.set_options({ L"简单",L"普通", L"困难" });
+		black_difficulty_selector.set_callback([&]()
+			{
+				black_AI_difficulty = black_difficulty_selector.GetSelected();
+			});
 	}
 
 	~SelectScene() = default;
 
 	void on_enter()
 	{
+
 	}
 
 	void on_update(int delta)
@@ -79,7 +140,22 @@ public:
 		}
 		else
 		{
-			difficulty_selector.on_render(camera);
+			load.on_render(camera);
+			playback.on_render(camera);
+			red_tip.on_render(camera);
+			black_tip.on_render(camera);
+			//difficulty_selector.on_render(camera);
+			red_player_selector.on_render(camera);
+			black_player_selector.on_render(camera);
+			if (is_red_AI)
+			{
+				red_difficulty_selector.on_render(camera);
+			}
+
+			if (is_black_AI)
+			{
+				black_difficulty_selector.on_render(camera);
+			}
 		}
 	}
 
@@ -95,7 +171,20 @@ public:
 		}
 		else
 		{
-			difficulty_selector.on_input(msg);
+			load.on_input(msg);
+			playback.on_input(msg);
+			red_player_selector.on_input(msg);
+			black_player_selector.on_input(msg);
+			if (is_red_AI)
+			{
+				red_difficulty_selector.on_input(msg);
+			}
+
+			if (is_black_AI)
+			{
+				black_difficulty_selector.on_input(msg);
+			}
+			//difficulty_selector.on_input(msg);
 		}
 	}
 
@@ -109,6 +198,21 @@ private:
 	Button lianji;
 	Button startgame;
 	Button back;
+	Button playback;
+	Button load;
 	bool isLianji = false;
-	OptionSelector difficulty_selector;
+
+	StaticImage red_tip;
+	StaticImage black_tip;
+
+	bool is_red_AI = false;
+	bool is_black_AI = false;
+
+	int red_AI_difficulty = 0;
+	int black_AI_difficulty = 0;
+
+	OptionSelector red_player_selector;
+	OptionSelector black_player_selector;
+	OptionSelector red_difficulty_selector;
+	OptionSelector black_difficulty_selector;
 };

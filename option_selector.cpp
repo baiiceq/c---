@@ -7,21 +7,17 @@ OptionSelector::OptionSelector()
     left.set_image("leftarrow");
     left.set_on_click([&]() 
         {
-        if (selected > 0) 
-        {
             selected--;
-            if (on_select_callback) on_select_callback(selected);
-        }
+            selected = (selected + options.size()) % options.size();
+            if (on_select_callback) on_select_callback();
         });
 
     right.set_image("rightarrow");
     right.set_on_click([&]() 
         {
-        if (selected < options.size() - 1) 
-        {
             selected++;
-            if (on_select_callback) on_select_callback(selected);
-        }
+            selected %= options.size();
+            if (on_select_callback) on_select_callback();
         });
 }
 
@@ -72,10 +68,10 @@ void OptionSelector::on_input(const ExMessage& msg)
 
 void OptionSelector::update_button_layout()
 {
-    float btn_size = size.y * 0.3; 
+    float btn_size = size.y * 0.4; 
     float btn_y = position.y + (size.y - btn_size) / 2;
 
-    int spacing = size.x * 0.4;
+    int spacing = size.x * 0.45;
     left.set_size( btn_size, btn_size );
     right.set_size( btn_size,btn_size );
 

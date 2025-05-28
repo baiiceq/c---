@@ -43,6 +43,12 @@ static const std::vector<ImageResInfo> image_info_list =
 	{"button_backmenu_1",                 _T(R"(resources\ui\button_backmenu_1.png)")},
 	{"button_backmenu_2",                 _T(R"(resources\ui\button_backmenu_2.png)")},
 	{"button_backmenu_3",                 _T(R"(resources\ui\button_backmenu_3.png)")},
+	{"button_playback_1",                 _T(R"(resources\ui\button_playback_1.png)")},
+	{"button_playback_2",                 _T(R"(resources\ui\button_playback_2.png)")},
+	{"button_playback_3",                 _T(R"(resources\ui\button_playback_3.png)")},
+	{"button_load_1",                     _T(R"(resources\ui\button_load_1.png)")},
+	{"button_load_2",                     _T(R"(resources\ui\button_load_2.png)")},
+	{"button_load_3",                     _T(R"(resources\ui\button_load_3.png)")},
 	{"board",                             _T(R"(resources\board.png)")},
 	{"advisor_black",                     _T(R"(resources\advisor_black.png)")},
 	{"advisor_red",                       _T(R"(resources\advisor_red.png)")},
@@ -66,9 +72,12 @@ static const std::vector<ImageResInfo> image_info_list =
 	{"title",                             _T(R"(resources\title.png)")},
 	{"red_tip",                           _T(R"(resources\red_tip.png)")},
 	{"black_tip",                         _T(R"(resources\black_tip.png)")},
+	{"red_tip1",                          _T(R"(resources\red_tip(1).png)")},
+	{"black_tip1",                        _T(R"(resources\black_tip(1).png)")},
 	{"pause_background",                  _T(R"(resources\pause_background.png)")},
 	{"pause_mask",                        _T(R"(resources\pause_mask.png)")},
-	{"check",                             _T(R"(resources\check.png)")}
+	{"check",                             _T(R"(resources\check.png)")},
+	{"ai_thinking",                       _T(R"(resources\ai_thinking.png)")}
 };
 
 static inline bool check_image_valid(IMAGE* image)

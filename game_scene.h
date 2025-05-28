@@ -16,12 +16,14 @@ extern std::atomic<bool> ai_thinking; // AI思考状态
 
 class GameScene :public Scene
 {
-private:
+public:
 	// 当前游戏状态
 	enum class GameState 
 	{
 		GameRunning,         // 运行
-		GamePaused           // 暂停
+		GamePaused,          // 暂停
+		GamePlayBack,        // 回放
+		GameLoad             // 读取
 	};
 
 public:
@@ -92,6 +94,13 @@ public:
 					chess_manager.save_game_record("data/save.txt");
 				}
 			});
+
+		timer_interval.set_wait_time(INTERVAL);
+		timer_interval.set_one_shot(false);
+		timer_interval.set_on_timeout([&]()
+			{
+				chess_manager.load_one_step();
+			});
 	}
 	~GameScene() = default;
 
@@ -100,16 +109,33 @@ public:
 		std::cout << "游戏开始" << std::endl;
 
 		chess_manager.reset();
+		
 
 		// 进入该界面时，把当前阵营改成红色方
 		current_turn = ChessPiece::Camp::Red;
 		
+		if (state == GameState::GameLoad)
+		{
+			chess_manager.load_game_record("data/save.txt");
+			chess_manager.load();
+			state = GameState::GameRunning;
+		}
+		else if (state == GameState::GamePlayBack)
+		{
+			chess_manager.load_game_record("data/save.txt");
+			timer_interval.restart();
+		}
+		else if (state == GameState::GamePaused)
+		{
+			state = GameState::GameRunning;
+		}
 	}
 
 	void on_update(int delta)
 	{
-		if (ai_thinking == true)//可能出问题
-			return;
+		if (state != GameState::GamePlayBack)
+			timer_interval.pause();
+
 		if (state == GameState::GameRunning)
 		{
 			chess_manager.on_update(delta);
@@ -117,7 +143,12 @@ public:
 
 			repentance.on_update(delta);
 		}
-		else
+		else if (state == GameState::GamePlayBack)
+		{
+			chess_manager.on_update(delta);
+			timer_interval.on_update(delta);
+		}
+		else if(state == GameState::GamePaused)
 		{
 			pause_scene.on_update(delta);
 		}
@@ -139,10 +170,6 @@ public:
 		}
 
 		repentance.on_render(camera);
-		if(ai_thinking == true)
-		{
-			//ai动画
-		}
 
 		if (state == GameState::GamePaused)
 		{
@@ -151,8 +178,6 @@ public:
 	}
 	void on_input(const ExMessage& msg)
 	{
-		if(ai_thinking==true)
-			return;
 		if (state == GameState::GameRunning)
 		{
 			if (msg.message == WM_KEYDOWN && msg.vkcode == VK_ESCAPE)
@@ -164,7 +189,7 @@ public:
 
 			repentance.on_input(msg);
 		}
-		else
+		else if(state == GameState::GamePaused)
 		{
 			pause_scene.on_input(msg);
 		}
@@ -175,6 +200,25 @@ public:
 		std::cout << "游戏退出" << std::endl;
 		// 退出游戏界面时，棋子管理器重新设置
 	}
+
+	void set_state(GameState state)
+	{
+		this->state = state;
+	}
+
+	void set_player(bool red, bool black)
+	{
+		chess_manager.set_player(red, black);
+	}
+
+	void set_difficulty(int red, int black)
+	{
+		chess_manager.set_difficulty(red, black);
+	}
+
+private:
+	const int INTERVAL = 1000;
+	Timer timer_interval;
 
 private:
 	Board board;  // 游戏棋盘
@@ -195,4 +239,7 @@ private:
 
 	// 暂停页面
 	PauseScene pause_scene;
+
+	// 回放时计算每次操作间隔的时间的计时器
+	Timer timer_playback;
 };

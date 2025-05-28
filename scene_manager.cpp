@@ -78,3 +78,33 @@ void SceneManager::on_input(ExMessage& msg)
 {
 	current_scene->on_input(msg);
 }
+
+void SceneManager::set_gamescene_state_to_load()
+{
+	GameScene* gs = (GameScene*)game_scene;
+	gs->set_state(GameScene::GameState::GameLoad);
+}
+
+void SceneManager::set_gamescene_state_to_running()
+{
+	GameScene* gs = (GameScene*)game_scene;
+	gs->set_state(GameScene::GameState::GameRunning);
+}
+
+void SceneManager::set_gamescene_state_to_playback()
+{
+	GameScene* gs = (GameScene*)game_scene;
+	gs->set_state(GameScene::GameState::GamePlayBack);
+}
+
+void SceneManager::set_gamescene_player(bool red, bool black)
+{
+	GameScene* gs = (GameScene*)game_scene;
+	gs->set_player(red, black);
+}
+
+void SceneManager::set_gamescene_difficult(int red, int black)
+{
+	GameScene* gs = (GameScene*)game_scene;
+	gs->set_difficulty(red, black);
+}

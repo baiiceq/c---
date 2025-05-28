@@ -6,10 +6,12 @@
 
 extern std::atomic<bool> ai_thinking; // AI思考状态
 
-void Ai::ai_think()
+void Ai::ai_think(int depth)
 {
-	DFS(my_party, map, MAX_DEPTH, -1000000000, 1000000000);
+	DFS(my_party, map, depth, -1000000000, 1000000000);
 	ai_thinking = false; // AI思考结束
+    if (think_finished)
+        think_finished();
     std::cout << "rsc_pos:" << method.rsc_pos.x << "," << method.rsc_pos.y << std::endl;
     std::cout << "dst_pos:" << method.dst_pos.x << "," << method.dst_pos.y << std::endl;
     //将信息以点击的方式传递
@@ -20,10 +22,10 @@ Method Ai::get_method()
     return method;
 };
 
-void Ai::cout_method()
+void Ai::cout_method(int depth)
 {
     ai_thinking.store(true);
-	std::thread ai_thread(&Ai::ai_think,this);
+    std::thread ai_thread(&Ai::ai_think, this, depth);
 	ai_thread.detach(); // 分离线程，允许其在后台运行
 }
 
@@ -145,7 +147,7 @@ int Ai::DFS(ChessPiece::Camp current_party,int (& current_map_)[9][10], int dept
                     }
                 }
             }
-			free(it); // 释放棋子对象的内存
+			delete it; // 释放棋子对象的内存
 		}
 		return a;
 	}

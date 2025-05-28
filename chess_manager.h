@@ -32,7 +32,27 @@ public:
         callback_win = callback;
     }
 
+    void set_player(bool is_red_AI, bool is_black_AI)
+    {
+        this->is_black_AI = is_black_AI;
+        this->is_red_AI = is_red_AI;
+    }
+
+    void set_difficulty(int red, int black)
+    {
+        red_AI_difficulty = red;
+        black_AI_difficulty = black;
+    }
+
     void save_game_record(const std::string& filename);
+
+    void load_game_record(const std::string& filename);
+
+    void load();
+
+    void load_one_step();
+    
+    void ai_start_think(ChessPiece::Camp current_turn);
 
 private:
     struct MoveRecord
@@ -54,7 +74,7 @@ private:
     void handle_hover(const Vector2& mousePos, ChessPiece::Camp current_turn);
     bool try_move_selected_piece_to(const Vector2& mouse_pos);
 
-    bool move_piece(const Vector2& src_pos, const Vector2& dst_pos);
+    bool move_piece(const Vector2& src_pos, const Vector2& dst_pos, bool is_load, MoveRecord* r = nullptr);
 
     Vector2 find_general(ChessPiece::Camp camp);
 
@@ -104,6 +124,18 @@ private:
 
     Animation anim_check;
     bool is_check = false;
+
+    int playback_step = 0;
+
+    bool is_black_AI = false;
+    bool is_red_AI = false;
+    int black_AI_difficulty = 1;
+    int red_AI_difficulty = 1;
+
+    bool is_AI_thinking = false;
+
+    Animation anim_ai_thinking;
+
 private:
     Ai ai;
 };
