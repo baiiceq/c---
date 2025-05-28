@@ -2,6 +2,8 @@
 #include "menu_scene.h"
 #include "game_scene.h"
 #include "select_scene.h"
+#include "hello_scene.h"
+#include "login_scene.h"
 
 SceneManager* SceneManager::manager = nullptr;
 
@@ -18,8 +20,10 @@ SceneManager::SceneManager()
 	menu_scene = new MenuScene();
 	game_scene = new GameScene();
 	select_scene = new SelectScene();
+	hello_scene = new HelloScene();
+	login_scene = new LoginScene();
 
-	current_scene = menu_scene;
+	current_scene = hello_scene;
 	current_scene->on_enter();
 }
 
@@ -27,6 +31,8 @@ SceneManager::~SceneManager()
 {
 	delete menu_scene;
 	delete game_scene;
+	delete hello_scene;
+	delete login_scene;
 }
 
 void SceneManager::set_current_scene(Scene* scene)

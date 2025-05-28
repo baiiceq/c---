@@ -12,7 +12,10 @@ public:
 		Menu,
 		Game,
 		Setting,
-		Select
+		Select,
+		Login,
+		Register,
+		Hello
 	};
 
 	static SceneManager* instance();
@@ -40,4 +43,7 @@ private:
 	Scene* game_scene = nullptr;
 	Scene* setting_scene = nullptr;
 	Scene* select_scene = nullptr;
+	Scene* login_scene = nullptr;
+	Scene* register_scene = nullptr;
+	Scene* hello_scene = nullptr;
 };
