@@ -23,8 +23,8 @@ public:
 			SceneManager::instance()->switch_to(SceneManager::SceneType::Hello);
 			});
 
-		LoginText.Set_Textbox(280, 240, 520, 300,20);
-		PasswordText.Set_Textbox(280, 360, 520, 420, 20);
+		LoginText.Set_Textbox(280, 240, 520, 300,12);
+		PasswordText.Set_Textbox(280, 360, 520, 420, 12);
 
 		account.set_position({ 170, 240 });
 		account.set_size({ 100,60 });

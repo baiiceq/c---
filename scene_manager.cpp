@@ -58,6 +58,12 @@ void SceneManager::switch_to(SceneType type)
 	case SceneType::Select:
 		current_scene = select_scene;
 		break;
+	case SceneType::Hello:
+		current_scene = hello_scene;
+		break;
+	case SceneType::Login:
+		current_scene = login_scene;
+		break;
 	default:
 		break;
 	}

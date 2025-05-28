@@ -1,6 +1,7 @@
 #include "chess_manager.h"
 #include "chess_pieces.h"
 #include "resources_manager.h"
+#include "scene_manager.h"
 #include "util.h"
 #include <fstream>
 
@@ -91,6 +92,23 @@ ChessManager::ChessManager() : can_operate(true)
         {
             is_check = false;
         });
+
+    anim_ai_thinking.add_frame(ResourcesManager::instance()->find_image("ai_thinking"), 6);
+    anim_ai_thinking.set_position({ 100,400 });
+    anim_ai_thinking.set_anchor_mode(Animation::AnchorMode::BottomCentered);
+    anim_ai_thinking.set_loop(true);
+    anim_ai_thinking.set_interval(300);
+    anim_ai_thinking.set_on_finished([&]()
+        {
+            is_AI_thinking = false;
+        });
+
+    ai.set_think_finished([&]()
+        {
+            is_AI_thinking = false;
+            Method result = ai.get_method();
+            move_piece(result.rsc_pos, result.dst_pos, false);
+        });
 }
 
 ChessManager::~ChessManager()
@@ -140,10 +158,21 @@ void ChessManager::on_render(const Camera& camera)
 
     if (is_check)
         anim_check.on_render(camera);
+
+    if (is_AI_thinking)
+        anim_ai_thinking.on_render(camera);
 }
 
-void ChessManager::on_update(int delta)
+void ChessManager::on_update(int delta, ChessPiece::Camp current_turn)
 {
+    if ((is_black_AI && current_turn == ChessPiece::Camp::Black) || (is_red_AI && current_turn == ChessPiece::Camp::Red))
+    {
+        if (!is_AI_thinking)
+        {
+            ai_start_think(current_turn);
+        }
+    }
+
     for (auto piece : pieces)
     {
         if(piece->get_alive())
@@ -152,11 +181,15 @@ void ChessManager::on_update(int delta)
 
     if (is_check)
         anim_check.on_update(delta);
+
+    if (is_AI_thinking)
+        anim_ai_thinking.on_update(delta);
 }
 
 void ChessManager::on_input(const ExMessage& msg, ChessPiece::Camp current_turn)
 {
     if (!can_operate) return;
+    if (is_AI_thinking)return;
 
     Vector2 mousePos(msg.x, msg.y);
     switch (msg.message)
@@ -176,20 +209,6 @@ void ChessManager::on_input(const ExMessage& msg, ChessPiece::Camp current_turn)
         }
         handle_click(mousePos, current_turn);
         break;
-    case WM_KEYDOWN:
-        switch (msg.vkcode)
-        {
-        case 0x41:
-            waigua(ChessPiece::Camp::Red);
-            break;
-        case 0x44:
-            waigua(ChessPiece::Camp::Black);
-            break;
-        case 0x43:
-            ai.update(map,current_turn);
-			ai.cout_method();
-			break;
-        }
     }
 }
 
@@ -277,10 +296,14 @@ void ChessManager::reset()
                 can_operate = true;
             });
     }
+
+    can_operate = true;
 }
 
 void ChessManager::undo_move()
 {
+    if (is_AI_thinking)
+        return;
 
     if (move_history.empty())
         return;
@@ -362,6 +385,36 @@ void ChessManager::load_game_record(const std::string& filename)
     }
 
     file.close();
+}
+
+void ChessManager::load()
+{
+    for (auto& record : move_history)
+    {
+        move_piece(record.from_pos, record.to_pos, false, &record);
+    }
+
+    can_operate = true;
+}
+
+void ChessManager::load_one_step()
+{
+    if (playback_step >= move_history.size())
+    {
+        SceneManager::instance()->set_gamescene_state_to_running();
+    }
+    else
+    {
+        auto record = move_history[playback_step++];
+        move_piece(record.from_pos, record.to_pos, false, &record);
+    }
+}
+
+void ChessManager::ai_start_think(ChessPiece::Camp current_turn)
+{
+    is_AI_thinking = true;
+    ai.update(map, current_turn);
+    ai.cout_method(current_turn == ChessPiece::Camp::Black ? black_AI_difficulty : red_AI_difficulty);
 }
 
 void ChessManager::handle_click(const Vector2& mousePos, ChessPiece::Camp current_turn)
@@ -450,8 +503,9 @@ bool ChessManager::try_move_selected_piece_to(const Vector2& mouse_pos)
 
     for (auto& pos : can_moves)
     {
-        if (pos == board_pos) {
-            return move_piece(selected_piece->get_pos(), board_pos);
+        if (pos == board_pos) 
+        {
+            return move_piece(selected_piece->get_pos(), board_pos, false);
         }
     }
 
@@ -459,44 +513,67 @@ bool ChessManager::try_move_selected_piece_to(const Vector2& mouse_pos)
     {
         if (pos == board_pos) 
         {
-            return move_piece(selected_piece->get_pos(), board_pos);
+            return move_piece(selected_piece->get_pos(), board_pos, false);
         }
     }
 
     return false;
 }
 
-bool ChessManager::move_piece(const Vector2& src_pos, const Vector2& dst_pos)
+bool ChessManager::move_piece(const Vector2& src_pos, const Vector2& dst_pos, bool is_load, MoveRecord* r)
 {
     ChessPiece* piece = get_piece_at(src_pos);
     if (!piece || !piece->get_alive())
         return false;
 
     MoveRecord record;
-    record.moved_piece = piece;
-    record.from_pos = src_pos;
-    record.to_pos = dst_pos;
-    record.piece_type = piece->get_type();
-    record.camp = piece->get_camp();
-    record.captured_piece = get_piece_at(dst_pos);
-    record.captured_alive_before = record.captured_piece ? record.captured_piece->get_alive() : false;
+    if (!is_load)
+    {
+        record.moved_piece = piece;
+        record.from_pos = src_pos;
+        record.to_pos = dst_pos;
+        record.piece_type = piece->get_type();
+        record.camp = piece->get_camp();
+        record.captured_piece = get_piece_at(dst_pos);
+        record.captured_alive_before = record.captured_piece ? record.captured_piece->get_alive() : false;
+    }
+    
+    if (r)
+    {
+        r->captured_piece = get_piece_at(dst_pos);
+        r->moved_piece = piece;
+    }
 
     // 吃子
-    if (record.captured_piece)
+    if (record.captured_piece || (r && r->captured_piece))
     {
-        record.captured_piece->set_alive(false);
-        ResourcesManager::instance()->get_camera()->shake(5, 100);
-        play_audio(_T("eat"));
+        if (r)
+        {
+            r->captured_piece->set_alive(false);
+        }
+        else
+        {
+            record.captured_piece->set_alive(false);
+        }
+        
+        if (!is_load)
+        {
+            ResourcesManager::instance()->get_camera()->shake(5, 100);
+            play_audio(_T("eat"));
+        }
+        
         if (record.captured_piece->get_type() == ChessPiece::PieceType::General)
         {
+            
             can_operate = true;
             if (callback_win)
                 callback_win();
         }
     }
-    else 
+    else
     {
-        play_audio(_T("move"));
+        if(!is_load)
+            play_audio(_T("move"));
     }
 
     // 修改棋盘地图
@@ -506,14 +583,17 @@ bool ChessManager::move_piece(const Vector2& src_pos, const Vector2& dst_pos)
     // 移动棋子
     piece->set_pos(dst_pos);
     piece->set_selected(false);
-    piece->set_moving(1);
+    piece->set_moving(is_load ? 2 : 1);
     selected_piece = nullptr;
     can_operate = false;
 
     can_moves.clear();
     can_eats.clear();
 
-    move_history.push_back(record);
+    if(r == nullptr)
+        move_history.push_back(record);
+
+    std::cout << "从(" << src_pos.x << ',' << src_pos.y << "到(" << dst_pos.x << '/' << dst_pos.y << std::endl;
 
     if (callback_change)
         callback_change();

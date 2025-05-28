@@ -14,7 +14,7 @@ public:
     ChessManager();
     ~ChessManager();
     void on_render(const Camera& camera);
-    void on_update(int delta);
+    void on_update(int delta, ChessPiece::Camp current_turn);
     void on_input(const ExMessage& msg, ChessPiece::Camp current_turn);
 
     void reset();

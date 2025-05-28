@@ -16,7 +16,7 @@ public:
 			});
 
 		PlayerLoginButton.set_pos(280,330);
-		PlayerLoginButton.set_image("player_login");
+		PlayerLoginButton.set_image("account_login");
 		PlayerLoginButton.set_size(240, 60);
 		PlayerLoginButton.set_on_click([]() {
 			SceneManager::instance()->switch_to(SceneManager::SceneType::Login);
@@ -40,10 +40,10 @@ public:
 	void on_enter() {}
 	void on_exit() {}
 	void on_update(int delta) {
-		Hello.on_update(delta);
+		//Hello.on_update(delta);
 	}
 	void on_render(const Camera& camera) {
-		Hello.on_render(camera);
+		//Hello.on_render(camera);
 		OnceLoginButton.on_render(camera);
 		PlayerLoginButton.on_render(camera);
 		RegisterButton.on_render(camera);
@@ -56,7 +56,7 @@ public:
 		ExitButton.on_input(message);
 	}
 private:
-	Animation Hello;
+	/*Animation Hello;*/
 	Button OnceLoginButton;
 	Button PlayerLoginButton;
 	Button RegisterButton;
