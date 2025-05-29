@@ -4,12 +4,9 @@
 #include "chess_pieces.h"
 #include "chess_piece.h"
 
-extern std::atomic<bool> ai_thinking; // AI思考状态
-
-void Ai::ai_think(int depth)
+void Ai::ai_think()
 {
-	DFS(my_party, map, depth, -1000000000, 1000000000);
-	ai_thinking = false; // AI思考结束
+	DFS(my_party, map, MAX_DEPTH, -1000000000, 1000000000);
     if (think_finished)
         think_finished();
     std::cout << "rsc_pos:" << method.rsc_pos.x << "," << method.rsc_pos.y << std::endl;
@@ -24,8 +21,8 @@ Method Ai::get_method()
 
 void Ai::cout_method(int depth)
 {
-    ai_thinking.store(true);
-    std::thread ai_thread(&Ai::ai_think, this, depth);
+	set_depth(depth);
+    std::thread ai_thread(&Ai::ai_think, this);
 	ai_thread.detach(); // 分离线程，允许其在后台运行
 }
 

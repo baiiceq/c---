@@ -98,10 +98,7 @@ ChessManager::ChessManager() : can_operate(true)
     anim_ai_thinking.set_anchor_mode(Animation::AnchorMode::BottomCentered);
     anim_ai_thinking.set_loop(true);
     anim_ai_thinking.set_interval(300);
-    anim_ai_thinking.set_on_finished([&]()
-        {
-            is_AI_thinking = false;
-        });
+    anim_ai_thinking.set_on_finished([&](){});
 
     ai.set_think_finished([&]()
         {

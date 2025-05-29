@@ -47,12 +47,12 @@ private:
 
 	bool is_game_over(ChessPiece::Camp current_party, int current_map[9][10]);
 	SChessPiece* get_piece(int x, int y,int a, ChessPiece::Camp current_party);
-    void ai_think(int depth);
+    void ai_think();
 
     std::function<void()> think_finished;
 
 private:
-    int MAX_DEPTH = 6; // 最大搜索深度
+    int MAX_DEPTH;
 
 private:
 // 棋子基本价值表

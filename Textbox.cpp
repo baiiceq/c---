@@ -21,7 +21,7 @@ void Textbox::cursor_index_to_pos()
     {
         cursor_pos.x += textwidth(text[i]);
 	}
-	cursor_pos.x = left + cursor_pos.x;
+	cursor_pos.x = left + cursor_pos.x+7;
 }
 
 void Textbox::change_cursor_index(int msgx)
@@ -111,7 +111,7 @@ void Textbox::on_render(const Camera& camera)
     setbkcolor(0xeeeeee);			// 设置背景颜色
     setfillcolor(0xeeeeee);			// 设置填充颜色
     fillrectangle(left, top, right, bottom);
-    settextstyle(45, 0,0);
+    settextstyle(35, 0, _T("微软雅黑"));
     settextcolor(BLACK); // 设置字体颜色为黑色
     std::wstring wide_text(text.begin(), text.end());
     outtextxy(left + 10, top + 5, wide_text.c_str());

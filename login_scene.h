@@ -9,29 +9,29 @@ class LoginScene : public Scene
 {
 public:
 	LoginScene() {
-		ConfirmButton.set_pos(410,480);
-		ConfirmButton.set_size(110, 60);
+		ConfirmButton.set_pos(280,380);
+		ConfirmButton.set_size(240, 60);
 		ConfirmButton.set_image("confirm");
 		ConfirmButton.set_on_click([&]() {
 			// Handle login confirmation logic here
 			});
 
-		BackButton.set_pos(280,480);
-		BackButton.set_size(110, 60);
+		BackButton.set_pos(280,460);
+		BackButton.set_size(240, 60);
 		BackButton.set_image("backmenu");
 		BackButton.set_on_click([&]() {
 			SceneManager::instance()->switch_to(SceneManager::SceneType::Hello);
 			});
 
-		LoginText.Set_Textbox(280, 240, 520, 300,12);
-		PasswordText.Set_Textbox(280, 360, 520, 420, 12);
+		LoginText.Set_Textbox(280, 240, 520, 280,12);
+		PasswordText.Set_Textbox(280, 300, 520, 340, 12);
 
 		account.set_position({ 170, 240 });
-		account.set_size({ 100,60 });
+		account.set_size({ 100,40 });
 		account.set_image("account");
 		
-		password.set_position({ 170, 360 });
-		password.set_size({ 100,60 });
+		password.set_position({ 170, 300 });
+		password.set_size({ 100,40 });
 		password.set_image("password");
 
 		title.set_image("title");

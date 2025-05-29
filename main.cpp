@@ -10,8 +10,6 @@
 
 #pragma comment(lib, "Winmm.lib")
 
-std::atomic<bool> ai_thinking(false);
-
 void put_background()
 {
 	IMAGE* img = ResourcesManager::instance()->find_image("background");
