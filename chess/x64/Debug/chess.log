@@ -1,0 +1,623 @@
+﻿  ai.cpp
+F:\m\code\chess\ai.cpp(101,27): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\ai.cpp(101,48): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\ai.cpp(102,30): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+F:\m\code\chess\ai.cpp(102,45): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+F:\m\code\chess\ai.cpp(110,57): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(110,54): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(111,60): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(111,54): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(126,31): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\ai.cpp(126,52): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\ai.cpp(127,34): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+F:\m\code\chess\ai.cpp(127,49): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+F:\m\code\chess\ai.cpp(135,61): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(135,58): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(136,64): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(136,58): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(161,27): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\ai.cpp(161,48): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\ai.cpp(162,30): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+F:\m\code\chess\ai.cpp(162,45): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+F:\m\code\chess\ai.cpp(182,31): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\ai.cpp(182,52): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\ai.cpp(183,34): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+F:\m\code\chess\ai.cpp(183,49): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+F:\m\code\chess\ai.cpp(231,41): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(231,38): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(232,40): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(232,37): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(233,41): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(233,38): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(234,38): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(234,35): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(235,40): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(235,37): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(236,39): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(236,36): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(237,40): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\ai.cpp(237,37): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+  board.cpp
+F:\m\code\chess\board.h(22,16): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“board.cpp”)
+  
+F:\m\code\chess\board.h(23,16): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“board.cpp”)
+  
+F:\m\code\chess\util.h(36,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“board.cpp”)
+  
+F:\m\code\chess\util.h(37,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“board.cpp”)
+  
+F:\m\code\chess\util.h(49,70): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“board.cpp”)
+  
+F:\m\code\chess\util.h(49,49): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“board.cpp”)
+  
+F:\m\code\chess\util.h(49,28): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“board.cpp”)
+  
+F:\m\code\chess\util.h(49,7): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“board.cpp”)
+  
+F:\m\code\chess\board.cpp(29,28): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\board.cpp(29,28): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\board.cpp(29,40): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\board.cpp(29,40): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\board.cpp(29,48): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\board.cpp(29,48): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\board.cpp(29,56): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\board.cpp(29,56): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  button.cpp
+F:\m\code\chess\util.h(36,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“button.cpp”)
+  
+F:\m\code\chess\util.h(37,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“button.cpp”)
+  
+F:\m\code\chess\util.h(49,70): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“button.cpp”)
+  
+F:\m\code\chess\util.h(49,49): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“button.cpp”)
+  
+F:\m\code\chess\util.h(49,28): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“button.cpp”)
+  
+F:\m\code\chess\util.h(49,7): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“button.cpp”)
+  
+  chess_client.cpp
+  chess_manager.cpp
+F:\m\code\chess\util.h(36,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“chess_manager.cpp”)
+  
+F:\m\code\chess\util.h(37,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“chess_manager.cpp”)
+  
+F:\m\code\chess\util.h(49,70): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“chess_manager.cpp”)
+  
+F:\m\code\chess\util.h(49,49): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“chess_manager.cpp”)
+  
+F:\m\code\chess\util.h(49,28): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“chess_manager.cpp”)
+  
+F:\m\code\chess\util.h(49,7): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“chess_manager.cpp”)
+  
+F:\m\code\chess\animation.h(74,10): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“chess_manager.cpp”)
+  
+F:\m\code\chess\animation.h(112,19): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“chess_manager.cpp”)
+  
+F:\m\code\chess\chess_manager.h(87,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“chess_manager.cpp”)
+  
+F:\m\code\chess\chess_manager.h(88,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“chess_manager.cpp”)
+  
+F:\m\code\chess\chess_manager.h(89,27): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“chess_manager.cpp”)
+  
+F:\m\code\chess\chess_manager.h(89,24): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“chess_manager.cpp”)
+  
+F:\m\code\chess\chess_manager.cpp(135,30): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\chess_manager.cpp(135,30): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(135,37): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\chess_manager.cpp(135,37): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(135,45): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\chess_manager.cpp(135,45): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(135,53): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\chess_manager.cpp(135,53): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(143,30): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\chess_manager.cpp(143,30): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(143,36): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\chess_manager.cpp(143,36): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(143,43): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\chess_manager.cpp(143,43): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(143,50): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\chess_manager.cpp(143,50): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(149,31): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\chess_manager.cpp(149,31): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(149,53): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\chess_manager.cpp(149,53): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(155,31): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\chess_manager.cpp(155,31): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(155,53): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\chess_manager.cpp(155,53): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(183,30): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(186,36): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(376,29): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(377,29): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(378,27): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(379,27): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(570,82): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_manager.cpp(599,77): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  chess_piece.cpp
+F:\m\code\chess\util.h(36,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“chess_piece.cpp”)
+  
+F:\m\code\chess\util.h(37,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“chess_piece.cpp”)
+  
+F:\m\code\chess\util.h(49,70): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“chess_piece.cpp”)
+  
+F:\m\code\chess\util.h(49,49): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“chess_piece.cpp”)
+  
+F:\m\code\chess\util.h(49,28): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“chess_piece.cpp”)
+  
+F:\m\code\chess\util.h(49,7): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“chess_piece.cpp”)
+  
+F:\m\code\chess\chess_piece.cpp(29,29): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\chess_piece.cpp(29,29): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_piece.cpp(29,42): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\chess_piece.cpp(29,42): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_piece.cpp(29,50): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\chess_piece.cpp(29,50): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_piece.cpp(29,58): warning C4838: 从“float”转换到“int”需要收缩转换
+F:\m\code\chess\chess_piece.cpp(29,58): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  chess_pieces.cpp
+F:\m\code\chess\chess_pieces.cpp(23,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(23,26): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(61,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(61,26): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(78,20): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(94,20): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(131,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(131,26): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(157,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(157,26): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(196,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(196,26): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(222,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(222,26): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(264,19): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(265,19): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(266,16): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(267,16): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(291,19): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(292,19): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(293,16): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(294,16): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(325,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(326,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(384,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(385,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(449,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(450,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(508,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(509,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(614,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(615,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(658,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(659,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(707,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(708,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(752,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(753,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(796,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(796,26): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(821,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(821,26): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(845,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(845,26): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(869,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(869,26): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(895,19): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(896,19): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(897,16): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(898,16): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(916,19): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(917,19): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(918,16): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(919,16): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(937,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(937,26): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(974,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(974,26): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(999,20): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(1015,20): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(1034,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(1035,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(1090,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(1091,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(1180,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(1181,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(1221,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\chess_pieces.cpp(1222,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  chess_server.cpp
+  main.cpp
+F:\m\code\chess\util.h(36,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\util.h(37,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\util.h(49,70): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\util.h(49,49): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\util.h(49,28): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\util.h(49,7): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\animation.h(74,10): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\animation.h(112,19): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\chess_manager.h(87,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\chess_manager.h(88,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\chess_manager.h(89,27): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\chess_manager.h(89,24): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\static_image.h(16,30): warning C4838: 从“float”转换到“int”需要收缩转换
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\static_image.h(16,30): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\static_image.h(16,41): warning C4838: 从“float”转换到“int”需要收缩转换
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\static_image.h(16,41): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\static_image.h(16,49): warning C4838: 从“float”转换到“int”需要收缩转换
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\static_image.h(16,49): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\static_image.h(16,56): warning C4838: 从“float”转换到“int”需要收缩转换
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\static_image.h(16,56): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\board.h(22,16): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+F:\m\code\chess\board.h(23,16): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\filesystem(12): warning STL4038: The contents of <filesystem> are available only with C++17 or later.
+F:\m\code\chess\game_scene.h(44,45): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+  menu_scene.h
+F:\m\code\chess\util.h(36,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\util.h(37,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\util.h(49,70): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\util.h(49,49): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\util.h(49,28): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\util.h(49,7): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\animation.h(74,10): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\animation.h(112,19): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\chess_manager.h(87,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\chess_manager.h(88,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\chess_manager.h(89,27): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\chess_manager.h(89,24): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\static_image.h(16,30): warning C4838: 从“float”转换到“int”需要收缩转换
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\static_image.h(16,30): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\static_image.h(16,41): warning C4838: 从“float”转换到“int”需要收缩转换
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\static_image.h(16,41): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\static_image.h(16,49): warning C4838: 从“float”转换到“int”需要收缩转换
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\static_image.h(16,49): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\static_image.h(16,56): warning C4838: 从“float”转换到“int”需要收缩转换
+  (编译源文件“menu_scene.h”)
+  
+F:\m\code\chess\static_image.h(16,56): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“menu_scene.h”)
+  
+  option_selector.cpp
+F:\m\code\chess\util.h(36,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“option_selector.cpp”)
+  
+F:\m\code\chess\util.h(37,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“option_selector.cpp”)
+  
+F:\m\code\chess\util.h(49,70): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“option_selector.cpp”)
+  
+F:\m\code\chess\util.h(49,49): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“option_selector.cpp”)
+  
+F:\m\code\chess\util.h(49,28): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“option_selector.cpp”)
+  
+F:\m\code\chess\util.h(49,7): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“option_selector.cpp”)
+  
+F:\m\code\chess\option_selector.cpp(11,52): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+F:\m\code\chess\option_selector.cpp(71,20): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+F:\m\code\chess\option_selector.cpp(74,17): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+F:\m\code\chess\option_selector.cpp(75,30): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\option_selector.cpp(75,20): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\option_selector.cpp(76,30): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\option_selector.cpp(76,21): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\option_selector.cpp(78,40): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\option_selector.cpp(78,29): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\option_selector.cpp(79,61): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+F:\m\code\chess\option_selector.cpp(79,50): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  resources_manager.cpp
+F:\m\code\chess\util.h(36,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“resources_manager.cpp”)
+  
+F:\m\code\chess\util.h(37,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“resources_manager.cpp”)
+  
+F:\m\code\chess\util.h(49,70): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“resources_manager.cpp”)
+  
+F:\m\code\chess\util.h(49,49): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“resources_manager.cpp”)
+  
+F:\m\code\chess\util.h(49,28): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“resources_manager.cpp”)
+  
+F:\m\code\chess\util.h(49,7): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“resources_manager.cpp”)
+  
+  scene_manager.cpp
+F:\m\code\chess\util.h(36,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\util.h(37,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\util.h(49,70): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\util.h(49,49): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\util.h(49,28): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\util.h(49,7): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\animation.h(74,10): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\animation.h(112,19): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\chess_manager.h(87,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\chess_manager.h(88,15): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\chess_manager.h(89,27): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\chess_manager.h(89,24): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\static_image.h(16,30): warning C4838: 从“float”转换到“int”需要收缩转换
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\static_image.h(16,30): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\static_image.h(16,41): warning C4838: 从“float”转换到“int”需要收缩转换
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\static_image.h(16,41): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\static_image.h(16,49): warning C4838: 从“float”转换到“int”需要收缩转换
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\static_image.h(16,49): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\static_image.h(16,56): warning C4838: 从“float”转换到“int”需要收缩转换
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\static_image.h(16,56): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\board.h(22,16): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\board.h(23,16): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\filesystem(12): warning STL4038: The contents of <filesystem> are available only with C++17 or later.
+F:\m\code\chess\game_scene.h(44,45): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\online_scene.h(40,45): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\online_scene.h(146,33): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\online_scene.h(165,36): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\online_scene.h(283,17): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\online_scene.h(284,25): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\online_scene.h(285,22): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+F:\m\code\chess\online_scene.h(286,15): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(4537,18): warning C4244: “=”: 从“const wchar_t”转换到“char”，可能丢失数据
+  (编译源文件“scene_manager.cpp”)
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(4537,18):
+  模板实例化上下文(最早的实例化上下文)为
+  	F:\m\code\chess\text_input.h(45,18):
+  	查看对正在编译的函数 模板 实例化“std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)”的引用
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+  		F:\m\code\chess\text_input.h(45,18):
+  		请参阅 "TextInput::get_text" 中对 "std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string" 的第一个引用
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xstring(2600,17):
+  	查看对正在编译的函数 模板 实例化“void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*,const wchar_t*,_Size_type>(_Iter,const _Sent,_Size)”的引用
+          with
+          [
+              _Size_type=unsigned __int64,
+              _Iter=const wchar_t *,
+              _Sent=const wchar_t *,
+              _Size=unsigned __int64
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xstring(2756,18):
+  	查看对正在编译的函数 模板 实例化“_OutIt *std::_Copy_n_unchecked4<const wchar_t*,_Size,char*>(_InIt,_SizeTy,_OutIt)”的引用
+          with
+          [
+              _OutIt=char *,
+              _Size=unsigned __int64,
+              _InIt=const wchar_t *,
+              _SizeTy=unsigned __int64
+          ]
+  
+  text_input.cpp
+F:\m\code\chess\util.h(36,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“text_input.cpp”)
+  
+F:\m\code\chess\util.h(37,12): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“text_input.cpp”)
+  
+F:\m\code\chess\util.h(49,70): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“text_input.cpp”)
+  
+F:\m\code\chess\util.h(49,49): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“text_input.cpp”)
+  
+F:\m\code\chess\util.h(49,28): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“text_input.cpp”)
+  
+F:\m\code\chess\util.h(49,7): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“text_input.cpp”)
+  
+F:\m\code\chess\text_input.cpp(28,59): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+F:\m\code\chess\text_input.cpp(97,59): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(4537,18): warning C4244: “=”: 从“const wchar_t”转换到“char”，可能丢失数据
+  (编译源文件“text_input.cpp”)
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(4537,18):
+  模板实例化上下文(最早的实例化上下文)为
+  	F:\m\code\chess\text_input.h(45,18):
+  	查看对正在编译的函数 模板 实例化“std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)”的引用
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+  		F:\m\code\chess\text_input.h(45,18):
+  		请参阅 "TextInput::get_text" 中对 "std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string" 的第一个引用
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xstring(2600,17):
+  	查看对正在编译的函数 模板 实例化“void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*,const wchar_t*,_Size_type>(_Iter,const _Sent,_Size)”的引用
+          with
+          [
+              _Size_type=unsigned __int64,
+              _Iter=const wchar_t *,
+              _Sent=const wchar_t *,
+              _Size=unsigned __int64
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xstring(2756,18):
+  	查看对正在编译的函数 模板 实例化“_OutIt *std::_Copy_n_unchecked4<const wchar_t*,_Size,char*>(_InIt,_SizeTy,_OutIt)”的引用
+          with
+          [
+              _OutIt=char *,
+              _Size=unsigned __int64,
+              _InIt=const wchar_t *,
+              _SizeTy=unsigned __int64
+          ]
+  
+  正在生成代码...
+F:\m\code\chess\ai.cpp(239,1): warning C4715: “Ai::get_piece”: 不是所有的控件路径都返回值
+  chess.vcxproj -> F:\m\code\chess\x64\Debug\chess.exe
+  'pwsh.exe' 不是内部或外部命令，也不是可运行的程序
+  或批处理文件。

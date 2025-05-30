@@ -1,0 +1,14 @@
+F:\m\code\chess\ai.cpp;F:\m\code\chess\chess\x64\Debug\ai.obj
+F:\m\code\chess\board.cpp;F:\m\code\chess\chess\x64\Debug\board.obj
+F:\m\code\chess\button.cpp;F:\m\code\chess\chess\x64\Debug\button.obj
+F:\m\code\chess\chess_client.cpp;F:\m\code\chess\chess\x64\Debug\chess_client.obj
+F:\m\code\chess\chess_manager.cpp;F:\m\code\chess\chess\x64\Debug\chess_manager.obj
+F:\m\code\chess\chess_piece.cpp;F:\m\code\chess\chess\x64\Debug\chess_piece.obj
+F:\m\code\chess\chess_pieces.cpp;F:\m\code\chess\chess\x64\Debug\chess_pieces.obj
+F:\m\code\chess\chess_server.cpp;F:\m\code\chess\chess\x64\Debug\chess_server.obj
+F:\m\code\chess\main.cpp;F:\m\code\chess\chess\x64\Debug\main.obj
+F:\m\code\chess\menu_scene.h;F:\m\code\chess\chess\x64\Debug\menu_scene.obj
+F:\m\code\chess\option_selector.cpp;F:\m\code\chess\chess\x64\Debug\option_selector.obj
+F:\m\code\chess\resources_manager.cpp;F:\m\code\chess\chess\x64\Debug\resources_manager.obj
+F:\m\code\chess\scene_manager.cpp;F:\m\code\chess\chess\x64\Debug\scene_manager.obj
+F:\m\code\chess\text_input.cpp;F:\m\code\chess\chess\x64\Debug\text_input.obj
