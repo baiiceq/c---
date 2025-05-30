@@ -84,7 +84,7 @@ ChessManager::ChessManager() : can_operate(true)
     }
 
     anim_check.add_frame(ResourcesManager::instance()->find_image("check"), 11);
-    anim_check.set_position({ 300,300 });
+    anim_check.set_position({ 200,300 });
     anim_check.set_anchor_mode(Animation::AnchorMode::BottomCentered);
     anim_check.set_loop(false);
     anim_check.set_interval(80);
@@ -157,7 +157,7 @@ void ChessManager::on_render(const Camera& camera)
     }
 
     if (is_check)
-        anim_check.on_render(camera);
+        anim_check.on_render(camera, 3);
 
     if (is_AI_thinking)
         anim_ai_thinking.on_render(camera);
@@ -332,7 +332,7 @@ void ChessManager::undo_move()
     }
 
     if (callback_change)
-        callback_change();
+        callback_change(1);
 }
 
 void ChessManager::save_game_record(const std::string& filename)
@@ -389,7 +389,7 @@ void ChessManager::load_game_record(const std::string& filename)
 
 void ChessManager::load()
 {
-    for (auto record : move_history)
+    for (auto& record : move_history)
     {
         move_piece(record.from_pos, record.to_pos, false, &record);
     }
@@ -567,7 +567,7 @@ bool ChessManager::move_piece(const Vector2& src_pos, const Vector2& dst_pos, bo
             
             can_operate = true;
             if (callback_win)
-                callback_win();
+                callback_win(src_pos.x * 1000 + src_pos.y * 100 + dst_pos.x * 10 + dst_pos.y);
         }
     }
     else
@@ -596,7 +596,7 @@ bool ChessManager::move_piece(const Vector2& src_pos, const Vector2& dst_pos, bo
     std::cout << "´Ó(" << src_pos.x << ',' << src_pos.y << "µ½(" << dst_pos.x << '/' << dst_pos.y << std::endl;
 
     if (callback_change)
-        callback_change();
+        callback_change(src_pos.x * 1000 + src_pos.y * 100 + dst_pos.x * 10 + dst_pos.y);
 
     return true;
 }

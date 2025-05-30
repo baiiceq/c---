@@ -3,6 +3,7 @@
 #include <graphics.h>
 
 #include "camera.h"
+#include <mciapi.h>
 
 struct Rect
 {

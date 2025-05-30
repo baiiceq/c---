@@ -46,6 +46,12 @@ static const std::vector<ImageResInfo> image_info_list =
 	{"button_playback_1",                 _T(R"(resources\ui\button_playback_1.png)")},
 	{"button_playback_2",                 _T(R"(resources\ui\button_playback_2.png)")},
 	{"button_playback_3",                 _T(R"(resources\ui\button_playback_3.png)")},
+	{"button_create_1",                   _T(R"(resources\ui\button_create_1.png)")},
+	{"button_create_2",                   _T(R"(resources\ui\button_create_2.png)")},
+	{"button_create_3",                   _T(R"(resources\ui\button_create_3.png)")},
+	{"button_enter_1",                    _T(R"(resources\ui\button_enter_1.png)")},
+	{"button_enter_2",                    _T(R"(resources\ui\button_enter_2.png)")},
+	{"button_enter_3",                    _T(R"(resources\ui\button_enter_3.png)")},
 	{"button_load_1",                     _T(R"(resources\ui\button_load_1.png)")},
 	{"button_load_2",                     _T(R"(resources\ui\button_load_2.png)")},
 	{"button_load_3",                     _T(R"(resources\ui\button_load_3.png)")},
@@ -77,7 +83,9 @@ static const std::vector<ImageResInfo> image_info_list =
 	{"pause_background",                  _T(R"(resources\pause_background.png)")},
 	{"pause_mask",                        _T(R"(resources\pause_mask.png)")},
 	{"check",                             _T(R"(resources\check.png)")},
-	{"ai_thinking",                       _T(R"(resources\ai_thinking.png)")}
+	{"ai_thinking",                       _T(R"(resources\ai_thinking.png)")},
+	{"waiting_players",                   _T(R"(resources\waiting_player.png)") },
+	{"waiting_move",                       _T(R"(resources\waiting_move.png)")}
 };
 
 static inline bool check_image_valid(IMAGE* image)

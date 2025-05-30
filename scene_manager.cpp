@@ -2,6 +2,7 @@
 #include "menu_scene.h"
 #include "game_scene.h"
 #include "select_scene.h"
+#include "online_scene.h"
 
 SceneManager* SceneManager::manager = nullptr;
 
@@ -18,6 +19,7 @@ SceneManager::SceneManager()
 	menu_scene = new MenuScene();
 	game_scene = new GameScene();
 	select_scene = new SelectScene();
+	online_scene = new OnlineScene();
 
 	current_scene = menu_scene;
 	current_scene->on_enter();
@@ -51,6 +53,9 @@ void SceneManager::switch_to(SceneType type)
 		break;
 	case SceneType::Select:
 		current_scene = select_scene;
+		break;
+	case SceneType::Online:
+		current_scene = online_scene;
 		break;
 	default:
 		break;
@@ -101,4 +106,22 @@ void SceneManager::set_gamescene_difficult(int red, int black)
 {
 	GameScene* gs = (GameScene*)game_scene;
 	gs->set_difficulty(red, black);
+}
+
+void SceneManager::set_online_host(bool is_host)
+{
+	OnlineScene* os = (OnlineScene*)online_scene;
+	os->set_is_host(is_host);
+}
+
+void SceneManager::set_online_ip(const std::string& ip)
+{
+	OnlineScene* os = (OnlineScene*)online_scene;
+	os->set_ip(ip);
+}
+
+void SceneManager::set_online_port(int port)
+{
+	OnlineScene* os = (OnlineScene*)online_scene;
+	os->set_port(port);
 }

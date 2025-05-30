@@ -9,6 +9,7 @@
 #include "button.h"
 #include "static_image.h"
 #include "option_selector.h"
+#include "text_input.h"
 
 // 选择界面
 
@@ -70,6 +71,39 @@ public:
 				SceneManager::instance()->switch_to(SceneManager::SceneType::Game);
 			});
 
+		enter.set_pos(500, 200);
+		enter.set_size(240, 60);
+		enter.set_image("enter");
+		enter.set_on_click([&]()
+			{
+				SceneManager::instance()->set_online_host(false);
+				SceneManager::instance()->set_online_ip(ip_input.get_text());
+				SceneManager::instance()->set_online_port(std::stoi(port_input.get_text()));
+				SceneManager::instance()->switch_to(SceneManager::SceneType::Online);
+
+			});
+
+		create.set_pos(500, 360);
+		create.set_size(240, 60);
+		create.set_image("create");
+		create.set_on_click([&]()
+			{
+				SceneManager::instance()->set_online_host(true);
+				SceneManager::instance()->set_online_ip(ip_input.get_text());
+				SceneManager::instance()->set_online_port(std::stoi(port_input.get_text()));
+				SceneManager::instance()->switch_to(SceneManager::SceneType::Online);
+			});
+
+		port_input.set_maxlen(5);
+		port_input.set_pos(55,200);
+		port_input.set_size(400, 60);
+		port_input.set_text_when_blank(L"端口");
+
+		ip_input.set_maxlen(15);
+		ip_input.set_pos(55, 360);
+		ip_input.set_size(400, 60);
+		ip_input.set_text_when_blank(L"ip");
+
 		/*difficulty_selector.set_size({ 100, 60 });
 		difficulty_selector.set_position({ 300, 300 });
 		difficulty_selector.set_options({ L"简单", L"中等", L"困难" });*/
@@ -126,20 +160,28 @@ public:
 	{
 		benji.on_update(delta);
 		lianji.on_update(delta);
+		if (isLianji)
+		{
+			ip_input.on_update(delta);
+			port_input.on_update(delta);
+		}
 	}
 
 	void on_render(const Camera& camera)
 	{
 		benji.on_render(camera);
 		lianji.on_render(camera);
-		startgame.on_render(camera);
 		back.on_render(camera);
 		if (isLianji)
 		{
-			
+			enter.on_render(camera);
+			create.on_render(camera);
+			ip_input.on_render();
+			port_input.on_render();
 		}
 		else
 		{
+			startgame.on_render(camera);
 			load.on_render(camera);
 			playback.on_render(camera);
 			red_tip.on_render(camera);
@@ -163,14 +205,17 @@ public:
 	{
 		benji.on_input(msg);
 		lianji.on_input(msg);
-		startgame.on_input(msg);
 		back.on_input(msg);
 		if (isLianji)
 		{
-
+			enter.on_input(msg);
+			create.on_input(msg);
+			ip_input.on_input(msg);
+			port_input.on_input(msg);
 		}
 		else
 		{
+			startgame.on_input(msg);
 			load.on_input(msg);
 			playback.on_input(msg);
 			red_player_selector.on_input(msg);
@@ -200,6 +245,8 @@ private:
 	Button back;
 	Button playback;
 	Button load;
+	Button enter;
+	Button create;
 	bool isLianji = false;
 
 	StaticImage red_tip;
@@ -215,4 +262,7 @@ private:
 	OptionSelector black_player_selector;
 	OptionSelector red_difficulty_selector;
 	OptionSelector black_difficulty_selector;
+
+	TextInput port_input;
+	TextInput ip_input;
 };

@@ -22,12 +22,12 @@ public:
     void undo_move(); // 悔棋
 
 
-    void set_callback_change(std::function<void()> callback)
+    void set_callback_change(std::function<void(int)> callback)
     {
         callback_change = callback;
     }
 
-    void set_callback_win(std::function<void()> callback)
+    void set_callback_win(std::function<void(int)> callback)
     {
         callback_win = callback;
     }
@@ -74,8 +74,6 @@ private:
     void handle_hover(const Vector2& mousePos, ChessPiece::Camp current_turn);
     bool try_move_selected_piece_to(const Vector2& mouse_pos);
 
-    bool move_piece(const Vector2& src_pos, const Vector2& dst_pos, bool is_load, MoveRecord* r = nullptr);
-
     Vector2 find_general(ChessPiece::Camp camp);
 
     // 判断走完一步后是否将军对方
@@ -105,6 +103,10 @@ private:
 
     void waigua(ChessPiece::Camp c);
 
+public:
+    bool move_piece(const Vector2& src_pos, const Vector2& dst_pos, bool is_load, MoveRecord* r = nullptr);
+
+
 private:
     bool can_operate = true;
     std::vector<ChessPiece*> pieces;
@@ -117,8 +119,8 @@ private:
 
     int map[9][10] {0};
 
-    std::function<void()> callback_change;
-    std::function<void()> callback_win;
+    std::function<void(int)> callback_change;
+    std::function<void(int)> callback_win;
 
     std::vector<MoveRecord> move_history;
 

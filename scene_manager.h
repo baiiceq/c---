@@ -12,7 +12,8 @@ public:
 		Menu,
 		Game,
 		Setting,
-		Select
+		Select,
+		Online
 	};
 
 	static SceneManager* instance();
@@ -37,6 +38,11 @@ public:
 	void set_gamescene_player(bool red, bool black);
 	void set_gamescene_difficult(int red, int black);
 
+	void set_online_host(bool is_host);
+	void set_online_ip(const std::string& ip);
+	void set_online_port(int port);
+	
+
 private:
 	Scene* current_scene = nullptr;
 
@@ -46,4 +52,5 @@ private:
 	Scene* game_scene = nullptr;
 	Scene* setting_scene = nullptr;
 	Scene* select_scene = nullptr;
+	Scene* online_scene = nullptr;
 };
