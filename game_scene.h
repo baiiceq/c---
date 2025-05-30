@@ -10,8 +10,6 @@
 #include <iostream>
 #include <graphics.h>
 
-extern std::atomic<bool> ai_thinking; // AI思考状态
-
 // 游戏界面
 
 class GameScene :public Scene

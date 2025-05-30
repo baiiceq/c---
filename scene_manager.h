@@ -13,6 +13,9 @@ public:
 		Game,
 		Setting,
 		Select,
+		Login,
+		Register,
+		Hello,
 		Online
 	};
 
@@ -53,4 +56,7 @@ private:
 	Scene* setting_scene = nullptr;
 	Scene* select_scene = nullptr;
 	Scene* online_scene = nullptr;
+	Scene* login_scene = nullptr;
+	Scene* register_scene = nullptr;
+	Scene* hello_scene = nullptr;
 };
