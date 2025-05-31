@@ -1,5 +1,8 @@
 #include "util.h"
 #include "resources_manager.h"
+#include <fstream>  
+#include <sstream>
+#include "account.h"
 
 struct ImageResInfo
 {
@@ -61,6 +64,12 @@ static const std::vector<ImageResInfo> image_info_list =
 	{"button_confirm_1",                  _T(R"(resources\ui\button_confirm_1.png)")},
 	{"button_confirm_2",                  _T(R"(resources\ui\button_confirm_2.png)")},
 	{"button_confirm_3",                  _T(R"(resources\ui\button_confirm_3.png)")},
+	{"button_exitaccount_1",              _T(R"(resources\ui\button_exitaccount_1.png)")},
+	{"button_exitaccount_2",              _T(R"(resources\ui\button_exitaccount_2.png)")},
+	{"button_exitaccount_3",              _T(R"(resources\ui\button_exitaccount_3.png)")},
+	{"button_myinfo_1",                   _T(R"(resources\ui\button_myinfo_1.png)")},
+	{"button_myinfo_2",                   _T(R"(resources\ui\button_myinfo_2.png)")},
+	{"button_myinfo_3",                   _T(R"(resources\ui\button_myinfo_3.png)")},
 	{"board",                             _T(R"(resources\board.png)")},
 	{"advisor_black",                     _T(R"(resources\advisor_black.png)")},
 	{"advisor_red",                       _T(R"(resources\advisor_red.png)")},
@@ -92,7 +101,17 @@ static const std::vector<ImageResInfo> image_info_list =
 	{"cursor",                            _T(R"(resources\cursor.png)")},
 	{"account",                           _T(R"(resources\account.png)")},
 	{"password",                          _T(R"(resources\password.png)")},
-	{ "ai_thinking",                       _T(R"(resources\ai_thinking.png)") }
+	{ "ai_thinking",                      _T(R"(resources\ai_thinking.png)") },
+	{"notright",						  _T(R"(resources\notright.png)")},
+	{"loginsuccess",					  _T(R"(resources\loginsuccess.png)")},
+	{"registersuccess",				      _T(R"(resources\registersuccess.png)")},
+	{"usernameexist",					  _T(R"(resources\usernameexist.png)")},
+	{"invalidusername",				      _T(R"(resources\invalidusername.png)")},
+	{"invalidpassword",				      _T(R"(resources\invalidpassword.png)")},
+	{"newusername",					      _T(R"(resources\newusername.png)")},
+	{"newpassword",						  _T(R"(resources\newpassword.png)")},
+	{"login",							  _T(R"(resources\login.png)")},
+	{"register",						  _T(R"(resources\register.png)")}
 };
 
 static inline bool check_image_valid(IMAGE* image)
@@ -118,6 +137,8 @@ void ResourcesManager::load()
 	load_audio(_T(R"(resources\music\piece_move.wav)"), _T("move"));
 	load_audio(_T(R"(resources\music\piece_eat.wav)"), _T("eat"));
 	load_audio(_T(R"(resources\music\piece_eat.wav)"),  _T("bgm"));
+
+	load_account(_T("data\\account.txt"));
 }
 
 ResourcesManager* ResourcesManager::manager = nullptr;
@@ -207,4 +228,30 @@ void ResourcesManager::flip_atlas(const std::string& src_id, const std::string d
 	}
 
 	atlas_pool[dst_id] = dst_atlas;
+}
+
+ 
+
+void ResourcesManager::load_account(const std::wstring& path)  
+{  
+	std::wifstream file(path);
+	if (!file.is_open()) return;
+	std::wstring line;
+	while (std::getline(file, line)) {
+		std::wistringstream iss(line);
+		std::wstring username, password;
+		if (iss >> username >> password) {
+			account_pool[username] = password;
+		}
+	}
+	file.close();
+}
+void ResourcesManager::save_account(const std::wstring& path)const
+{
+	std::wofstream file(path);
+	if (!file.is_open()) return;
+	for (const auto& account : account_pool) {
+		file << account.first << L" " << account.second << std::endl;
+	}
+	file.close();
 }

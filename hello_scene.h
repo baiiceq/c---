@@ -33,6 +33,7 @@ public:
 		ExitButton.set_image("exit");
 		ExitButton.set_size(240, 60);
 		ExitButton.set_on_click([]() {
+			ResourcesManager::instance()->save_account(_T("data\\account.txt"));
 			exit(0);
 			});
 	}

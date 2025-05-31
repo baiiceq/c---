@@ -11,7 +11,6 @@ void Ai::ai_think()
         think_finished();
     std::cout << "rsc_pos:" << method.rsc_pos.x << "," << method.rsc_pos.y << std::endl;
     std::cout << "dst_pos:" << method.dst_pos.x << "," << method.dst_pos.y << std::endl;
-    //将信息以点击的方式传递
 }
 
 Method Ai::get_method()
@@ -82,8 +81,8 @@ int Ai::Judge(int current_map[9][10])
 
 int Ai::DFS(ChessPiece::Camp current_party,int (& current_map_)[9][10], int depth, int a, int b)
 {
-	int current_map[9][10]; // 当前棋盘状态
-    for(int i = 0; i < 9; ++i) // 深拷贝当前棋盘状态
+	int current_map[9][10]; 
+    for(int i = 0; i < 9; ++i)
         for (int j = 0; j < 10; ++j)
 			current_map[i][j] = current_map_[i][j];
 	bool flag = true;
@@ -188,7 +187,7 @@ int Ai::DFS(ChessPiece::Camp current_party,int (& current_map_)[9][10], int dept
                         if (b <= a)
                         {
                             flag = false;
-                            break; // Beta cut-off
+                            break; 
                         }
                         //复原棋盘
                         current_map[x][y] = current_map[to_x][to_y];
@@ -205,18 +204,16 @@ int Ai::DFS(ChessPiece::Camp current_party,int (& current_map_)[9][10], int dept
 bool Ai::is_game_over(ChessPiece::Camp current_party, int current_map[9][10])
 {
 	int flag = 0;
-    // 检查当前阵营的将军是否被吃掉
     for (int i = 3; i < 6; ++i)
         for (int j = 0; j < 3; ++j) {
             if (current_map[i][j] == 1)
                 flag++;
-            if (current_map[i][j+7] == 101) { // 红方将军
+            if (current_map[i][j+7] == 101) 
                 flag++;
-            }
         }
     if(flag==2)
 		return false; 
-	return true; // 游戏结束
+	return true;
 }
 
 SChessPiece* Ai::get_piece(int x,int y, int a,ChessPiece::Camp current_party)
@@ -239,7 +236,6 @@ SChessPiece* Ai::get_piece(int x,int y, int a,ChessPiece::Camp current_party)
 std::vector<SChessPiece*> Ai::all_pieces(ChessPiece::Camp current_party, int current_map[9][10])
 {
     std::vector<SChessPiece*> pieces;
-	//遍历棋盘，找到所有属于当前阵营的棋子
 	for(int i = 0; i < 9; ++i)
         for (int j = 0; j < 10; ++j)
         {
@@ -252,7 +248,6 @@ std::vector<SChessPiece*> Ai::all_pieces(ChessPiece::Camp current_party, int cur
         }
     // 对棋子进行排序
     std::sort(pieces.begin(), pieces.end(), [this](const SChessPiece* a, const SChessPiece* b) {
-        // 获取棋子价值的函数，这里通过 piece_values 数组获取
         int value_a = piece_turn[(int)a->get_type() - 1];
         int value_b = piece_turn[(int)b->get_type() - 1];
         return value_a > value_b;

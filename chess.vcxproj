@@ -156,6 +156,7 @@
     <ClInclude Include="menu_scene.h" />
     <ClInclude Include="option_selector.h" />
     <ClInclude Include="pause_scene.h" />
+    <ClInclude Include="register_scene.h" />
     <ClInclude Include="resources_manager.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="scene_manager.h" />

@@ -49,8 +49,12 @@ void Textbox::on_input(const ExMessage& msg)
     {
         // Êó±ê×ó¼ü°´ÏÂ
     case WM_LBUTTONDOWN: {
-        if (!isInside(msg.x, msg.y)) 
+        if (!isInside(msg.x, msg.y))
+        {
             isActive = false;
+            if(on_change)
+				on_change();
+        }
         else {
             isActive = true;
 			change_cursor_index(msg.x);

@@ -17,7 +17,12 @@ public:
 		cursor_index = -1;
 	}
 
-	std::vector<wchar_t> get_Textbox()
+	void set_callback(std::function<void()> callback)
+	{
+		on_change = callback;
+	}
+
+	std::wstring get_Textbox()
 	{
 		return text;
 	}
@@ -32,12 +37,13 @@ public:
 	void on_input(const ExMessage& msg);
 private:
 	int left = 0, top = 0, right = 0, bottom = 0;	// 控件坐标
-	std::vector<wchar_t> text;				// 文本框内容
+	std::wstring text;				// 文本框内容
 	size_t maxlen = 0;							    // 文本框最大内容长度
 	Animation cursor;					            // 光标动画
 	bool isActive = false;					        // 是否处于活动状态
 	Vector2 cursor_pos;					            // 光标位置
 	int  cursor_index;			                // 光标索引位置
+	std::function<void()> on_change;	        // 文本回调函数
 private:
 	bool isInside(int x, int y)
 	{

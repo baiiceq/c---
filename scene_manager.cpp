@@ -4,6 +4,7 @@
 #include "select_scene.h"
 #include "hello_scene.h"
 #include "login_scene.h"
+#include "register_scene.h"
 
 SceneManager* SceneManager::manager = nullptr;
 
@@ -22,6 +23,7 @@ SceneManager::SceneManager()
 	select_scene = new SelectScene();
 	hello_scene = new HelloScene();
 	login_scene = new LoginScene();
+	register_scene = new RegisterScene();
 
 	current_scene = hello_scene;
 	current_scene->on_enter();
@@ -33,6 +35,7 @@ SceneManager::~SceneManager()
 	delete game_scene;
 	delete hello_scene;
 	delete login_scene;
+	delete register_scene;
 }
 
 void SceneManager::set_current_scene(Scene* scene)
@@ -63,6 +66,9 @@ void SceneManager::switch_to(SceneType type)
 		break;
 	case SceneType::Login:
 		current_scene = login_scene;
+		break;
+	case SceneType::Register:
+		current_scene = register_scene;
 		break;
 	default:
 		break;
@@ -113,4 +119,20 @@ void SceneManager::set_gamescene_difficult(int red, int black)
 {
 	GameScene* gs = (GameScene*)game_scene;
 	gs->set_difficulty(red, black);
+}
+
+void SceneManager::load_player_account(const Account& account)
+{
+	player_account= new Player(account);
+}
+
+void SceneManager::save_player_account()
+{
+	if (player_account)
+		player_account->save();
+}
+
+Player* SceneManager::get_player_account()const
+{
+	return player_account;
 }

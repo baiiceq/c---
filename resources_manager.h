@@ -21,12 +21,19 @@ public:
 	{
 		return main_camera;
 	}
+	std::unordered_map<std::wstring, std::wstring>& get_account_pool()
+	{
+		return account_pool;
+	}
+	void load_account(const std::wstring& path);
+	void save_account(const std::wstring& path) const;
 
 private:
 	static ResourcesManager* manager;
 
 	std::unordered_map<std::string, Atlas*> atlas_pool;
 	std::unordered_map<std::string, IMAGE*> image_pool;
+	std::unordered_map<std::wstring, std::wstring> account_pool;
 
 	Camera* main_camera;
 
@@ -37,4 +44,5 @@ private:
 	void flip_image(IMAGE* src_image, IMAGE* dst_image, int num_h = 1);
 	void flip_image(const std::string& src_id, const std::string dst_id, int num_h = 1);
 	void flip_atlas(const std::string& src_id, const std::string dst_id);
+
 };

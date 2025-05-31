@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\scene">
+      <UniqueIdentifier>{fd81fd4c-d180-4cb7-b7cd-8c92fed1b6b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\module">
+      <UniqueIdentifier>{8efaffd8-3735-4dd7-b3c3-9e74232f5042}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ai.cpp">
@@ -53,19 +59,7 @@
     <ClInclude Include="ai.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="animation.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="atlas.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="board.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="button.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="camera.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="chess_manager.h">
@@ -77,53 +71,68 @@
     <ClInclude Include="chess_pieces.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="game_scene.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="menu_scene.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="option_selector.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="pause_scene.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="resources_manager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="scene.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="scene_manager.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="select_scene.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="static_image.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="timer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="util.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="vector2.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="hello_scene.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="login_scene.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Textbox.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="account.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="menu_scene.h">
+      <Filter>头文件\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="login_scene.h">
+      <Filter>头文件\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="hello_scene.h">
+      <Filter>头文件\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="game_scene.h">
+      <Filter>头文件\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="scene.h">
+      <Filter>头文件\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="select_scene.h">
+      <Filter>头文件\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="button.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="Textbox.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="vector2.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="atlas.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="static_image.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="option_selector.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="pause_scene.h">
+      <Filter>头文件\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="animation.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="register_scene.h">
+      <Filter>头文件\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

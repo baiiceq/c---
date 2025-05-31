@@ -2,6 +2,7 @@
 
 #include "scene.h"
 #include "chess_manager.h"
+#include "account.h"
 #include <iostream>
 
 class SceneManager
@@ -15,7 +16,8 @@ public:
 		Select,
 		Login,
 		Register,
-		Hello
+		Hello,
+		Myinfo
 	};
 
 	static SceneManager* instance();
@@ -40,6 +42,9 @@ public:
 	void set_gamescene_player(bool red, bool black);
 	void set_gamescene_difficult(int red, int black);
 
+	void load_player_account(const Account& account);
+	void save_player_account();
+	Player* get_player_account() const;
 private:
 	Scene* current_scene = nullptr;
 
@@ -52,4 +57,7 @@ private:
 	Scene* login_scene = nullptr;
 	Scene* register_scene = nullptr;
 	Scene* hello_scene = nullptr;
+
+private:
+	Player* player_account = nullptr;
 };
