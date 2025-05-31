@@ -18,6 +18,7 @@ public:
 		Register,
 		Hello,
 		Myinfo
+		Online
 	};
 
 	static SceneManager* instance();
@@ -45,6 +46,11 @@ public:
 	void load_player_account(const Account& account);
 	void save_player_account();
 	Player* get_player_account() const;
+	void set_online_host(bool is_host);
+	void set_online_ip(const std::string& ip);
+	void set_online_port(int port);
+	
+
 private:
 	Scene* current_scene = nullptr;
 
@@ -54,6 +60,7 @@ private:
 	Scene* game_scene = nullptr;
 	Scene* setting_scene = nullptr;
 	Scene* select_scene = nullptr;
+	Scene* online_scene = nullptr;
 	Scene* login_scene = nullptr;
 	Scene* register_scene = nullptr;
 	Scene* hello_scene = nullptr;

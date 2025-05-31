@@ -42,13 +42,13 @@ public:
 		board.set_pos(260, (getheight() - size.y) / 2);
 
 		// 设置棋子管理器的回调函数，当棋子管理器中移动了棋子，执行回调函数，更换阵营
-		chess_manager.set_callback_change([&]()
+		chess_manager.set_callback_change([&](int val)
 			{
 				this->switch_to();
 			});
 
 		// 当有一方的将被吃后，调用该回调函数
-		chess_manager.set_callback_win([&]()
+		chess_manager.set_callback_win([&](int val)
 			{
 				if (current_turn == ChessPiece::Camp::Black)
 				{
@@ -111,6 +111,7 @@ public:
 
 		// 进入该界面时，把当前阵营改成红色方
 		current_turn = ChessPiece::Camp::Red;
+
 		
 		if (state == GameState::GameLoad)
 		{
@@ -136,14 +137,14 @@ public:
 
 		if (state == GameState::GameRunning)
 		{
-			chess_manager.on_update(delta,current_turn);
+			chess_manager.on_update(delta, current_turn);
 			ResourcesManager::instance()->get_camera()->on_update(delta);
 
 			repentance.on_update(delta);
 		}
 		else if (state == GameState::GamePlayBack)
 		{
-			chess_manager.on_update(delta,current_turn);
+			chess_manager.on_update(delta, current_turn);
 			timer_interval.on_update(delta);
 		}
 		else if(state == GameState::GamePaused)

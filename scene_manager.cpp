@@ -2,9 +2,10 @@
 #include "menu_scene.h"
 #include "game_scene.h"
 #include "select_scene.h"
-#include "hello_scene.h"
+#include "online_scene.h"
 #include "login_scene.h"
 #include "register_scene.h"
+#include "hello_scene.h"
 
 SceneManager* SceneManager::manager = nullptr;
 
@@ -21,9 +22,10 @@ SceneManager::SceneManager()
 	menu_scene = new MenuScene();
 	game_scene = new GameScene();
 	select_scene = new SelectScene();
-	hello_scene = new HelloScene();
+	online_scene = new OnlineScene();
 	login_scene = new LoginScene();
 	register_scene = new RegisterScene();
+	hello_scene = new HelloScene();
 
 	current_scene = hello_scene;
 	current_scene->on_enter();
@@ -33,9 +35,11 @@ SceneManager::~SceneManager()
 {
 	delete menu_scene;
 	delete game_scene;
-	delete hello_scene;
+	delete select_scene;
+	delete online_scene;
 	delete login_scene;
 	delete register_scene;
+	delete hello_scene;
 }
 
 void SceneManager::set_current_scene(Scene* scene)
@@ -61,11 +65,14 @@ void SceneManager::switch_to(SceneType type)
 	case SceneType::Select:
 		current_scene = select_scene;
 		break;
+	case SceneType::Login:
+		current_scene = login_scene;
+		break;
 	case SceneType::Hello:
 		current_scene = hello_scene;
 		break;
-	case SceneType::Login:
-		current_scene = login_scene;
+	case SceneType::Online:
+		current_scene = online_scene;
 		break;
 	case SceneType::Register:
 		current_scene = register_scene;
@@ -135,4 +142,21 @@ void SceneManager::save_player_account()
 Player* SceneManager::get_player_account()const
 {
 	return player_account;
+}
+void SceneManager::set_online_host(bool is_host)
+{
+	OnlineScene* os = (OnlineScene*)online_scene;
+	os->set_is_host(is_host);
+}
+
+void SceneManager::set_online_ip(const std::string& ip)
+{
+	OnlineScene* os = (OnlineScene*)online_scene;
+	os->set_ip(ip);
+}
+
+void SceneManager::set_online_port(int port)
+{
+	OnlineScene* os = (OnlineScene*)online_scene;
+	os->set_port(port);
 }
