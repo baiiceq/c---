@@ -105,9 +105,9 @@ ChessManager::ChessManager() : can_operate(true)
 
     ai.set_think_finished([&]()
         {
-            is_AI_thinking = false;
             Method result = ai.get_method();
             move_piece(result.rsc_pos, result.dst_pos, false);
+            is_AI_thinking = false;
         });
 }
 

@@ -17,7 +17,7 @@ public:
 		Login,
 		Register,
 		Hello,
-		Myinfo
+		Myinfo,
 		Online
 	};
 

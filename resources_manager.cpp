@@ -117,7 +117,7 @@ static const std::vector<ImageResInfo> image_info_list =
 	{"newusername",					      _T(R"(resources\newusername.png)")},
 	{"newpassword",						  _T(R"(resources\newpassword.png)")},
 	{"login",							  _T(R"(resources\login.png)")},
-	{"register",						  _T(R"(resources\register.png)")}
+	{"register",						  _T(R"(resources\register.png)")},
 	{"waiting_players",                   _T(R"(resources\waiting_player.png)") },
 	{"waiting_move",                       _T(R"(resources\waiting_move.png)")}
 };

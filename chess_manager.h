@@ -134,7 +134,7 @@ private:
     int black_AI_difficulty = 1;
     int red_AI_difficulty = 1;
 
-    bool is_AI_thinking = false;
+    std::atomic<bool> is_AI_thinking = false;
 
     Animation anim_ai_thinking;
 
