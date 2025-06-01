@@ -26,7 +26,7 @@ public:
 				SceneManager::instance()->switch_to(SceneManager::SceneType::Select);
 			});
 
-		setting.set_pos(280, 360);
+		setting.set_pos(280, 420);
 		setting.set_size(240, 60);
 		setting.set_image("setting");
 		setting.set_on_click([&]()
@@ -34,13 +34,21 @@ public:
 				
 			});
 
-		exit.set_pos(280, 480);
+		exit.set_pos(280, 510);
 		exit.set_size(240, 60);
 		exit.set_image("exitaccount");
 		exit.set_on_click([&]()
 			{
 				SceneManager::instance()->save_player_account();
 				SceneManager::instance()->switch_to(SceneManager::SceneType::Hello);
+			});
+
+		ranklist.set_pos(280, 330);
+		ranklist.set_size(240, 60);
+		ranklist.set_image("ranklist");
+		ranklist.set_on_click([&]()
+			{
+				SceneManager::instance()->switch_to(SceneManager::SceneType::Ranklist);
 			});
 
 		title.set_image("title");
@@ -68,6 +76,7 @@ public:
 		setting.on_update(delta);
 		exit.on_update(delta);
 		myinfo.on_update(delta);
+		ranklist.on_update(delta);
 	}
 
     void on_render(const Camera& camera)
@@ -77,6 +86,7 @@ public:
         exit.on_render(camera);
         title.on_render(camera);
         myinfo.on_render(camera);
+		ranklist.on_render(camera);
 
 		setbkmode(TRANSPARENT);
 		settextstyle(40, 0, _T("Î¢ÈíÑÅºÚ"));
@@ -91,6 +101,7 @@ public:
 		setting.on_input(msg);
 		exit.on_input(msg);
 		myinfo.on_input(msg);
+		ranklist.on_input(msg);
 	}
 
 	void on_exit()
@@ -104,5 +115,6 @@ private:
 	Button setting;
 	Button exit;
 	Button myinfo;
+	Button ranklist;
 	StaticImage title;
 };

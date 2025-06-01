@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <graphics.h>
+#include <string>
 
 // 游戏界面
 
@@ -50,12 +51,17 @@ public:
 		// 当有一方的将被吃后，调用该回调函数
 		chess_manager.set_callback_win([&](int val)
 			{
-				if (current_turn == ChessPiece::Camp::Black)
+				if (current_turn == ChessPiece::Camp::Red)
 				{
 					MessageBox(GetHWnd(), _T("红方胜利！"), _T("游戏结束！"), MB_OK);
 				}
 				else {
 					MessageBox(GetHWnd(), _T("黑方胜利！"), _T("游戏结束！"), MB_OK);
+				}
+				//保存游戏记录
+				if (fstate == GameState::GameRunning) {
+					chess_manager.save_game_record(SceneManager::instance()->get_player_account()->
+						add_game_record(current_turn,chess_manager.get_ai_difficulty()));
 				}
 				SceneManager::instance()->switch_to(SceneManager::SceneType::Menu);
 			});
@@ -91,6 +97,10 @@ public:
 				{
 					chess_manager.save_game_record("data/save.txt");
 				}
+				if(fstate == GameState::GameRunning)
+				{
+					chess_manager.save_game_record(SceneManager::instance()->get_player_account()-> add_game_record());
+				}
 			});
 
 		timer_interval.set_wait_time(INTERVAL);
@@ -118,15 +128,21 @@ public:
 			chess_manager.load_game_record("data/save.txt");
 			chess_manager.load();
 			state = GameState::GameRunning;
+			fstate = GameState::GameLoad;
 		}
 		else if (state == GameState::GamePlayBack)
 		{
 			chess_manager.load_game_record("data/save.txt");
 			timer_interval.restart();
+			fstate = GameState::GamePlayBack;
 		}
 		else if (state == GameState::GamePaused)
 		{
 			state = GameState::GameRunning;
+		}
+		else if(state == GameState::GameRunning)
+		{
+			fstate = GameState::GameRunning;
 		}
 	}
 
@@ -205,6 +221,11 @@ public:
 		this->state = state;
 	}
 
+	void set_fstate(GameState fstate)
+	{
+		this->fstate = fstate;
+	}
+
 	void set_player(bool red, bool black)
 	{
 		chess_manager.set_player(red, black);
@@ -235,7 +256,7 @@ private:
 	Animation ai; // AI动画
 
 	GameState state = GameState::GameRunning;     // 游戏状态
-
+	GameState fstate = GameState::GameRunning;    // 初始状态
 	// 暂停页面
 	PauseScene pause_scene;
 

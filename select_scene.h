@@ -42,6 +42,7 @@ public:
 			{
 				SceneManager::instance()->set_gamescene_player(is_red_AI, is_black_AI);
 				SceneManager::instance()->set_gamescene_difficult((red_difficulty_selector.GetSelected() + 1) * 2, (black_difficulty_selector.GetSelected() + 1) * 2);
+				SceneManager::instance()->get_player_account()->add_game_record(is_red_AI, is_black_AI, red_difficulty_selector.GetSelected()+1, black_difficulty_selector.GetSelected()+1);
 				SceneManager::instance()->switch_to(SceneManager::SceneType::Game);
 			});
 

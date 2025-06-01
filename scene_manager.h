@@ -18,7 +18,8 @@ public:
 		Register,
 		Hello,
 		Myinfo,
-		Online
+		Online,
+		Ranklist
 	};
 
 	static SceneManager* instance();
@@ -64,6 +65,7 @@ private:
 	Scene* login_scene = nullptr;
 	Scene* register_scene = nullptr;
 	Scene* hello_scene = nullptr;
+	Scene* ranklist_scene = nullptr;
 
 private:
 	Player* player_account = nullptr;

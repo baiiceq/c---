@@ -2,6 +2,7 @@
 
 #include "atlas.h"
 #include "camera.h"
+#include "account.h"
 
 #include <string>
 #include <graphics.h>
@@ -21,7 +22,7 @@ public:
 	{
 		return main_camera;
 	}
-	std::unordered_map<std::wstring, std::wstring>& get_account_pool()
+	std::unordered_map<std::wstring, Account::AccountInfo>& get_account_pool()
 	{
 		return account_pool;
 	}
@@ -33,7 +34,7 @@ private:
 
 	std::unordered_map<std::string, Atlas*> atlas_pool;
 	std::unordered_map<std::string, IMAGE*> image_pool;
-	std::unordered_map<std::wstring, std::wstring> account_pool;
+	std::unordered_map<std::wstring,Account::AccountInfo> account_pool;
 
 	Camera* main_camera;
 

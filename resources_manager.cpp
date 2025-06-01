@@ -76,6 +76,9 @@ static const std::vector<ImageResInfo> image_info_list =
 	{"button_myinfo_1",                   _T(R"(resources\ui\button_myinfo_1.png)")},
 	{"button_myinfo_2",                   _T(R"(resources\ui\button_myinfo_2.png)")},
 	{"button_myinfo_3",                   _T(R"(resources\ui\button_myinfo_3.png)")},
+	{"button_ranklist_1",               _T(R"(resources\ui\button_ranklist_1.png)")},
+	{"button_ranklist_2",                 _T(R"(resources\ui\button_ranklist_2.png)")},
+	{"button_ranklist_3",                 _T(R"(resources\ui\button_ranklist_3.png)")},
 	{"board",                             _T(R"(resources\board.png)")},
 	{"advisor_black",                     _T(R"(resources\advisor_black.png)")},
 	{"advisor_red",                       _T(R"(resources\advisor_red.png)")},
@@ -119,7 +122,8 @@ static const std::vector<ImageResInfo> image_info_list =
 	{"login",							  _T(R"(resources\login.png)")},
 	{"register",						  _T(R"(resources\register.png)")},
 	{"waiting_players",                   _T(R"(resources\waiting_player.png)") },
-	{"waiting_move",                       _T(R"(resources\waiting_move.png)")}
+	{"waiting_move",                      _T(R"(resources\waiting_move.png)")},
+	{"ranklist_bg",                       _T(R"(resources\ranklist_bg.png)")}
 };
 
 static inline bool check_image_valid(IMAGE* image)
@@ -248,8 +252,14 @@ void ResourcesManager::load_account(const std::wstring& path)
 	while (std::getline(file, line)) {
 		std::wistringstream iss(line);
 		std::wstring username, password;
-		if (iss >> username >> password) {
-			account_pool[username] = password;
+		int score = 0, matchCount = 0, winCount = 0;
+		if (iss >> username >> password >> score >> matchCount >> winCount) {
+			Account::AccountInfo info;
+			info.password = password;
+			info.score = score;
+			info.matchCount = matchCount;
+			info.winCount = winCount;
+			account_pool[username] = info;
 		}
 	}
 	file.close();
@@ -259,7 +269,11 @@ void ResourcesManager::save_account(const std::wstring& path)const
 	std::wofstream file(path);
 	if (!file.is_open()) return;
 	for (const auto& account : account_pool) {
-		file << account.first << L" " << account.second << std::endl;
+		file << account.first << L" "
+			<< account.second.password << L" "
+			<< account.second.score << L" "
+			<< account.second.matchCount << L" "
+			<< account.second.winCount << std::endl;
 	}
 	file.close();
 }

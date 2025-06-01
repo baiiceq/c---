@@ -6,6 +6,7 @@
 #include "login_scene.h"
 #include "register_scene.h"
 #include "hello_scene.h"
+#include "ranklist_scene.h"
 
 SceneManager* SceneManager::manager = nullptr;
 
@@ -26,6 +27,7 @@ SceneManager::SceneManager()
 	login_scene = new LoginScene();
 	register_scene = new RegisterScene();
 	hello_scene = new HelloScene();
+	ranklist_scene = new RankListScene();
 
 	current_scene = hello_scene;
 	current_scene->on_enter();
@@ -40,6 +42,7 @@ SceneManager::~SceneManager()
 	delete login_scene;
 	delete register_scene;
 	delete hello_scene;
+	delete ranklist_scene;
 }
 
 void SceneManager::set_current_scene(Scene* scene)
@@ -76,6 +79,9 @@ void SceneManager::switch_to(SceneType type)
 		break;
 	case SceneType::Register:
 		current_scene = register_scene;
+		break;
+	case SceneType::Ranklist:
+		current_scene = ranklist_scene;
 		break;
 	default:
 		break;

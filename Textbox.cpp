@@ -131,3 +131,28 @@ void Textbox::on_render(const Camera& camera)
     setbkcolor(oldbkcolor);
     setfillcolor(oldfillcolor);
 }
+
+void TextboxSecurity::on_render(const Camera& camera)
+{
+    // 备份环境值
+    int oldlinecolor = getlinecolor();
+    int oldbkcolor = getbkcolor();
+    int oldfillcolor = getfillcolor();
+    setlinecolor(LIGHTGRAY);		// 设置画线颜色
+    setbkcolor(0xeeeeee);			// 设置背景颜色
+    setfillcolor(0xeeeeee);			// 设置填充颜色
+    fillrectangle(left, top, right, bottom);
+    settextstyle(35, 0, _T("微软雅黑"));
+    settextcolor(BLACK); // 设置字体颜色为黑色
+    std::wstring wide_text(text.size(), '*');
+    outtextxy(left + 10, top + 5, wide_text.c_str());
+    // 绘制光标
+    if (isActive)
+    {
+        cursor.on_render(camera);
+    }
+    // 恢复环境值
+    setlinecolor(oldlinecolor);
+    setbkcolor(oldbkcolor);
+    setfillcolor(oldfillcolor);
+}

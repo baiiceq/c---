@@ -33,9 +33,9 @@ public:
 	}
 
 	void on_update(int delta);
-	void on_render(const Camera& Camera); 
+	virtual void on_render(const Camera& Camera); 
 	void on_input(const ExMessage& msg);
-private:
+protected:
 	int left = 0, top = 0, right = 0, bottom = 0;	// 控件坐标
 	std::wstring text;				// 文本框内容
 	size_t maxlen = 0;							    // 文本框最大内容长度
@@ -51,4 +51,13 @@ private:
 	}
 	void cursor_index_to_pos();
 	void change_cursor_index(int);
+};
+class TextboxSecurity : public Textbox
+{
+public:
+	TextboxSecurity() = default;
+	TextboxSecurity(const TextboxSecurity&) = delete;
+	TextboxSecurity& operator=(const TextboxSecurity&) = delete;
+	~TextboxSecurity() = default;
+	void on_render(const Camera& Camera);
 };

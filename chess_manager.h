@@ -54,6 +54,14 @@ public:
     
     void ai_start_think(ChessPiece::Camp current_turn);
 
+    int get_ai_difficulty()
+    {
+        if(is_red_AI)
+			return red_AI_difficulty;
+		if (is_black_AI)
+			return black_AI_difficulty;
+        return 0;
+	}
 private:
     struct MoveRecord
     {

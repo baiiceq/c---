@@ -124,7 +124,7 @@ private:
 	Button ConfirmButton;
 	Button BackButton;
 	Textbox LoginText;
-	Textbox PasswordText;
+	TextboxSecurity PasswordText;
 	StaticImage title;
 	StaticImage account;
 	StaticImage password;

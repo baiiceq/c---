@@ -1,4 +1,4 @@
-#pragma once
+ #pragma once
 #include "scene.h"
 #include "button.h"
 #include "static_image.h"
@@ -154,7 +154,7 @@ private:
 	Button ConfirmButton;
 	Button BackButton;
 	Textbox RegisterText;
-	Textbox PasswordText;
+	TextboxSecurity PasswordText;
 	StaticImage title;
 	StaticImage account;
 	StaticImage password;

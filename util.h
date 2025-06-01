@@ -1,7 +1,8 @@
 #pragma once
 
 #include <graphics.h>
-
+#include <windows.h>
+#include <string>
 #include "camera.h"
 #include <mciapi.h>
 
@@ -74,5 +75,15 @@ inline void stop_audio(LPCTSTR id)
 inline int range_random(int min_num, int max_num)
 {
 	return min_num + rand() % (max_num - min_num + 1);
+}
+
+inline std::wstring get_current_time()
+{
+	SYSTEMTIME st;
+	GetLocalTime(&st);
+	wchar_t buf[32];
+	swprintf(buf, 32, L"%04d.%02d.%02d-%02d.%02d.%02d",
+		st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond);
+	return buf;
 }
 
