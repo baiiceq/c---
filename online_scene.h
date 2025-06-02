@@ -119,6 +119,27 @@ public:
 				SceneManager::instance()->switch_to(SceneManager::SceneType::Menu);
 			});
 
+		timer_retry.set_one_shot(false);
+		timer_retry.set_wait_time(RETRY_INTERVAL);
+		timer_retry.set_on_timeout([&]()
+			{
+				if (client && client->join())
+				{
+					timer_retry.pause(); 
+					state = OnlineState::Racing;
+				}
+				else
+				{
+					retry_times++;
+					if (retry_times >= MAX_RETRY)
+					{
+						timer_retry.pause();  
+						MessageBox(GetHWnd(), _T("房间已满或连接失败！"), _T("提示"), MB_OK);
+						SceneManager::instance()->switch_to(SceneManager::SceneType::Menu);
+					}
+				}
+			});
+
 	}
 	~OnlineScene() = default;
 
@@ -170,15 +191,7 @@ public:
 			}
 			else
 			{
-				if (client && client->join())
-				{
-					state = OnlineState::Racing;
-				}
-				else
-				{
-					MessageBox(GetHWnd(), _T("房间已满或连接失败！"), _T("提示"), MB_OK);
-					SceneManager::instance()->switch_to(SceneManager::SceneType::Menu);
-				}
+				timer_retry.on_update(delta);
 			}
 		}
 	}
@@ -330,4 +343,9 @@ private:
 	Animation anim_waiting_players;
 	Animation anim_waiting_move;
 	Button exit;
+
+	const int MAX_RETRY = 5;
+	const int RETRY_INTERVAL = 200; 
+	int retry_times = 0;
+	Timer timer_retry; 
 };
