@@ -19,15 +19,15 @@ public:
         listview.set_pos(0, 80);
         listview.set_size(800, 400);
         listview.set_column_count(5);
-        listview.set_column_widths({ 160, 120, 80, 360, 80 });
+        listview.set_column_widths({ 160, 150, 80, 310, 80 });
         listview.set_row_height(60);
 
         ListView::Item header;
         header.columns = { L"模式", L"对手", L"结果", L"时间", L"详情" };
         listview.set_header(header);
 
-        back_btn.set_pos(420, 550);
-        back_btn.set_size(120, 50);
+        back_btn.set_pos(280, 550);
+        back_btn.set_size(240, 60);
         back_btn.set_image("backmenu");
         back_btn.set_on_click([&]() {
             SceneManager::instance()->switch_to(SceneManager::SceneType::Menu);

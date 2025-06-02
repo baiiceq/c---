@@ -243,6 +243,9 @@ void ChessManager::reset()
     can_eats.clear();
     move_history.clear();
     turn_timer.restart();
+    playback_step = 0;
+	is_red_AI = false;
+	is_black_AI = false;
     memset(map, 0, sizeof map);
 
     // ºì·½
