@@ -230,7 +230,6 @@ public:
 			{
 				black_difficulty_selector.on_input(msg);
 			}
-			//difficulty_selector.on_input(msg);
 		}
 	}
 

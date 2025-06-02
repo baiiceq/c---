@@ -125,9 +125,9 @@ void Player::add_game_record(const bool& is_red_AI, const bool& is_black_AI, int
         record.opponentName = L"(黑)AI";
         switch (black)
         {
-        case 2:record.opponentName += L"简单"; break;
-        case 4:record.opponentName += L"普通"; break;
-        case 6:record.opponentName += L"困难"; break;
+        case 1:record.opponentName += L"简单"; break;
+        case 2:record.opponentName += L"普通"; break;
+        case 3:record.opponentName += L"困难"; break;
         }
 		ResourcesManager::instance()->get_account_pool()[username].matchCount++;
     }

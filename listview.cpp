@@ -10,10 +10,10 @@ void ListView::on_render(const Camera& camera)
     setfillcolor(RGB(255, 140, 0));
     solidrectangle(x, y, x + w, y + row_height);
     settextcolor(WHITE);
-    settextstyle(42, 0, _T("Î¢ÈíÑÅºÚ"));
+    settextstyle(38, 0, _T("Î¢ÈíÑÅºÚ"));
     for (int c = 0; c < column_count; ++c) {
         int col_w = (column_widths.size() > c) ? column_widths[c] : w / column_count;
-        roundrect(col_x, y, col_x + col_w, y + row_height, 12, 12);
+        /*roundrect(col_x, y, col_x + col_w, y + row_height, 12, 12);*/
         if (c < (int)header.columns.size())
             outtextxy(col_x + 5, y + 5, header.columns[c].c_str());
         col_x += col_w;
@@ -40,14 +40,14 @@ void ListView::on_render_row(const Camera&, int row, int row_y, const Item& item
         setfillcolor(RGB(255, 180, 60));
         solidrectangle(x, row_y, x + w, row_y + row_height);
         setlinecolor(RGB(255, 120, 0));
-        roundrect(x, row_y, x + w, row_y + row_height, 8, 8);
+        /*roundrect(x, row_y, x + w, row_y + row_height, 8, 8);*/
     }
 
     int col_x = x;
     settextcolor(BLACK);
     for (int c = 0; c < column_count; ++c) {
         int col_w = (column_widths.size() > c) ? column_widths[c] : w / column_count;
-        roundrect(col_x, row_y, col_x + col_w, row_y + row_height, 8, 8);
+        /*roundrect(col_x, row_y, col_x + col_w, row_y + row_height, 8, 8);*/
         if (c < (int)item.columns.size()) {
             outtextxy(col_x + 5, row_y + 5, item.columns[c].c_str());
         }
@@ -97,7 +97,7 @@ void ListViewWithButton::on_render_row(const Camera& camera, int row, int row_y,
 
 void ListViewWithButton::on_input_row(const ExMessage& msg, int row, int row_y)
 {
-	detail_buttons[row].set_pos(x + w - column_widths.back() + 8, row_y + 4);
+	detail_buttons[row].set_pos(x + w - column_widths.back()-15, row_y + 4);
 	detail_buttons[row].set_size(column_widths.back(), row_height);
     detail_buttons[row].on_input(msg);
 }
