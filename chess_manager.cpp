@@ -595,7 +595,7 @@ bool ChessManager::move_piece(const Vector2& src_pos, const Vector2& dst_pos, bo
     else
     {
         if(!is_load)
-            play_audio(_T("move"), ResourcesManager::instance()->get_volume(), true);
+            play_audio(_T("move"), ResourcesManager::instance()->get_volume());
     }
 
     // пч╦дфЕел╣ьм╪
