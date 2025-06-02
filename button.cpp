@@ -58,7 +58,7 @@ void Button::on_input(const ExMessage& msg)
 		if (state == State::PRESS && isInside(msg.x, msg.y))
 		{
 			state = State::HOVER;
-			play_audio(_T("ui_confirm"), false);
+			play_audio(_T("ui_confirm"), ResourcesManager::instance()->get_volume() ,false );
 			if(on_click)
 				on_click();
 		}

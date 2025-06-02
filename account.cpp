@@ -133,7 +133,7 @@ void Player::add_game_record(const bool& is_red_AI, const bool& is_black_AI, int
     }
     else {
         record.gameMode = mode::localpk;
-        record.opponentName = L"-";
+        record.opponentName = L"----";
 		ResourcesManager::instance()->get_account_pool()[username].matchCount++;
         ResourcesManager::instance()->get_account_pool()[username].score += 3;
     }

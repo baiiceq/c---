@@ -17,13 +17,13 @@ public:
         background_image.set_position({ 0,0 });
         background_image.set_size({800,640});
 
-        listview.set_pos(120, 100);
-        listview.set_size(550, 400);
-        listview.set_column_count(5);
-        listview.set_column_widths({ 100,150, 100, 100, 100 });
-        listview.set_row_height(40);
+        listview.set_pos(135, 100);
+        listview.set_size(530, 400);
+        listview.set_column_count(4);
+        listview.set_column_widths({ 120,170, 120, 120 });
+        listview.set_row_height(80);
         ListView::Item header;
-        header.columns = { L"排名",L"用户名", L"分数", L"对局数", L"胜利数"};
+        header.columns = { L"排名",L"用户名", L"分数", L"对局数"};
 		listview.set_header(header);
 
         back_btn.set_pos(280, 520);
@@ -59,7 +59,6 @@ public:
                 a.first,
                 std::to_wstring(info.score),
                 std::to_wstring(info.matchCount),
-                std::to_wstring(info.winCount)
             };
             listview.add_item(item);
         }

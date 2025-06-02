@@ -14,6 +14,7 @@ public:
 	{
 		pass_time = 0;
 		shotted = false;
+		paused = false;
 	}
 
 	void set_wait_time(int val)
@@ -64,6 +65,10 @@ public:
 	float get_ratio() const 
 	{
 		return wait_time == 0 ? 1.0f : (((1.0f) < (pass_time / (float)wait_time)) ? (1.0f) : (pass_time / (float)wait_time));
+	}
+	int get_pass_time() const 
+	{
+		return pass_time;
 	}
 private:
 	int pass_time = 0;

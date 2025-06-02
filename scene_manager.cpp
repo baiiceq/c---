@@ -7,6 +7,8 @@
 #include "register_scene.h"
 #include "hello_scene.h"
 #include "ranklist_scene.h"
+#include "myinfo_scene.h"
+#include "setting_scene.h"
 
 SceneManager* SceneManager::manager = nullptr;
 
@@ -28,7 +30,8 @@ SceneManager::SceneManager()
 	register_scene = new RegisterScene();
 	hello_scene = new HelloScene();
 	ranklist_scene = new RankListScene();
-
+	myinfo_scene = new MyInfoScene();
+	setting_scene = new SettingScene();
 	current_scene = hello_scene;
 	current_scene->on_enter();
 }
@@ -43,6 +46,8 @@ SceneManager::~SceneManager()
 	delete register_scene;
 	delete hello_scene;
 	delete ranklist_scene;
+	delete myinfo_scene;
+	delete setting_scene;
 }
 
 void SceneManager::set_current_scene(Scene* scene)
@@ -82,6 +87,9 @@ void SceneManager::switch_to(SceneType type)
 		break;
 	case SceneType::Ranklist:
 		current_scene = ranklist_scene;
+		break;
+	case SceneType::Myinfo:
+		current_scene = myinfo_scene;
 		break;
 	default:
 		break;
@@ -165,4 +173,19 @@ void SceneManager::set_online_port(int port)
 {
 	OnlineScene* os = (OnlineScene*)online_scene;
 	os->set_port(port);
+}
+void SceneManager::set_gamescene_load_path(const std::string& path)
+{
+	GameScene* gs = (GameScene*)game_scene;
+	gs->set_load_path(path);
+}
+void SceneManager::set_gamescene_limit_time(int time)
+{
+	GameScene* gs = (GameScene*)game_scene;
+	gs->set_chess_manager_turn_time(time);
+}
+int SceneManager::get_gamescene_limit_time()
+{
+	GameScene* gs = (GameScene*)game_scene;
+	return gs->get_chess_manager_turn_time();
 }

@@ -31,7 +31,7 @@ public:
 		setting.set_image("setting");
 		setting.set_on_click([&]()
 			{
-				
+				SceneManager::instance()->switch_to(SceneManager::SceneType::Setting);
 			});
 
 		exit.set_pos(280, 510);

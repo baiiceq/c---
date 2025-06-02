@@ -6,6 +6,7 @@
 #include <functional>
 #include "camera.h"
 #include "static_image.h"
+#include "button.h"
 
 class ListView
 {
@@ -15,7 +16,7 @@ public:
     };
 
     ListView() = default;
-	~ListView() = default;
+    virtual ~ListView() = default;
 
     void set_pos(int x, int y) { this->x = x; this->y = y; }
     void set_size(int w, int h) { this->w = w; this->h = h; }
@@ -30,7 +31,7 @@ public:
 
     void on_render(const Camera& camera);
     void on_input(const ExMessage& msg);
-    void on_update(int delta);
+    virtual void on_update(int delta) {}
 
     void set_on_select(std::function<void(int)> callback) { on_select = callback; }
     int get_selected_index() const { return selected_index; }
@@ -40,7 +41,10 @@ public:
         return nullptr;
     }
 
-private:
+protected:
+    virtual void on_render_row(const Camera& camera, int row, int row_y, const Item& item);
+    virtual void on_input_row(const ExMessage& msg, int row, int row_y) {}
+
     int x = 0, y = 0, w = 200, h = 200;
     int column_count = 1;
     std::vector<int> column_widths;
@@ -56,4 +60,31 @@ private:
     bool is_inside(int px, int py) const {
         return (px >= x && px <= x + w && py >= y && py <= y + h);
     }
+};
+
+class ListViewWithButton : public ListView
+{
+public:
+    ListViewWithButton() = default;
+    ~ListViewWithButton() = default;
+
+    void set_button_image(const std::string& button_name) {
+        for (auto& button : detail_buttons) {
+            button.set_image(button_name);
+            button.set_size(row_height - 8, row_height - 8);
+        }
+    }
+    void on_render_row(const Camera& camera, int row, int row_y, const Item& item) override;
+    void on_input_row(const ExMessage& msg, int row, int row_y) override;
+	void on_update(int delta) override;
+    void set_button_callback(int index, std::function<void()> callback) {
+        if (index >= 0 && index < (int)detail_buttons.size()) {
+            detail_buttons[index].set_on_click(callback);
+        }
+	}
+    void set_button_count(int count) {
+        detail_buttons.resize(count);
+	}
+private:
+    std::vector<Button> detail_buttons;
 };

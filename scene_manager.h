@@ -43,6 +43,9 @@ public:
 	void set_gamescene_state_to_playback();
 	void set_gamescene_player(bool red, bool black);
 	void set_gamescene_difficult(int red, int black);
+	void set_gamescene_load_path(const std::string& path);
+	void set_gamescene_limit_time(int time);
+	int get_gamescene_limit_time();
 
 	void load_player_account(const Account& account);
 	void save_player_account();
@@ -66,7 +69,7 @@ private:
 	Scene* register_scene = nullptr;
 	Scene* hello_scene = nullptr;
 	Scene* ranklist_scene = nullptr;
-
+	Scene* myinfo_scene = nullptr;
 private:
 	Player* player_account = nullptr;
 };

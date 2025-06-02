@@ -12,6 +12,19 @@ public:
 		OnceLoginButton.set_image("once_login");
 		OnceLoginButton.set_size(240, 60);
 		OnceLoginButton.set_on_click([]() {
+			srand((unsigned int)time(nullptr));
+			int rand_num = rand() % 10000; // 6Î»Ëæ»úÊý
+			std::wstring username = L"Once" + std::to_wstring(rand_num);
+
+			std::wstring charset = L"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+			std::wstring password;
+			for (int i = 0; i < 8; ++i) {
+				password += charset[rand() % charset.size()];
+			}
+
+			Account account(username, password);
+			account.add_account();
+			SceneManager::instance()->load_player_account(account);
 			SceneManager::instance()->switch_to(SceneManager::SceneType::Menu);
 			});
 
@@ -36,6 +49,10 @@ public:
 			ResourcesManager::instance()->save_account(_T("data\\account.txt"));
 			exit(0);
 			});
+
+		Hello.set_image("title");
+		Hello.set_position({ 248, 90 });
+		Hello.set_size({ 303, 86 });
 	}
 	~HelloScene() = default;
 	void on_enter() {}
@@ -49,6 +66,7 @@ public:
 		PlayerLoginButton.on_render(camera);
 		RegisterButton.on_render(camera);
 		ExitButton.on_render(camera);
+		Hello.on_render(camera);
 	}
 	void on_input(const ExMessage& message) {
 		OnceLoginButton.on_input(message);
@@ -58,6 +76,7 @@ public:
 	}
 private:
 	/*Animation Hello;*/
+	StaticImage Hello;
 	Button OnceLoginButton;
 	Button PlayerLoginButton;
 	Button RegisterButton;

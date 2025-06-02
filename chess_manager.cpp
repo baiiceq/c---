@@ -4,7 +4,7 @@
 #include "scene_manager.h"
 #include "util.h"
 #include <fstream>
-
+#include <algorithm>
 #include <iostream>
 ChessManager::ChessManager() : can_operate(true)
 {
@@ -109,6 +109,13 @@ ChessManager::ChessManager() : can_operate(true)
             move_piece(result.rsc_pos, result.dst_pos, false);
             is_AI_thinking = false;
         });
+
+    turn_timer.set_wait_time(turn_time_limit);
+    turn_timer.set_one_shot(true);
+    turn_timer.set_on_timeout([&]() {
+        if (callback_win)
+            callback_win(1);
+        });
 }
 
 ChessManager::~ChessManager()
@@ -161,10 +168,21 @@ void ChessManager::on_render(const Camera& camera)
 
     if (is_AI_thinking)
         anim_ai_thinking.on_render(camera);
+
+    // 显示剩余时间
+    int remain_ms = turn_time_limit - turn_timer.get_pass_time();
+    int remain_sec = (0> remain_ms / 1000)?0:remain_ms / 1000;
+    settextstyle(32, 0, _T("微软雅黑"));
+    settextcolor(RED);
+    wchar_t buf[32];
+    swprintf(buf, 32, L"倒计时: %d", remain_sec);
+    outtextxy(50, 600, buf);
 }
 
 void ChessManager::on_update(int delta, ChessPiece::Camp current_turn)
 {
+    turn_timer.on_update(delta);
+
     if ((is_black_AI && current_turn == ChessPiece::Camp::Black) || (is_red_AI && current_turn == ChessPiece::Camp::Red))
     {
         if (!is_AI_thinking)
@@ -224,7 +242,7 @@ void ChessManager::reset()
     can_moves.clear();
     can_eats.clear();
     move_history.clear();
-
+    turn_timer.restart();
     memset(map, 0, sizeof map);
 
     // 红方
@@ -333,6 +351,7 @@ void ChessManager::undo_move()
 
     if (callback_change)
         callback_change(1);
+    turn_timer.restart();
 }
 
 void ChessManager::save_game_record(const std::string& filename)
@@ -559,7 +578,7 @@ bool ChessManager::move_piece(const Vector2& src_pos, const Vector2& dst_pos, bo
         if (!is_load)
         {
             ResourcesManager::instance()->get_camera()->shake(5, 100);
-            play_audio(_T("eat"));
+            play_audio(_T("eat"), ResourcesManager::instance()->get_volume());
         }
         
         if (record.captured_piece->get_type() == ChessPiece::PieceType::General)
@@ -573,7 +592,7 @@ bool ChessManager::move_piece(const Vector2& src_pos, const Vector2& dst_pos, bo
     else
     {
         if(!is_load)
-            play_audio(_T("move"));
+            play_audio(_T("move"), ResourcesManager::instance()->get_volume());
     }
 
     // 修改棋盘地图
@@ -598,6 +617,7 @@ bool ChessManager::move_piece(const Vector2& src_pos, const Vector2& dst_pos, bo
     if (callback_change)
         callback_change(src_pos.x * 1000 + src_pos.y * 100 + dst_pos.x * 10 + dst_pos.y);
 
+    turn_timer.restart();
     return true;
 }
 

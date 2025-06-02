@@ -125,14 +125,16 @@ public:
 		
 		if (state == GameState::GameLoad)
 		{
-			chess_manager.load_game_record("data/save.txt");
+			chess_manager.load_game_record(load_path);
 			chess_manager.load();
+			load_path = "data/save.txt"; 
 			state = GameState::GameRunning;
 			fstate = GameState::GameLoad;
 		}
 		else if (state == GameState::GamePlayBack)
 		{
-			chess_manager.load_game_record("data/save.txt");
+			chess_manager.load_game_record(load_path);
+			load_path = "data/save.txt";
 			timer_interval.restart();
 			fstate = GameState::GamePlayBack;
 		}
@@ -236,6 +238,18 @@ public:
 		chess_manager.set_difficulty(red, black);
 	}
 
+	void set_load_path(const std::string& path)
+	{
+		load_path = path;
+	}
+	void set_chess_manager_turn_time(int time)
+	{
+		chess_manager.set_turn_time_limit(time);
+	}
+	int get_chess_manager_turn_time()
+	{
+		return chess_manager.get_turn_time_limit();
+	}
 private:
 	const int INTERVAL = 1000;
 	Timer timer_interval;
@@ -262,4 +276,6 @@ private:
 
 	// 回放时计算每次操作间隔的时间的计时器
 	Timer timer_playback;
+
+	std::string load_path = "data/save.txt"; // 游戏记录路径
 };

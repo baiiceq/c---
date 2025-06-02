@@ -29,12 +29,17 @@ public:
 	void load_account(const std::wstring& path);
 	void save_account(const std::wstring& path) const;
 
+	int& get_volume()
+	{
+		return volume;
+	}
 private:
 	static ResourcesManager* manager;
 
 	std::unordered_map<std::string, Atlas*> atlas_pool;
 	std::unordered_map<std::string, IMAGE*> image_pool;
 	std::unordered_map<std::wstring,Account::AccountInfo> account_pool;
+	int volume = 80; 
 
 	Camera* main_camera;
 

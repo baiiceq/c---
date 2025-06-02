@@ -62,6 +62,14 @@ public:
 			return black_AI_difficulty;
         return 0;
 	}
+    void set_turn_time_limit(int limit)
+    {
+        turn_time_limit = limit;
+	}
+    int get_turn_time_limit()
+    {
+        return turn_time_limit;
+    }
 private:
     struct MoveRecord
     {
@@ -146,6 +154,8 @@ private:
 
     Animation anim_ai_thinking;
 
+    Timer turn_timer;
+	int turn_time_limit = 30000; // 每方的时间限制，单位为毫秒
 private:
     Ai ai;
 };
