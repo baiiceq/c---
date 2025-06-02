@@ -8,7 +8,7 @@ OptionSelector::OptionSelector()
     left.set_on_click([&]() 
         {
             selected--;
-            selected = (selected + options.size()) % options.size();
+            selected = (selected + (int)options.size()) % (int)options.size();
             if (on_select_callback) on_select_callback();
         });
 
@@ -68,13 +68,13 @@ void OptionSelector::on_input(const ExMessage& msg)
 
 void OptionSelector::update_button_layout()
 {
-    float btn_size = size.y * 0.4; 
+    float btn_size = (float)size.y * 0.4;
     float btn_y = position.y + (size.y - btn_size) / 2;
 
-    int spacing = size.x * 0.45;
-    left.set_size( btn_size, btn_size );
-    right.set_size( btn_size,btn_size );
+    int spacing = (int)size.x * 0.45;
+    left.set_size((int)btn_size, (int)btn_size );
+    right.set_size((int)btn_size, (int)btn_size );
 
-    left.set_pos(position.x - spacing, btn_y);
-    right.set_pos(position.x + size.x - btn_size + spacing, btn_y);
+    left.set_pos((int)position.x - spacing, (int)btn_y);
+    right.set_pos((int)position.x + (int)size.x - (int)btn_size + spacing, (int)btn_y);
 }

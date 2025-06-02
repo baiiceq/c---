@@ -100,9 +100,9 @@ private:
 
     Vector2 mouse_to_chess_pos(const Vector2& mouse_pos)
     {
-        int x = (mouse_pos.x - 260) / 60;
-        int y = (mouse_pos.y - 20) / 60;
-        return Vector2(x, y);
+        int x = ((int)mouse_pos.x - 260) / 60;
+        int y = ((int)mouse_pos.y - 20) / 60;
+        return Vector2((float)x, (float)y);
     }
 
     ChessPiece* get_piece_at(const Vector2& pos)

@@ -71,7 +71,7 @@ public:
 
 	int get_idx_frame()
 	{
-		return idx_frame;
+		return (int)idx_frame;
 	}
 
 	void add_frame(IMAGE* image, int num_h)
@@ -109,7 +109,7 @@ public:
 
 	void on_update(float delta)
 	{
-		timer.on_update(delta);
+		timer.on_update((int)delta);
 	}
 
 	void on_render(Camera camera, int magnification_factor = 1)

@@ -37,7 +37,7 @@ public:
 	{
 		// 棋盘大小，设置棋盘位置
 		Vector2 size = board.get_size();
-		board.set_pos(260, (getheight() - size.y) / 2);
+		board.set_pos(260, (getheight() - (int)size.y) / 2);
 
 		// 设置棋子管理器的回调函数，当棋子管理器中移动了棋子，执行回调函数，更换阵营
 		chess_manager.set_callback_change([&](int val)
@@ -143,7 +143,7 @@ public:
 			// 轮询对方走法
 			if (!is_my_turn)
 			{
-				anim_waiting_move.on_update(delta);
+				anim_waiting_move.on_update((float)delta);
 				receive_move();  
 			}
 
@@ -162,7 +162,7 @@ public:
 		{
 			if (is_host)
 			{
-				anim_waiting_players.on_update(delta);
+				anim_waiting_players.on_update((float)delta);
 				if (server && server->is_ready())
 				{
 					state = OnlineState::Racing;
@@ -280,10 +280,10 @@ public:
 
 	void decode_move_code(int code, Vector2& from, Vector2& to)
 	{
-		from.x = code / 1000;
-		from.y = (code / 100) % 10;
-		to.x = (code / 10) % 10;
-		to.y = code % 10;
+		from.x = float(code / 1000);
+		from.y = float((code / 100) % 10);
+		to.x = float(((code / 10) % 10));
+		to.y = float((code % 10));
 	}
 
 	void set_is_host(bool is_host)

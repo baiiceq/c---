@@ -139,7 +139,7 @@ void ChessManager::on_render(const Camera& camera)
     {
         Vector2 pos = hovered_piece->get_image_pos();
         Vector2 size = hovered_piece->get_size();
-        Rect rect_dst = { pos.x, pos.y, size.x, size.y };
+        Rect rect_dst = { (int)pos.x,(int)pos.y, (int)size.x, (int)size.y };
         putimage_alpha(&camera, &hover_box, &rect_dst);
     }
 
@@ -147,19 +147,19 @@ void ChessManager::on_render(const Camera& camera)
     {
         Vector2 pos = selected_piece->get_image_pos();
         Vector2 size = selected_piece->get_size();
-        Rect rect_dst = { pos.x,pos.y,size.x,size.y };
+        Rect rect_dst = { (int)pos.x,(int)pos.y,(int)size.x,(int)size.y };
         putimage_alpha(&camera, &selected_box, &rect_dst);
     }
 
     for (auto move_pos : can_moves)
     {
-        Rect rect_dst = { 260 + move_pos.x * 60, 20 + move_pos.y * 60, 60, 60 };
+        Rect rect_dst = { 260 + (int)move_pos.x * 60, 20 + (int)move_pos.y * 60, 60, 60 };
         putimage_alpha(&camera, &move_box, &rect_dst);
     }
 
     for (auto move_pos : can_eats)
     {
-        Rect rect_dst = { 260 + move_pos.x * 60, 20 + move_pos.y * 60, 60, 60 };
+        Rect rect_dst = { 260 + (int)move_pos.x * 60, 20 + (int)move_pos.y * 60, 60, 60 };
         putimage_alpha(&camera, &eat_box, &rect_dst);
     }
 
@@ -185,7 +185,7 @@ void ChessManager::on_update(int delta, ChessPiece::Camp current_turn)
 
     if ((is_black_AI && current_turn == ChessPiece::Camp::Black) || (is_red_AI && current_turn == ChessPiece::Camp::Red))
     {
-        if (!is_AI_thinking)
+        if (!is_AI_thinking && can_operate)
         {
             ai_start_think(current_turn);
         }
@@ -198,10 +198,10 @@ void ChessManager::on_update(int delta, ChessPiece::Camp current_turn)
     }
 
     if (is_check)
-        anim_check.on_update(delta);
+        anim_check.on_update((float)delta);
 
     if (is_AI_thinking)
-        anim_ai_thinking.on_update(delta);
+        anim_ai_thinking.on_update((float)delta);
 }
 
 void ChessManager::on_input(const ExMessage& msg, ChessPiece::Camp current_turn)
@@ -392,10 +392,10 @@ void ChessManager::load_game_record(const std::string& filename)
     while (file >> from_x >> from_y >> to_x >> to_y >> piece_type_int >> camp_int >> captured_int)
     {
         MoveRecord record;
-        record.from_pos.x = from_x;
-        record.from_pos.y = from_y;
-        record.to_pos.x = to_x;
-        record.to_pos.y = to_y;
+        record.from_pos.x = (float)from_x;
+        record.from_pos.y = (float)from_y;
+        record.to_pos.x = (float)to_x;
+        record.to_pos.y = (float)to_y;
         record.piece_type = (ChessPiece::PieceType)piece_type_int;
         record.camp = (ChessPiece::Camp)camp_int;
         record.captured_alive_before = (captured_int != 0);
@@ -581,18 +581,18 @@ bool ChessManager::move_piece(const Vector2& src_pos, const Vector2& dst_pos, bo
             play_audio(_T("eat"), ResourcesManager::instance()->get_volume());
         }
         
-        if (record.captured_piece->get_type() == ChessPiece::PieceType::General)
+        if (record.captured_piece && record.captured_piece->get_type() == ChessPiece::PieceType::General)
         {
             
             can_operate = true;
             if (callback_win)
-                callback_win(src_pos.x * 1000 + src_pos.y * 100 + dst_pos.x * 10 + dst_pos.y);
+                callback_win((int)src_pos.x * 1000 + (int)src_pos.y * 100 + (int)dst_pos.x * 10 + (int)dst_pos.y);
         }
     }
     else
     {
         if(!is_load)
-            play_audio(_T("move"), ResourcesManager::instance()->get_volume());
+            play_audio(_T("move"), ResourcesManager::instance()->get_volume(), true);
     }
 
     // 修改棋盘地图
@@ -615,7 +615,7 @@ bool ChessManager::move_piece(const Vector2& src_pos, const Vector2& dst_pos, bo
     std::cout << "从(" << src_pos.x << ',' << src_pos.y << "到(" << dst_pos.x << '/' << dst_pos.y << std::endl;
 
     if (callback_change)
-        callback_change(src_pos.x * 1000 + src_pos.y * 100 + dst_pos.x * 10 + dst_pos.y);
+        callback_change((int)src_pos.x * 1000 + (int)src_pos.y * 100 + (int)dst_pos.x * 10 + (int)dst_pos.y);
 
     turn_timer.restart();
     return true;

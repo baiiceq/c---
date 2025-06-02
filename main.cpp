@@ -46,8 +46,6 @@ int main()
 	
  	SceneManager* scene_manager = SceneManager::instance();
 
-	play_audio(_T("bgm"), ResourcesManager::instance()->get_volume(), true);
-
 	while (running)
 	{
 		DWORD frame_start_time = GetTickCount();

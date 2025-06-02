@@ -27,84 +27,28 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="animation.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="atlas.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="camera.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="resources_manager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="scene_manager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="timer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="util.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="vector2.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="scene.h">
-      <Filter>头文件\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="game_scene.h">
-      <Filter>头文件\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="chess_piece.h">
-      <Filter>头文件\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="board.h">
-      <Filter>头文件\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="chess_pieces.h">
-      <Filter>头文件\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="chess_manager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="pause_scene.h">
-      <Filter>头文件\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="ai.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="select_scene.h">
-      <Filter>头文件\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="button.h">
-      <Filter>头文件\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="static_image.h">
-      <Filter>头文件\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="option_selector.h">
-      <Filter>头文件\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="chess_server.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="chess_client.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="text_input.h">
-      <Filter>头文件\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="online_scene.h">
-      <Filter>头文件\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="httplib.h">
-      <Filter>头文件\thirdparty</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
+    <ClCompile Include="ai.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="board.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="button.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="chess_manager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="chess_piece.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="chess_pieces.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="option_selector.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="resources_manager.cpp">
@@ -113,50 +57,21 @@
     <ClCompile Include="scene_manager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="menu_scene.h">
-      <Filter>头文件\scene</Filter>
-    </ClCompile>
-    <ClCompile Include="button.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="board.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="chess_piece.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="chess_manager.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="chess_pieces.cpp">
+    <ClCompile Include="account.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ai.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="option_selector.cpp">
+    <ClCompile Include="board.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="chess_server.cpp">
+    <ClCompile Include="button.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="chess_client.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="text_input.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="ai.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="board.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="button.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="chess_manager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -164,6 +79,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="chess_pieces.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="chess_server.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="listview.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -176,6 +97,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="scene_manager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="text_input.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Textbox.cpp">
@@ -213,9 +137,6 @@
     <ClInclude Include="game_scene.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="menu_scene.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="option_selector.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -246,16 +167,109 @@
     <ClInclude Include="vector2.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="account.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ai.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="animation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="atlas.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="board.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="button.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="chess_client.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="chess_manager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="chess_piece.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="chess_pieces.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="chess_server.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game_scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="hello_scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="httplib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="listview.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="login_scene.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="menu_scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="myinfo_scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="online_scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="option_selector.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="pause_scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ranklist_scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="register_scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="resources_manager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="scene_manager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="select_scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="setting_scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="static_image.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="text_input.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="Textbox.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="account.h">
+    <ClInclude Include="timer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vector2.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

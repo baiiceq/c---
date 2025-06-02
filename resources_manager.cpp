@@ -151,7 +151,6 @@ void ResourcesManager::load()
 	load_audio(_T(R"(resources\music\ui_confirm.wav)"), _T("ui_confirm"));
 	load_audio(_T(R"(resources\music\piece_move.wav)"), _T("move"));
 	load_audio(_T(R"(resources\music\piece_eat.wav)"), _T("eat"));
-	load_audio(_T(R"(resources\music\piece_eat.wav)"),  _T("bgm"));
 
 	load_account(_T("data\\account.txt"));
 }

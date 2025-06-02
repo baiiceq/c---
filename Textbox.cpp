@@ -2,7 +2,7 @@
 #include "Textbox.h"
 #include "resources_manager.h"
 
-Textbox::Textbox() :left(0), top(0), right(0), bottom(0) {
+Textbox::Textbox() :left(0), top(0), right(0), bottom(0), cursor_index(0) {
 	cursor_pos = { float(left + 10),float( top + 5 )};
     cursor.add_frame(ResourcesManager::instance()->find_image("cursor"), 2);
     cursor.set_position(cursor_pos);
@@ -26,7 +26,7 @@ void Textbox::cursor_index_to_pos()
 
 void Textbox::change_cursor_index(int msgx)
 {
-    for (int i = text.size();i >= 0;i--)
+    for (int i = (int)text.size();i >= 0;i--)
     {
         int len = 0;
         for (int j = 0;j < i;j++)
@@ -101,7 +101,7 @@ void Textbox::on_update(int delta)
 {
     if (!isActive)
 		return;
-    cursor.on_update(delta);
+    cursor.on_update((float)delta);
 }
 
 void Textbox::on_render(const Camera& camera)

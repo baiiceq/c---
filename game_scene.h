@@ -40,7 +40,7 @@ public:
 	{
 		// 棋盘大小，设置棋盘位置
 		Vector2 size = board.get_size();
-		board.set_pos(260, (getheight() - size.y) / 2);
+		board.set_pos(260, (getheight() - (int)size.y) / 2);
 
 		// 设置棋子管理器的回调函数，当棋子管理器中移动了棋子，执行回调函数，更换阵营
 		chess_manager.set_callback_change([&](int val)

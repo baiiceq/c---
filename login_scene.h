@@ -73,9 +73,9 @@ public:
 		LoginText.on_update(delta);
 		PasswordText.on_update(delta);
 		if(state== Account::AccountError::NotRight) {
-			NotrightText.on_update(delta);
+			NotrightText.on_update((float)delta);
 		} else if(state == Account::AccountError::None) {
-			LoginSucessText.on_update(delta);
+			LoginSucessText.on_update((float)delta);
 		}
 	}
 	void on_render(const Camera& camera) {

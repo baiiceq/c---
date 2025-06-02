@@ -25,7 +25,7 @@ void TextInput::on_render()
 
 	if (isFocused && showCursor)
 	{
-		if (cursor_pos > text.length()) cursor_pos = text.length();
+		if (cursor_pos > text.length()) cursor_pos = (int)text.length();
 		int tw = textwidth(text.substr(0, cursor_pos).c_str());
 		int cx = x + 10 + tw;
 		int cy1 = y + 5;
@@ -94,7 +94,7 @@ void TextInput::on_input(const ExMessage& msg)
 				cursor_pos++;
 			}
 		}
-		if (cursor_pos > text.length()) cursor_pos = text.length();
+		if (cursor_pos > text.length()) cursor_pos = (int)text.length();
 		break;
 	}
 }

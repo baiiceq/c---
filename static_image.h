@@ -13,7 +13,7 @@ public:
 	{
 		if (img)
 		{
-			Rect rect_dst = { position.x,position.y, size.x,size.y };
+			Rect rect_dst = { (int)position.x,(int)position.y, (int)size.x,(int)size.y };
 			putimage_alpha(&camera, img, &rect_dst);
 		}
 	}

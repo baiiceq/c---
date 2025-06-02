@@ -94,8 +94,8 @@ int Ai::DFS(ChessPiece::Camp current_party,int (& current_map_)[9][10], int dept
             if (flag) {
                 for (const auto& move : it->get_can_eat(current_map))
                 {
-                    int x = it->get_pos().x, y = it->get_pos().y;
-                    int to_x = move.x, to_y = move.y;
+                    int x = (int)it->get_pos().x, y = (int)it->get_pos().y;
+                    int to_x = (int)move.x, to_y = (int)move.y;
                     int temp = current_map[to_x][to_y];
                     current_map[to_x][to_y] = current_map[x][y];
                     current_map[x][y] = 0;
@@ -103,8 +103,8 @@ int Ai::DFS(ChessPiece::Camp current_party,int (& current_map_)[9][10], int dept
                     if (a < t) {
                         a = t;
                         if (depth == MAX_DEPTH) {
-                            method.rsc_pos = Vector2(x, y);
-                            method.dst_pos = Vector2(to_x, to_y);
+                            method.rsc_pos = Vector2((float)x, (float)y);
+                            method.dst_pos = Vector2((float)to_x, (float)to_y);
                         }
                     }
                     if (b <= a)
@@ -119,8 +119,8 @@ int Ai::DFS(ChessPiece::Camp current_party,int (& current_map_)[9][10], int dept
                 if (flag) {
                     for (const auto& move : it->get_can_move_to(current_map))
                     {
-                        int x = it->get_pos().x, y = it->get_pos().y;
-                        int to_x = move.x, to_y = move.y;
+                        int x = (int)it->get_pos().x, y = (int)it->get_pos().y;
+                        int to_x = (int)move.x, to_y = (int)move.y;
                         int temp = current_map[to_x][to_y];
                         current_map[to_x][to_y] = current_map[x][y];
                         current_map[x][y] = 0;
@@ -128,8 +128,8 @@ int Ai::DFS(ChessPiece::Camp current_party,int (& current_map_)[9][10], int dept
                         if(a < t){
                             a = t;
                             if (depth == MAX_DEPTH) {
-                                method.rsc_pos = Vector2(x, y);
-                                method.dst_pos = Vector2(to_x, to_y);
+                                method.rsc_pos = Vector2((float)x, (float)y);
+                                method.dst_pos = Vector2((float)to_x, (float)to_y);
                             }
                         }
                         if (b <= a)
@@ -154,8 +154,8 @@ int Ai::DFS(ChessPiece::Camp current_party,int (& current_map_)[9][10], int dept
             if (flag) {
                 for (const auto& move : it->get_can_eat(current_map))
                 {
-                    int x = it->get_pos().x, y = it->get_pos().y;
-                    int to_x = move.x, to_y = move.y;
+                    int x = (int)it->get_pos().x, y = (int)it->get_pos().y;
+                    int to_x = (int)move.x, to_y = (int)move.y;
                     int temp = current_map[to_x][to_y];
                     current_map[to_x][to_y] = current_map[x][y];
                     current_map[x][y] = 0;
@@ -175,8 +175,8 @@ int Ai::DFS(ChessPiece::Camp current_party,int (& current_map_)[9][10], int dept
                 if (flag) {
                     for (const auto& move : it->get_can_move_to(current_map))
                     {
-                        int x = it->get_pos().x, y = it->get_pos().y;
-                        int to_x = move.x, to_y = move.y;
+                        int x = (int)it->get_pos().x, y = (int)it->get_pos().y;
+                        int to_x = (int)move.x, to_y = (int)move.y;
                         int temp = current_map[to_x][to_y];
                         current_map[to_x][to_y] = current_map[x][y];
                         current_map[x][y] = 0;
@@ -222,13 +222,13 @@ SChessPiece* Ai::get_piece(int x,int y, int a,ChessPiece::Camp current_party)
 		a -= 100;
     switch(a)
     {
-	case 1: return new SGeneral(Vector2(x, y), current_party);
-	case 2:return new SAdvisor(Vector2(x, y), current_party);
-	case 3:return new SElephant(Vector2(x, y), current_party);
-	case 4:return new SHorse(Vector2(x, y), current_party);
-	case 5:return new SChariot(Vector2(x, y), current_party);
-	case 6:return new SCannon(Vector2(x, y), current_party);
-	case 7:return new SSoldier(Vector2(x, y), current_party);
+	case 1: return new SGeneral(Vector2((float)x, (float)y), current_party);
+	case 2:return new SAdvisor(Vector2((float)x, (float)y), current_party);
+	case 3:return new SElephant(Vector2((float)x, (float)y), current_party);
+	case 4:return new SHorse(Vector2((float)x, (float)y), current_party);
+	case 5:return new SChariot(Vector2((float)x, (float)y), current_party);
+	case 6:return new SCannon(Vector2((float)x, (float)y), current_party);
+	case 7:return new SSoldier(Vector2((float)x, (float)y), current_party);
 	}
 }
 

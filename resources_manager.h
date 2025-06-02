@@ -39,7 +39,7 @@ private:
 	std::unordered_map<std::string, Atlas*> atlas_pool;
 	std::unordered_map<std::string, IMAGE*> image_pool;
 	std::unordered_map<std::wstring,Account::AccountInfo> account_pool;
-	int volume = 80; 
+	int volume = 40; 
 
 	Camera* main_camera;
 

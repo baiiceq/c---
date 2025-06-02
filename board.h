@@ -19,8 +19,8 @@ public:
 
 	void set_pos(int x, int y)
 	{
-		position.x = x;
-		position.y = y;
+		position.x = (float)x;
+		position.y = (float)y;
 	}
 
 	Vector2 get_size() const

@@ -123,7 +123,7 @@ protected:
 	Vector2 pos; // 棋子在棋盘上的位置
 	ChessPiece::PieceType type; // 棋子的种类
 public:
-	SChessPiece(const Vector2& p,ChessPiece::Camp c) : camp(c), pos(p) {}
+	SChessPiece(const Vector2& p,ChessPiece::Camp c) : camp(c), pos(p){}
 	~SChessPiece() = default;
 	virtual std::vector<Vector2> get_can_move_to(const int(&board)[9][10]) = 0;
 	virtual std::vector<Vector2> get_can_eat(const int(&board)[9][10]) = 0;

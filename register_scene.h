@@ -84,19 +84,21 @@ public:
 	void on_exit() {
 		reset();
 	}
-	void on_update(int delta) {
+
+	void on_update(int delta) 
+	{
 		ConfirmButton.on_update(delta);
 		BackButton.on_update(delta);
 		RegisterText.on_update(delta);
 		PasswordText.on_update(delta);
 		if(state == Account::AccountError::None) {
-			RegisterSuccessText.on_update(delta);
+			RegisterSuccessText.on_update((float)delta);
 		} else if (state == Account::AccountError::UsernameAlreadyExists) {
-			ExistText.on_update(delta);
+			ExistText.on_update((float)delta);
 		} else if (state == Account::AccountError::InvalidUsername) {
-			InvalidUsernameText.on_update(delta);
+			InvalidUsernameText.on_update((float)delta);
 		} else if (state == Account::AccountError::InvalidPassword) {
-			InvalidPasswordText.on_update(delta);
+			InvalidPasswordText.on_update((float)delta);
 		}
 	}
 	void on_render(const Camera& camera) {

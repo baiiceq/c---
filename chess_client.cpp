@@ -11,7 +11,7 @@
 #pragma comment(lib, "ws2_32.lib")
 
 ChessClient::ChessClient(const std::string& ip, int port)
-    : ip_(ip), port_(port) {}
+    : ip_(ip), port_(port), player_id_(0) {}
 
 bool ChessClient::join()
 {

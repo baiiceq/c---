@@ -26,7 +26,7 @@ Board::~Board()
 
 void Board::on_render(const Camera& camera)
 {
-	Rect rect_dst = { position.x, position.y, size.x, size.y};
+	Rect rect_dst = { (int)position.x, (int)position.y, (int)size.x, (int)size.y};
 	
 	putimage_alpha(&camera, &img, &rect_dst);
 }

@@ -20,7 +20,7 @@ std::vector<Vector2> General::get_can_move_to(const int(&board)[9][10])
     const int dy[4] = {0,1,0,-1};
     for (int i = 0; i < 4; i++)
     {
-        int x = pos.x, y = pos.y;
+        int x = (int)pos.x, y = (int)pos.y;
         x += dx[i], y += dy[i];
         if (camp == Camp::Red)
         {
@@ -58,7 +58,7 @@ std::vector<Vector2> General::get_can_eat(const int(&board)[9][10])
     const int dy[4] = { 0,1,0,-1 };
     for (int i = 0; i < 4; i++)
     {
-        int x = pos.x, y = pos.y;
+        int x = (int)pos.x, y = (int)pos.y;
         x += dx[i], y += dy[i];
         if (camp == Camp::Red)
         {
@@ -75,7 +75,7 @@ std::vector<Vector2> General::get_can_eat(const int(&board)[9][10])
     }
     if (camp == Camp::Red)
     {
-        for (int i = pos.y - 1; i >= 0; i--)
+        for (int i = (int)pos.y - 1; i >= 0; i--)
         {
             if (board[(int)pos.x][i] != 0)
             {
@@ -91,7 +91,7 @@ std::vector<Vector2> General::get_can_eat(const int(&board)[9][10])
     }
     else
     {
-        for (int i = pos.y + 1; i <=9; i++)
+        for (int i = (int)pos.y + 1; i <=9; i++)
         {
             if (board[(int)pos.x][i] != 0)
             {
@@ -128,7 +128,7 @@ std::vector<Vector2> Advisor::get_can_move_to(const int(&board)[9][10])
     const int dy[4] = { 1,1,-1,-1 };
     for (int i = 0; i < 4; i++)
     {
-        int x = pos.x, y = pos.y;
+        int x = (int)pos.x, y = (int)pos.y;
         x += dx[i], y += dy[i];
         if (camp == Camp::Red)
         {
@@ -154,7 +154,7 @@ std::vector<Vector2> Advisor::get_can_eat(const int(&board)[9][10])
     const int dy[4] = { 1,1,-1,-1 };
     for (int i = 0; i < 4; i++)
     {
-        int x = pos.x, y = pos.y;
+        int x = (int)pos.x, y = (int)pos.y;
         x += dx[i], y += dy[i];
         if (camp == Camp::Red)
         {
@@ -193,7 +193,7 @@ std::vector<Vector2> Elephant::get_can_move_to(const int(&board)[9][10])
     const int dy[4] = { 2,2,-2,-2 };
     for (int i = 0; i < 4; i++)
     {
-        int x = pos.x, y = pos.y;
+        int x = (int)pos.x, y = (int)pos.y;
         x += dx[i], y += dy[i];
         if (camp == Camp::Red)
         {
@@ -219,7 +219,7 @@ std::vector<Vector2> Elephant::get_can_eat(const int(&board)[9][10])
     const int dy[4] = { 2,2,-2,-2 };
     for (int i = 0; i < 4; i++)
     {
-        int x = pos.x, y = pos.y;
+        int x = (int)pos.x, y = (int)pos.y;
         x += dx[i], y += dy[i];
         if (camp == Camp::Red)
         {
@@ -261,10 +261,10 @@ std::vector<Vector2> Horse::get_can_move_to(const int(&board)[9][10])
     const int leg_dy[8] = { 1, 0, 1, 0, 0, -1, 0, -1 };
     for (int i = 0; i < 8; ++i)
     {
-        int leg_x = pos.x + leg_dx[i];
-        int leg_y = pos.y + leg_dy[i];
-        int dx = pos.x + move_dx[i];
-        int dy = pos.y + move_dy[i];
+        int leg_x = (int)pos.x + leg_dx[i];
+        int leg_y = (int)pos.y + leg_dy[i];
+        int dx = (int)pos.x + move_dx[i];
+        int dy = (int)pos.y + move_dy[i];
 
         if (dx < 0 || dx > 8 || dy < 0 || dy > 9)
             continue;
@@ -288,10 +288,10 @@ std::vector<Vector2> Horse::get_can_eat(const int(&board)[9][10])
     const int leg_dy[8] = { 1, 0, 1, 0, 0, -1, 0, -1 };
     for (int i = 0; i < 8; ++i)
     {
-        int leg_x = pos.x + leg_dx[i];
-        int leg_y = pos.y + leg_dy[i];
-        int dx = pos.x + move_dx[i];
-        int dy = pos.y + move_dy[i];
+        int leg_x = (int)pos.x + leg_dx[i];
+        int leg_y = (int)pos.y + leg_dy[i];
+        int dx = (int)pos.x + move_dx[i];
+        int dy = (int)pos.y + move_dy[i];
 
         if (dx < 0 || dx > 8 || dy < 0 || dy > 9)
             continue;
@@ -322,8 +322,8 @@ void Chariot::on_update(int delta) { ChessPiece::on_update(delta); }
 std::vector<Vector2> Chariot::get_can_move_to(const int(&board)[9][10])
 {
     std::vector<Vector2> moves;
-    int x = pos.x;
-    int y = pos.y;
+    int x = (int)pos.x;
+    int y = (int)pos.y;
 
     // 向上
     for (int i = y - 1; i >= 0; --i)
@@ -381,8 +381,8 @@ std::vector<Vector2> Chariot::get_can_move_to(const int(&board)[9][10])
 std::vector<Vector2> Chariot::get_can_eat(const int(&board)[9][10])
 {
     std::vector<Vector2> eats;
-    int x = pos.x;
-    int y = pos.y;
+    int x = (int)pos.x;
+    int y = (int)pos.y;
 
     // 向上
     for (int i = y - 1; i >= 0; --i)
@@ -446,8 +446,8 @@ void Cannon::on_update(int delta) { ChessPiece::on_update(delta); }
 std::vector<Vector2> Cannon::get_can_move_to(const int(&board)[9][10])
 {
     std::vector<Vector2> moves;
-    int x = pos.x;
-    int y = pos.y;
+    int x = (int)pos.x;
+    int y = (int)pos.y;
 
     // 向上
     for (int i = y - 1; i >= 0; --i)
@@ -505,8 +505,8 @@ std::vector<Vector2> Cannon::get_can_move_to(const int(&board)[9][10])
 std::vector<Vector2> Cannon::get_can_eat(const int(&board)[9][10])
 {
     std::vector<Vector2> eats;
-    int x = pos.x;
-    int y = pos.y;
+    int x = (int)pos.x;
+    int y = (int)pos.y;
     int flag = 0;
 
     // 向上
@@ -611,8 +611,8 @@ void Soldier::on_update(int delta) { ChessPiece::on_update(delta); }
 std::vector<Vector2> Soldier::get_can_move_to(const int(&board)[9][10])
 {
     std::vector<Vector2> moves;
-    int x = pos.x;
-    int y = pos.y;
+    int x = (int)pos.x;
+    int y = (int)pos.y;
 
     if (camp == Camp::Red)
     {
@@ -655,8 +655,8 @@ std::vector<Vector2> Soldier::get_can_move_to(const int(&board)[9][10])
 std::vector<Vector2> Soldier::get_can_eat(const int(&board)[9][10])
 {
     std::vector<Vector2> eats;
-    int x = pos.x;
-    int y = pos.y;
+    int x = (int)pos.x;
+    int y = (int)pos.y;
 
     if (camp == Camp::Red)
     {
@@ -704,8 +704,8 @@ std::vector<Vector2> Soldier::get_can_eat(const int(&board)[9][10])
 // 轻量级车的可移动位置
 std::vector<Vector2> SChariot::get_can_move_to(const int(&board)[9][10]) {
     std::vector<Vector2> moves;
-    int x = pos.x;
-    int y = pos.y;
+    int x = (int)pos.x;
+    int y = (int)pos.y;
 
     // 向上
     for (int i = y - 1; i >= 0; --i) {
@@ -749,8 +749,8 @@ std::vector<Vector2> SChariot::get_can_move_to(const int(&board)[9][10]) {
 // 轻量级车的可吃子位置
 std::vector<Vector2> SChariot::get_can_eat(const int(&board)[9][10]) {
     std::vector<Vector2> eats;
-    int x = pos.x;
-    int y = pos.y;
+    int x = (int)pos.x;
+    int y = (int)pos.y;
 
     // 向上
     for (int i = y - 1; i >= 0; --i) {
@@ -793,7 +793,7 @@ std::vector<Vector2> SAdvisor::get_can_move_to(const int(&board)[9][10]) {
     const int dy[4] = { 1,1,-1,-1 };
     for (int i = 0; i < 4; i++)
     {
-        int x = pos.x, y = pos.y;
+        int x = (int)pos.x, y = (int)pos.y;
         x += dx[i], y += dy[i];
         if (camp == ChessPiece::Camp::Red)
         {
@@ -818,7 +818,7 @@ std::vector<Vector2> SAdvisor::get_can_eat(const int(&board)[9][10]) {
     const int dy[4] = { 1,1,-1,-1 };
     for (int i = 0; i < 4; i++)
     {
-        int x = pos.x, y = pos.y;
+        int x = (int)pos.x, y = (int)pos.y;
         x += dx[i], y += dy[i];
         if (camp == ChessPiece::Camp::Red)
         {
@@ -842,7 +842,7 @@ std::vector<Vector2> SElephant::get_can_move_to(const int(&board)[9][10]) {
     const int dy[4] = { 2,2,-2,-2 };
     for (int i = 0; i < 4; i++)
     {
-        int x = pos.x, y = pos.y;
+        int x = (int)pos.x, y = (int)pos.y;
         x += dx[i], y += dy[i];
         if (camp == ChessPiece::Camp::Red)
         {
@@ -866,7 +866,7 @@ std::vector<Vector2> SElephant::get_can_eat(const int(&board)[9][10]) {
     const int dy[4] = { 2,2,-2,-2 };
     for (int i = 0; i < 4; i++)
     {
-        int x = pos.x, y = pos.y;
+        int x = (int)pos.x, y = (int)pos.y;
         x += dx[i], y += dy[i];
         if (camp == ChessPiece::Camp::Red)
         {
@@ -892,10 +892,10 @@ std::vector<Vector2> SHorse::get_can_move_to(const int(&board)[9][10]) {
     const int leg_dy[8] = { 1, 0, 1, 0, 0, -1, 0, -1 };
     for (int i = 0; i < 8; ++i)
     {
-        int leg_x = pos.x + leg_dx[i];
-        int leg_y = pos.y + leg_dy[i];
-        int dx = pos.x + move_dx[i];
-        int dy = pos.y + move_dy[i];
+        int leg_x = (int)pos.x + leg_dx[i];
+        int leg_y = (int)pos.y + leg_dy[i];
+        int dx = (int)pos.x + move_dx[i];
+        int dy = (int)pos.y + move_dy[i];
         if (dx < 0 || dx > 8 || dy < 0 || dy > 9)
             continue;
         if (board[leg_x][leg_y] != 0 || board[dx][dy] != 0)
@@ -913,10 +913,10 @@ std::vector<Vector2> SHorse::get_can_eat(const int(&board)[9][10]) {
     const int leg_dy[8] = { 1, 0, 1, 0, 0, -1, 0, -1 };
     for (int i = 0; i < 8; ++i)
     {
-        int leg_x = pos.x + leg_dx[i];
-        int leg_y = pos.y + leg_dy[i];
-        int dx = pos.x + move_dx[i];
-        int dy = pos.y + move_dy[i];
+        int leg_x = (int)pos.x + leg_dx[i];
+        int leg_y = (int)pos.y + leg_dy[i];
+        int dx = (int)pos.x + move_dx[i];
+        int dy = (int)pos.y + move_dy[i];
         if (dx < 0 || dx > 8 || dy < 0 || dy > 9)
             continue;
         if (board[leg_x][leg_y] != 0 || board[dx][dy] == 0)
@@ -934,7 +934,7 @@ std::vector<Vector2> SGeneral::get_can_move_to(const int(&board)[9][10])
     const int dy[4] = { 0,1,0,-1 };
     for (int i = 0; i < 4; i++)
     {
-        int x = pos.x, y = pos.y;
+        int x = (int)pos.x, y = (int)pos.y;
         x += dx[i], y += dy[i];
         if (camp == ChessPiece::Camp::Red)
         {
@@ -971,7 +971,7 @@ std::vector<Vector2> SGeneral::get_can_eat(const int(&board)[9][10])
     const int dy[4] = { 0,1,0,-1 };
     for (int i = 0; i < 4; i++)
     {
-        int x = pos.x, y = pos.y;
+        int x = (int)pos.x, y = (int)pos.y;
 		x += dx[i], y += dy[i];
         if (camp == ChessPiece::Camp::Red)
         {
@@ -996,7 +996,7 @@ std::vector<Vector2> SGeneral::get_can_eat(const int(&board)[9][10])
     }
     if (camp == ChessPiece::Camp::Red)
     {
-        for (int i = pos.y - 1; i >= 0; i--)
+        for (int i = (int)pos.y - 1; i >= 0; i--)
         {
             if (board[(int)pos.x][i] != 0)
             {
@@ -1012,7 +1012,7 @@ std::vector<Vector2> SGeneral::get_can_eat(const int(&board)[9][10])
     }
     else
     {
-        for (int i = pos.y + 1; i <= 9; i++)
+        for (int i = (int)pos.y + 1; i <= 9; i++)
         {
             if (board[(int)pos.x][i] != 0)
             {
@@ -1031,8 +1031,8 @@ std::vector<Vector2> SGeneral::get_can_eat(const int(&board)[9][10])
 std::vector<Vector2> SCannon::get_can_move_to(const int(&board)[9][10])
 {
     std::vector<Vector2> moves;
-    int x = pos.x;
-    int y = pos.y;
+    int x = (int)pos.x;
+    int y = (int)pos.y;
     // 向上
     for (int i = y - 1; i >= 0; --i)
     {
@@ -1087,8 +1087,8 @@ std::vector<Vector2> SCannon::get_can_move_to(const int(&board)[9][10])
 std::vector<Vector2> SCannon::get_can_eat(const int(&board)[9][10])
 {
     std::vector<Vector2> eats;
-    int x = pos.x;
-    int y = pos.y;
+    int x = (int)pos.x;
+    int y = (int)pos.y;
     int flag = 0;
     // 向上
     for (int i = y - 1; i >= 0; --i)
@@ -1177,8 +1177,8 @@ std::vector<Vector2> SCannon::get_can_eat(const int(&board)[9][10])
 std::vector<Vector2> SSoldier::get_can_move_to(const int(&board)[9][10])
 {
     std::vector<Vector2> moves;
-    int x = pos.x;
-    int y = pos.y;
+    int x = (int)pos.x;
+    int y = (int)pos.y;
     if (camp == ChessPiece::Camp::Red)
     {
         // 向上
@@ -1218,8 +1218,8 @@ std::vector<Vector2> SSoldier::get_can_move_to(const int(&board)[9][10])
 std::vector<Vector2> SSoldier::get_can_eat(const int(&board)[9][10])
 {
     std::vector<Vector2> eats;
-    int x = pos.x;
-    int y = pos.y;
+    int x = (int)pos.x;
+    int y = (int)pos.y;
     if (camp == ChessPiece::Camp::Red)
     {
         // 向上

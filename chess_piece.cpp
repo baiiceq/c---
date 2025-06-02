@@ -22,11 +22,12 @@ ChessPiece::ChessPiece(const Vector2& pos, Camp c)
 			if(callback_operate)
 				callback_operate();
 		});
+
 }
 
 void ChessPiece::on_render(const Camera& camera)
 {
-	Rect rect_dst = { image_pos.x, image_pos.y, size.x, size.y };
+	Rect rect_dst = { (int)image_pos.x, (int)image_pos.y, (int)size.x, (int)size.y };
 	putimage_alpha(&camera, &img, &rect_dst);
 }
 

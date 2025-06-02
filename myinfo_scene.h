@@ -42,7 +42,7 @@ public:
         auto* player = SceneManager::instance()->get_player_account();
         if (!player) return;
         const auto& records = player->get_gamerecords();
-		listview.set_button_count(records.size());
+		listview.set_button_count((int)records.size());
         for (size_t i = 0; i < records.size(); ++i) {
             const auto& rec = records[i];
             ListView::Item item;
@@ -54,7 +54,7 @@ public:
                 L"" // 最后一列留空，显示按钮
             };
             listview.add_item(item);
-            listview.set_button_callback(i, [&]() {
+            listview.set_button_callback((int)i, [&]() {
                 std::string path = "data\\move_history\\" + std::string(rec.move_history.begin(), rec.move_history.end()) + ".txt";
                 SceneManager::instance()->set_gamescene_load_path(path);
                 SceneManager::instance()->set_gamescene_state_to_playback();
