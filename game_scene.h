@@ -58,6 +58,20 @@ public:
 				else {
 					MessageBox(GetHWnd(), _T("黑方胜利！"), _T("游戏结束！"), MB_OK);
 				}
+
+				HWND hwnd = GetHWnd();
+				int ret = MessageBox(hwnd, L"是否保存游戏？", L"保存确认", MB_YESNO | MB_ICONQUESTION | MB_TOPMOST);
+				if (ret == IDYES)
+				{
+					chess_manager.save_game_record("data/save.txt");
+				}
+				if (fstate == GameState::GameRunning)
+				{
+					chess_manager.save_game_record(SceneManager::instance()->get_player_account()->add_game_record());
+				}
+
+				chess_manager.reset();
+
 				//保存游戏记录
 				if (fstate == GameState::GameRunning) {
 					chess_manager.save_game_record(SceneManager::instance()->get_player_account()->
@@ -101,6 +115,8 @@ public:
 				{
 					chess_manager.save_game_record(SceneManager::instance()->get_player_account()-> add_game_record());
 				}
+
+				chess_manager.reset();
 			});
 
 		timer_interval.set_wait_time(INTERVAL);
@@ -116,12 +132,10 @@ public:
 	{
 		std::cout << "游戏开始" << std::endl;
 
-		chess_manager.reset();
-		
-
 		// 进入该界面时，把当前阵营改成红色方
 		current_turn = ChessPiece::Camp::Red;
 
+		chess_manager.reset();
 		
 		if (state == GameState::GameLoad)
 		{

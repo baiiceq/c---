@@ -218,11 +218,6 @@ void ChessManager::on_input(const ExMessage& msg, ChessPiece::Camp current_turn)
     case WM_LBUTTONUP:
         if (try_move_selected_piece_to(mousePos))
         {
-            if (is_in_check(current_turn))
-            {
-                anim_check.reset();
-                is_check = true;
-            }
             break;
         }
         handle_click(mousePos, current_turn);
@@ -244,8 +239,6 @@ void ChessManager::reset()
     move_history.clear();
     turn_timer.restart();
     playback_step = 0;
-	is_red_AI = false;
-	is_black_AI = false;
     memset(map, 0, sizeof map);
 
     // ºì·½
@@ -616,6 +609,16 @@ bool ChessManager::move_piece(const Vector2& src_pos, const Vector2& dst_pos, bo
         move_history.push_back(record);
 
     std::cout << "´Ó(" << src_pos.x << ',' << src_pos.y << "µ½(" << dst_pos.x << '/' << dst_pos.y << std::endl;
+
+    if (!is_load)
+    {
+        ChessPiece::Camp current_turn = piece->get_camp();
+        if (is_in_check(current_turn))
+        {
+            anim_check.reset();
+            is_check = true;
+        }
+    }
 
     if (callback_change)
         callback_change((int)src_pos.x * 1000 + (int)src_pos.y * 100 + (int)dst_pos.x * 10 + (int)dst_pos.y);
