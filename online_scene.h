@@ -86,7 +86,14 @@ public:
 					MessageBox(GetHWnd(), _T("黑方胜利！"), _T("游戏结束！"), MB_OK);
 				}
 
-
+				if (is_host)
+				{
+					chess_manager.save_game_record(SceneManager::instance()->get_player_account()->add_game_record(current_turn));
+				}
+				else 
+				{
+					chess_manager.save_game_record(SceneManager::instance()->get_player_account()->add_game_record(current_turn == ChessPiece::Camp::Black ? ChessPiece::Camp::Red : ChessPiece::Camp::Black));
+				}
 				SceneManager::instance()->switch_to(SceneManager::SceneType::Menu);
 			});
 
@@ -126,6 +133,7 @@ public:
 				if (client && client->join())
 				{
 					timer_retry.pause(); 
+					SceneManager::instance()->get_player_account()->add_game_record(0);
 					state = OnlineState::Racing;
 				}
 				else
@@ -186,6 +194,7 @@ public:
 				anim_waiting_players.on_update((float)delta);
 				if (server && server->is_ready())
 				{
+					SceneManager::instance()->get_player_account()->add_game_record(1);
 					state = OnlineState::Racing;
 				}
 			}

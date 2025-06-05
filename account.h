@@ -73,7 +73,9 @@ public:
     Player(const Player&);
     Player& operator=(const Player&);
     void save();
-    void add_game_record(const bool& is_red_AI, const bool& is_black_AI, int red, int black);//游戏开始
+    void add_game_record(const bool& is_red_AI, const bool& is_black_AI, int red, int black);//游戏开始(人机或本地）
+	void add_game_record(int); //游戏开始(联网)
+	std::string add_game_record(const ChessPiece::Camp& current_turn);//联机
     std::string add_game_record(const ChessPiece::Camp& current_turn,int ai_difficulty);//一方获胜
     std::string add_game_record();//中途退出
     std::vector<gamerecord>& get_gamerecords() { return gamerecords; };

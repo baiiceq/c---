@@ -70,6 +70,13 @@ public:
     {
         return turn_time_limit;
     }
+    void reset_ai()
+    {
+        is_black_AI = false;
+        is_red_AI = false;
+        black_AI_difficulty = 1;
+		red_AI_difficulty = 1;
+    }
 private:
     struct MoveRecord
     {

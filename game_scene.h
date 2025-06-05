@@ -65,18 +65,14 @@ public:
 				{
 					chess_manager.save_game_record("data/save.txt");
 				}
-				if (fstate == GameState::GameRunning)
-				{
-					chess_manager.save_game_record(SceneManager::instance()->get_player_account()->add_game_record());
+				//保存游戏记录
+				if (fstate == GameState::GameRunning) {
+					chess_manager.save_game_record(SceneManager::instance()->get_player_account()->
+						add_game_record(current_turn, chess_manager.get_ai_difficulty()));
 				}
 
 				chess_manager.reset();
 
-				//保存游戏记录
-				if (fstate == GameState::GameRunning) {
-					chess_manager.save_game_record(SceneManager::instance()->get_player_account()->
-						add_game_record(current_turn,chess_manager.get_ai_difficulty()));
-				}
 				SceneManager::instance()->switch_to(SceneManager::SceneType::Menu);
 			});
 
@@ -142,6 +138,7 @@ public:
 			chess_manager.load_game_record(load_path);
 			chess_manager.load();
 			load_path = "data/save.txt"; 
+			chess_manager.reset_ai();
 			state = GameState::GameRunning;
 			fstate = GameState::GameLoad;
 		}
@@ -150,6 +147,7 @@ public:
 			chess_manager.load_game_record(load_path);
 			load_path = "data/save.txt";
 			timer_interval.restart();
+			chess_manager.reset_ai();
 			fstate = GameState::GamePlayBack;
 		}
 		else if (state == GameState::GamePaused)

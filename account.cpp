@@ -143,6 +143,41 @@ void Player::add_game_record(const bool& is_red_AI, const bool& is_black_AI, int
     gamerecords.push_back(record);
 }
 
+void Player::add_game_record(int a)
+{
+    gamerecord record;
+    record.gameMode = mode::lianjipk;
+    if (a == 0)
+        record.opponentName = L"(ºì£©---";
+	else 
+		record.opponentName = L"(ºÚ£©---";
+    record.time = get_current_time();
+    record.result = gameresult::Notend;
+    record.move_history = L"-";
+    gamerecords.push_back(record);
+}
+
+std::string  Player::add_game_record(const ChessPiece::Camp& current_turn)
+{
+	gamerecord& record = gamerecords.back();
+    if (current_turn == ChessPiece::Camp::Red) {
+        record.result = gameresult::Lose;
+		ResourcesManager::instance()->get_account_pool()[username].score+=3;
+    }
+    else if (current_turn == ChessPiece::Camp::Black) {
+        record.result = gameresult::Win;
+		ResourcesManager::instance()->get_account_pool()[username].score++;
+    }
+    else {
+        record.result = gameresult::Draw;
+		ResourcesManager::instance()->get_account_pool()[username].score += 2;
+    }
+    record.move_history = get_current_time();
+    std::string a = std::string(record.move_history.begin(), record.move_history.end());
+    a = "data\\move_history\\" + a + ".txt";
+	return a;
+}
+
 std::string Player::add_game_record(const ChessPiece::Camp& current_turn,int ai_difficulty)
 {
     gamerecord& record = gamerecords.back();
